@@ -1,0 +1,64 @@
+<!-- <nav class="sidebar" [ngClass]="{ expanded: isExpanded }">
+  <div class="sidebar-inner">
+    <header class="sidebar-header p-3">LOGO</header>
+    <nav class="sidebar-menu">
+      <button type="button" class="has-border">
+        <i class="bi bi-house"></i>
+        <span>deashBoard</span>
+      </button>
+      <button type="button">
+        <i class="bi bi-person"></i>
+        <span>Clientes</span>
+      </button>
+      <button type="button">
+        <i class="bi bi-ev-front"></i>
+        <span>Veículos</span>
+      </button>
+      <button type="button" class="has-border">
+        <i class="bi bi-file-earmark"></i>
+        <span>Notas</span>
+      </button>
+    </nav>
+  </div>
+</nav> -->
+
+<div
+  class="sidebar overflow-auto bg-primary"
+  [ngClass]="{ expanded: isExpanded }"
+  id="accordionSidebar"
+>
+  <div class="bg-gradient-primary">
+    <div
+      class="content d-flex justify-content-center text-center align-items-center mt-3"
+    >
+      <div>
+        <h1 class="titulo text-white text-center">X</h1>
+      </div>
+      <div>
+        <!-- <button class="btn btn-primary" (click)="handleSidebarToggle()">
+          <div class="chevron text-white pt-2"></div>
+        </button> -->
+      </div>
+    </div>
+  </div>
+  <hr class="sidebar-divided mt-3" />
+  <div class="content text-white" *ngFor="let route of routes">
+    <div class="link">
+      <div class="content" [routerLink]="[route.route]">
+        <!-- [routerLinkActive]="'active'" -->
+        <div class="d-flex justify-content-center">
+          <div>
+            <i
+              class="{{ route.icon }}"
+              [ngClass]="{ 'pe-2': isExpanded, h5: !isExpanded }"
+            >
+            </i>
+          </div>
+          <div class="title a.text-white">{{ route.title }}</div>
+        </div>
+      </div>
+      <hr class="sidebar-divided" />
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>

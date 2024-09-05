@@ -1,0 +1,58 @@
+<nav
+  class="navbar navbar-expand navbar-light bg-white topbar static-top shadow p-3"
+  [ngClass]="{ 'is-expanded': isExpanded }"
+>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="row col-sm-12">
+        <div class="d-flex bd-highlight align-items-center">
+          <div class="p-1 bd-highlight">
+            <button
+              type="button"
+              class="btn sidebar-burger"
+              (click)="toggleNavbar()"
+            >
+              <i
+                class="bi"
+                [ngClass]="
+                  isExpanded === true
+                    ? 'bi-arrow-left-circle'
+                    : 'bi-arrow-right-circle'
+                "
+              ></i>
+            </button>
+          </div>
+          <div class="p-1 flex-shrink-1 bd-highlight">Car Senna</div>
+          <div class="ms-auto p-2 bd-highlight">
+            <app-dropdown-perfil></app-dropdown-perfil>
+          </div>
+        </div>
+        <!-- <div class="d-flex flex-row bd-highlight">
+          <div class="bd-highlight">
+            <button
+              type="button"
+              class="btn sidebar-burger"
+              (click)="toggleNavbar()"
+            >
+              <i
+                class="bi"
+                [ngClass]="
+                  isExpanded === true
+                    ? 'bi-arrow-left-circle'
+                    : 'bi-arrow-right-circle'
+                "
+              ></i>
+            </button>
+          </div>
+          <div class="bd-highlight">
+            <h1 class="text-primary">Car Senna</h1>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          ICON USER
+           <app-dropdown-perfil></app-dropdown-perfil> 
+        </div> -->
+      </div>
+    </div>
+  </div>
+</nav>

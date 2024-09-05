@@ -1,0 +1,15 @@
+<app-navbar (onToggleEvent)="toggleEvent($event)"></app-navbar>
+<div
+  class="body-component"
+  [ngClass]="{
+    'is-expanded': isExpanded
+  }"
+>
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="card bg-white w-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<app-sidebar [isExpanded]="isExpanded"></app-sidebar>

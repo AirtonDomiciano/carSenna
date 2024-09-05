@@ -1,0 +1,11 @@
+.navbar {
+  margin-left: 4%;
+  width: 96%;
+
+  transition: 0.3s;
+
+  &.is-expanded {
+    margin-left: 10%;
+    width: 90%;
+  }
+}
