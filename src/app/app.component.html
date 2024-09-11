@@ -1,13 +1,19 @@
 <app-navbar (onToggleEvent)="toggleEvent($event)"></app-navbar>
 <div
-  class="body-component"
+  class="body-component body-component align-items-center d-flex justify-content-center"
   [ngClass]="{
     'is-expanded': isExpanded
   }"
 >
-  <div class="container d-flex justify-content-center align-items-center">
+  <div class="container">
     <div class="card bg-white w-100">
-      <router-outlet></router-outlet>
+      <h2>Carros</h2>
+      <ul>
+        <li *ngFor="let car of cars">
+          {{ car.brand }} {{ car.model }} ({{ car.year }})
+        </li>
+      </ul>
+      <button (click)="addCar()">Adicionar Carro</button>
     </div>
   </div>
 </div>
