@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { DatabaseService } from './shared/services/database.service';
+import { ElectronService } from './shared/services/electron.service';
 
 @Component({
   selector: 'app-root',
@@ -16,29 +16,24 @@ import { DatabaseService } from './shared/services/database.service';
     SidebarComponent,
     NavbarComponent,
   ],
+  providers: [ElectronService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export default class AppComponent implements OnInit {
   isExpanded = false;
-  cars: any[] = [];
 
-  constructor(private databaseService: DatabaseService) {}
+  constructor(private electronService: ElectronService) {}
 
-  async ngOnInit() {
-    await this.loadCars();
+  ngOnInit(): void {
+    const data = this.electronService.getData();
+    console.log('Received data in component:', data);
+    // atualize seu componente com os dados lidos
   }
 
   toggleEvent(expande: boolean) {
     this.isExpanded = expande;
   }
-
-  async loadCars() {
-    this.cars = (await this.databaseService.getCars()) || [];
-  }
-
-  async addCar() {
-    await this.databaseService.addCar('Toyota', 'Corolla', 2022);
-    await this.loadCars();
-  }
 }
+
+
