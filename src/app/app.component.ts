@@ -26,8 +26,8 @@ export default class AppComponent implements OnInit {
   constructor(private electronService: ElectronService) {}
 
   ngOnInit(): void {
-    const data = this.electronService.getData();
-    console.log('Received data in component:', data);
+    // const data = this.electronService.getData();
+    // console.log('Received data in component:', data);
     // atualize seu componente com os dados lidos
   }
 
