@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ElectronService } from './shared/services/electron.service';
+import { FormsModule } from '@angular/forms';
+import { DataComponent } from './data.component';
 
 @Component({
   selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
   standalone: true,
   imports: [
     CommonModule,
@@ -15,25 +18,17 @@ import { ElectronService } from './shared/services/electron.service';
     RouterLinkActive,
     SidebarComponent,
     NavbarComponent,
+    FormsModule,
+    DataComponent,
   ],
-  providers: [ElectronService],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  providers: [],
 })
-export default class AppComponent implements OnInit {
+export default class AppComponent {
   isExpanded = false;
 
-  constructor(private electronService: ElectronService) {}
-
-  ngOnInit(): void {
-    // const data = this.electronService.getData();
-    // console.log('Received data in component:', data);
-    // atualize seu componente com os dados lidos
-  }
+  constructor() {}
 
   toggleEvent(expande: boolean) {
     this.isExpanded = expande;
   }
 }
-
-
