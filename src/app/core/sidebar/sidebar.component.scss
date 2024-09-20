@@ -1,255 +1,117 @@
-// button {
-//   background: transparent;
-//   border: 0;
-//   padding: 0;
-//   cursor: pointer;
-// }
-
-// .sidebar {
-//   position: absolute;
-//   overflow: hidden;
-//   top: 0;
-//   left: 0;
-//   height: 100%;
-//   width: 4%;
-//   background: #7d8482;
-//   transition: width 0.4s;
-// }
-
-// .sidebar {
-//   transition: width 0.4s;
-// }
-
-// .sidebar.expanded {
-//   width: 12%; /* adjust the width to your liking */
-// }
-
-// .sidebar.expanded .sidebar-inner {
-//   width: 100%;
-// }
-
-// .sidebar.expanded .sidebar-header {
-//   padding: 0 1.25rem 0 0;
-// }
-
-// // body.open .sidebar {
-// //   width: 260px;
-// // }
-
-// .sidebar-inner {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 300px;
-// }
-
-// .sidebar-header {
-//   display: flex;
-//   align-items: center;
-//   height: 72px;
-//   padding: 0 1.25rem 0 0;
-//   background: rgba(0, 0, 0, 0.1);
-// }
-
-// .sidebar-burger {
-//   width: 72px;
-//   height: 72px;
-//   display: grid;
-//   place-items: center;
-//   // background: url(./assets/icon-burger.svg) no-repeat center center;
-// }
-
-// body.open .sidebar-burger {
-//   // background: url(./assets/icon-close.svg) no-repeat no-repeat center center;
-// }
-
-// .sidebar-logo {
-//   height: 20px;
-// }
-
-// .sidebar-menu {
-//   display: grid;
-// }
-
-// .sidebar-menu > button {
-//   display: flex;
-//   gap: 25px;
-//   align-items: center;
-//   height: 60px;
-//   font-family: "Poppins";
-//   font-size: 16px;
-//   font-weight: 200;
-//   letter-spacing: 2px;
-//   line-height: 1;
-//   padding: 0 25px;
-// }
-
-// .sidebar-menu > button.has-border {
-//   // padding-bottom: 1rem;
-//   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-//   margin-bottom: 1rem;
-// }
-
-// .sidebar-menu > button > img {
-//   width: 24px;
-//   height: 24px;
-// }
-
-// .sidebar-menu > button > span {
-//   color: #f9f9f9;
-// }
-
-// .sidebar .sidebar-inner i {
-//   font-size: 30px; /* adjust the size to your liking */
-// }
-
-.chevron::before {
-  border-style: solid;
-  border-width: 0.3em 0.3em 0 0;
-  content: "";
-  display: inline-block;
-  height: 0.6em;
-  position: relative;
-  top: 0.15em;
-  vertical-align: top;
-  width: 0.6em;
-  transform: rotate(45deg);
-  transition: 0.3s;
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 }
 
 .sidebar {
-  position: fixed;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
   left: 0;
-  top: 0px;
-  height: 100vh;
+  width: 4%;
+  height: 100%;
+  background: #048480;
+  transition: width 0.8s;
+}
+
+.is-expanded .sidebar {
+  width: 13%;
+}
+
+.sidebar-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 1.25rem 0 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-burger {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  background: url(../../../assets/icons/icon-burger.svg) no-repeat center center;
   transition: 0.3s;
-  overflow-y: auto;
-  width: 5%;
+}
 
-  .titulo {
-    flex: 1;
-    max-width: 0px;
-    overflow: hidden;
-    transition: 0.3s;
-    margin-left: 10px;
+.is-expanded .sidebar-burger {
+  background: url(../../../assets/icons/icon-close.svg) no-repeat center center;
+}
+
+.sidebar-logo {
+  height: 20px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.is-expanded .sidebar-logo {
+  opacity: 1;
+}
+
+.sidebar-nav {
+  padding-top: 10px;
+  flex: 1 1 auto;
+}
+
+.sidebar button {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  height: 50px;
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  line-height: 1;
+  padding: 0 25px;
+}
+
+.sidebar button > span:hover {
+  color: aqua;
+}
+
+.sidebar button > .big-icon:hover {
+  color: aqua;
+}
+
+.big-icon {
+  font-size: 27px;
+  color: #f9f9f9;
+}
+
+.sidebar button > span {
+  color: #f9f9f9;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    translate: 0 10px;
   }
-
-  &.expanded {
-    width: 10%;
-
-    .titulo {
-      max-width: 100px;
-    }
-    .chevron {
-      margin-left: 0px;
-      &::before {
-        transform: rotate(225deg);
-      }
-    }
-
-    .header {
-      h1 {
-        margin-left: 0px;
-      }
-    }
-    .content {
-      .link {
-        .content {
-          .title {
-            max-width: 100px;
-          }
-          .icon {
-            margin-right: 3px;
-          }
-        }
-        .children {
-          .content {
-            padding-left: 30px;
-          }
-        }
-      }
-    }
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-
-    background: #79b0d4;
-
-    h1 {
-      font-size: 20px;
-
-      margin: 0;
-      flex: 1;
-      transition: 0.3s;
-      margin-left: -100px;
-    }
-
-    .chevron {
-      cursor: pointer;
-      transition: 0.3s;
-      margin-left: -25px;
-
-      padding: 10px;
-      min-width: 20px;
-      height: 20px;
-      display: block;
-      text-align: center;
-
-      &::before {
-        transition: 0.3s;
-        transform: rotate(45deg);
-      }
-    }
-  }
-
-  .content {
-    .link {
-      .children {
-        .content {
-          background: #82c5e2;
-          padding-left: 10px;
-
-          &.active {
-            background: #82c5e2;
-          }
-        }
-      }
-      .content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-
-        cursor: pointer;
-
-        transition: 0.3s;
-
-        &:hover {
-          background: #82c5e2;
-        }
-
-        .icon {
-          flex: 0 0 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 0px;
-        }
-        .title {
-          flex: 1;
-          transition: 0.3s;
-          max-width: 0px;
-          overflow: hidden;
-        }
-      }
-    }
+  100% {
+    opacity: 1;
+    translate: 0;
   }
 }
 
-.sidebar::-webkit-scrollbar {
-  display: none;
+// Aplica nos botões
+.is-expanded .sidebar button > span {
+  opacity: 1;
+  animation: appear 0.3s both;
 }

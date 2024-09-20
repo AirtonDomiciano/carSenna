@@ -1,18 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { DadosService } from '../../shared/services/dados.service';
+import { CommonModule } from '@angular/common';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { TableModule } from 'primeng/table';
+import { BrowserModule } from '@angular/platform-browser';
+import { ElectronService } from '../../shared/services/electron.service';
+import { Clientes } from '../../shared/interface/clientes.interface';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-cliente',
   templateUrl: 'cliente.component.html',
 })
 export class ClienteComponent implements OnInit {
-  public nome: string = '';
+  public form!: FormGroup;
 
-  constructor(private dadosService: DadosService) {}
+  constructor(private fb: FormBuilder, private http: ElectronService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      name: [''],
+      telephone: [''],
+      email: [''],
+    });
+
+
+  }
 
   salvarDados() {
-    this.dadosService.salvarDados({ nome: this.nome });
+    const cliente = this.form.value
+    this.http.addTypeData('clientes')
+    let clientes: Clientes[] = this.http.getData('clientes')
+
+    if (!clientes?.length) {
+      clientes = []
+    }
+    
+    clientes.push(cliente);
+
+    this.http.addData(clientes);
+
+    this.http.saveData();
   }
 }

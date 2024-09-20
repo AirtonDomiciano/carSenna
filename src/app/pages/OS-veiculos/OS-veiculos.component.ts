@@ -6,11 +6,11 @@ import { RouterModule } from '@angular/router';
 @Component({
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
-  selector: 'app-veiculos',
-  templateUrl: 'veiculos.component.html',
-  styleUrls: ['veiculos.component.scss']
+  selector: 'app-os-veiculos',
+  templateUrl: 'os-veiculos.component.html',
+  styleUrls: ['os-veiculos.component.scss'],
 })
-export class VeiculosComponent implements OnInit {
+export class OSVeiculosComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}

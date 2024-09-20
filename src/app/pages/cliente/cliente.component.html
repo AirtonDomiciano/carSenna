@@ -1,0 +1,51 @@
+<div class="card text-center">
+  <div class="card-header text-start">Crie seu Cliente</div>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nome"
+              formControlName="name"
+            />
+            <label for="floatingInputGrid">Nome</label>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Telefone"
+              formControlName="telephone"
+            />
+            <label for="floatingInputGrid">Telefone</label>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="telephone"
+              formControlName="email"
+            />
+            <label for="floatingInputGrid">Email</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer text-body-secondary text-end">
+    <button
+      (click)="salvarDados()"
+      type="button"
+      class="btn btn-lg btn-primary"
+    >
+      Salvar
+    </button>
+  </div>
+</div>

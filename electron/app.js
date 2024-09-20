@@ -43,13 +43,13 @@ app.on("activate", function () {
 });
 
 // Caminho para o arquivo JSON
-const dataPath = path.join(app.getPath("userData"), "data-electron-angular.json");
+// const dataPath = path.join(app.getPath("userData"), "data-electron-angular.json");
+const dataPath = path.join(app.getPath("documents"), "data-electron-angular.json");
 
 // Função para ler o arquivo JSON
 function readJSONFile() {
   try {
     if (fs.existsSync(dataPath)) {
-      console.log('MOSTRA ISSOOOO => ', dataPath)
       const data = fs.readFileSync(dataPath, "utf-8");
       return JSON.parse(data);
     } else {
@@ -64,7 +64,6 @@ function readJSONFile() {
 // Função para escrever no arquivo JSON
 function writeJSONFile(data) {
   try {
-    console.log("SALVANDO AQUI ", dataPath);
     fs.writeFileSync(dataPath, JSON.stringify(data));
     return true;
   } catch (error) {

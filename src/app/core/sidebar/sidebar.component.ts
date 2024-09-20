@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { RoutesArray } from '../../routes/routes-url';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,13 +13,10 @@ import { RoutesArray } from '../../routes/routes-url';
 })
 export class SidebarComponent {
   @Input() isExpanded = false;
-  public routes = RoutesArray;
+  @Output() onToggleEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
-  }
-
-  expandSidebar() {
-    this.isExpanded = true;
+    this.onToggleEvent.emit(this.isExpanded);
   }
 }

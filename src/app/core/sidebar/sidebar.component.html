@@ -1,64 +1,51 @@
-<!-- <nav class="sidebar" [ngClass]="{ expanded: isExpanded }">
-  <div class="sidebar-inner">
-    <header class="sidebar-header p-3">LOGO</header>
-    <nav class="sidebar-menu">
-      <button type="button" class="has-border">
-        <i class="bi bi-house"></i>
-        <span>deashBoard</span>
-      </button>
-      <button type="button">
-        <i class="bi bi-person"></i>
-        <span>Clientes</span>
-      </button>
-      <button type="button">
-        <i class="bi bi-ev-front"></i>
-        <span>Veículos</span>
-      </button>
-      <button type="button" class="has-border">
-        <i class="bi bi-file-earmark"></i>
-        <span>Notas</span>
-      </button>
-    </nav>
-  </div>
-</nav> -->
-
 <div
-  class="sidebar overflow-auto bg-primary"
-  [ngClass]="{ expanded: isExpanded }"
-  id="accordionSidebar"
+  [ngClass]="{
+    'is-expanded': isExpanded
+  }"
 >
-  <div class="bg-gradient-primary">
-    <div
-      class="content d-flex justify-content-center text-center align-items-center mt-3"
-    >
-      <div>
-        <h1 class="titulo text-white text-center">X</h1>
-      </div>
-      <div>
-        <!-- <button class="btn btn-primary" (click)="handleSidebarToggle()">
-          <div class="chevron text-white pt-2"></div>
-        </button> -->
-      </div>
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <header class="sidebar-header">
+        <button
+          type="button"
+          class="sidebar-burger"
+          (click)="toggleSidebar()"
+        ></button>
+        <img
+          src="../../../assets/icons/blocklord-logo.png"
+          class="sidebar-logo"
+        />
+      </header>
+      <nav class="sidebar-nav">
+        <button routerLink="deashBoard" type="button">
+          <i class="bi bi-house big-icon"></i>
+          <span>DashBoard</span>
+        </button>
+        <button routerLink="clients" type="button">
+          <i class="bi bi-person-arms-up big-icon"></i>
+          <span style="animation-delay: 0.1s">Clientes</span>
+        </button>
+        <button routerLink="osClientes" type="button">
+          <i class="bi bi bi-card-checklist big-icon"></i>
+          <span style="animation-delay: 0.2s">O.S Clientes</span>
+        </button>
+        <button routerLink="vehicles" type="button">
+          <i class="bi-car-front big-icon"></i>
+          <span style="animation-delay: 0.3s">Veículos</span>
+        </button>
+        <button routerLink="osVeiculos" type="button">
+          <i class="bi bi bi-card-checklist big-icon"></i>
+          <span style="animation-delay: 0.3s">O.S Veículos</span>
+        </button>
+      </nav>
+      <footer class="sidebar-footer">
+        <button type="button">
+          <!-- <img src="../../../assets/icons/icon-lock.svg" /> -->
+          <i class="bi bi-door-closed big-icon"></i>
+          <span>Logout</span>
+        </button>
+      </footer>
     </div>
-  </div>
-  <hr class="sidebar-divided mt-3" />
-  <div class="content text-white" *ngFor="let route of routes">
-    <div class="link">
-      <div class="content" [routerLink]="[route.route]">
-        <!-- [routerLinkActive]="'active'" -->
-        <div class="d-flex justify-content-center">
-          <div>
-            <i
-              class="{{ route.icon }}"
-              [ngClass]="{ 'pe-2': isExpanded, h5: !isExpanded }"
-            >
-            </i>
-          </div>
-          <div class="title a.text-white">{{ route.title }}</div>
-        </div>
-      </div>
-      <hr class="sidebar-divided" />
-    </div>
-  </div>
-  <div class="footer"></div>
+  </aside>
 </div>
+<!-- <img src="../../../assets/icons/icon-accounts.svg" /> -->

@@ -1,35 +1,59 @@
-// import { ipcRenderer } from 'electron';
-// import { Injectable } from '@angular/core';
+import { ipcRenderer } from 'electron';
+import { Injectable } from '@angular/core';
 
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class ElectronService {
-//   private arquivoJson = 'dados.json';
-//   private jsonData: any;
+@Injectable({
+  providedIn: 'root',
+})
+export class ElectronService {
+  data: any = {};
+  newData: string = '';
 
-//   constructor() {
-//     this.listenForData();
-//   }
+  async loadData() {
+    if (this.isElectronAvailable()) {
+      try {
+        this.data = await window.electron.fileSystem.readData();
+        console.log('Data loaded:', this.data);
+        // localStorage.setItem('file', this.data);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
+    } else {
+      console.error('Electron não está disponível');
+    }
+  }
 
-//   salvarDados(dados: any) {
-//     const json = JSON.stringify(dados);
-//     const blob = new Blob([json], { type: 'application/json' });
-//     const url = URL.createObjectURL(blob);
-//     const a = document.createElement('a');
-//     a.href = url;
-//     a.download = this.arquivoJson;
-//     a.click();
-//   }
+  getData(typeData?: string) {
+    if (typeData?.length) {
+      return this.data[typeData];
+    }
 
-//   private listenForData() {
-//     ipcRenderer.on('load-data', (event, data) => {
-//       this.jsonData = data;
-//       console.log('Received data from Electron:', data);
-//     });
-//   }
+    return this.data;
+  }
 
-//   getData(): any {
-//     return this.jsonData;
-//   }
-// }
+  addTypeData(newData: string) {
+    this.newData = newData;
+  }
+
+  addData(data: any) {
+    this.data[this.newData] = data;
+
+    console.log('addData', this.data[this.newData])
+  }
+
+  async saveData() {
+    if (this.isElectronAvailable()) {
+      try {
+        const result = await window.electron.fileSystem.writeData(this.data);
+        console.log('Dados salvos com sucesso:', result);
+      } catch (error) {
+        console.error('Erro ao salvar dados:', error);
+      }
+    } else {
+      console.error('Electron não está disponível');
+    }
+  }
+
+  private isElectronAvailable(): boolean {
+    return !!(window.electron && window.electron.fileSystem);
+  }
+}

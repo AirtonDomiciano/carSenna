@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-deashboard',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule],
+  selector: 'app-deashboard',
   templateUrl: './deashboard.component.html',
-  styleUrl: './deashboard.component.scss',
+  styleUrl: './deashboard.component.css',
 })
 export default class DeashBoardComponent {}
