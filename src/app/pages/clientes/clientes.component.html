@@ -1,12 +1,14 @@
 <div class="row mb-2">
   <div class="col">
     <div class="form-floating">
-      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-      <label for="floatingTextarea">Pesquisar</label>
+      <input type="text" class="form-control" placeholder="telephone" />
+      <label for="floatingInputGrid">Pesquisar</label>
     </div>
   </div>
   <div class="col text-end">
-    <button (click)="add()" type="button" class="btn btn-lg btn-success">Novo Cliente</button>
+    <button (click)="add()" type="button" class="btn btn-lg btn-success">
+      Novo Cliente
+    </button>
   </div>
 </div>
 <div class="row">
@@ -46,10 +48,7 @@
           <td>{{ obj.email }}</td>
           <td>
             <button class="btn-editar btn btn-primary">
-              <span
-                class="bi bi-pencil"
-                (click)="edit(obj.id)"
-              ></span>
+              <span class="bi bi-pencil" (click)="edit(obj.id)"></span>
             </button>
             <button class="btn btn-danger" (click)="delete(obj.id)">
               <span class="bi bi-trash"></span>

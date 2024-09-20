@@ -1,5 +1,7 @@
-<div class="container-body" [ngClass]="{ 'is-expanded': isExpanded }">
-  <router-outlet></router-outlet>
+<div class="container-body">
+  <div class="body-router" [ngClass]="{ 'is-expanded': isExpanded }">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 <!-- TODO -->

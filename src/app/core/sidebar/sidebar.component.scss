@@ -10,14 +10,16 @@ button {
   overflow: hidden;
   top: 0;
   left: 0;
-  width: 100px;
+  width: 72px;
   height: 100%;
-  background: #048480;
+  background: #198754;
   transition: width 0.8s;
+  z-index: 1000; 
+  border-radius: 0px 10px 10px 0px;
 }
 
 .is-expanded .sidebar {
-  width: 13%;
+  width: 230px;
 }
 
 .sidebar-inner {
@@ -118,20 +120,20 @@ button {
 
 // Responsive
 
-@media (max-width: 1336px) {
-  .big-icon {
-    font-size: 18px;
-  }
+// @media (max-width: 1336px) {
+//   .big-icon {
+//     font-size: 18px;
+//   }
 
-  .sidebar {
-    width: 70px;
-  }
+//   .sidebar {
+//     width: 72px;
+//   }
 
-  .sidebar-burger {
-    width: 67px;
-  }
+//   .sidebar-burger {
+//     width: 67px;
+//   }
 
-  .is-expanded .sidebar {
-    width: 22%;
-  }
-}
+//   .is-expanded .sidebar {
+//     width: 22%;
+//   }
+// }
