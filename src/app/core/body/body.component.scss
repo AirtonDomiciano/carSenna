@@ -14,19 +14,27 @@
 }
 
 .body-router {
-  width: 95%;
+  width: 97%;
   padding: 4% 2% 0% 2%;
   &.is-expanded {
-    width: 84%;
+    width: 88%;
   }
 }
 
 @media (max-width: 1336px) {
   .body-router {
-    width: 95%;
-    padding: 4% 2% 0% 2%;
+    width: 93%;
     &.is-expanded {
       width: 83%;
+    }
+  }
+}
+
+@media (max-width: 1040px) {
+  .body-router {
+    width: 93%;
+    &.is-expanded {
+      width: 78%;
     }
   }
 }
