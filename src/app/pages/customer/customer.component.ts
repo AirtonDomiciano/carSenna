@@ -9,15 +9,15 @@ import {
 import { TableModule } from 'primeng/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { ElectronService } from '../../shared/services/electron.service';
-import { Clientes } from '../../shared/interface/clientes.interface';
+import { Customers } from '../../shared/interface/clientes.interface';
 
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-cliente',
-  templateUrl: 'cliente.component.html',
+  templateUrl: 'customer.component.html',
 })
-export class ClienteComponent implements OnInit {
+export class CustomerComponent implements OnInit {
   public form!: FormGroup;
 
   constructor(private fb: FormBuilder, private http: ElectronService) {}
@@ -33,17 +33,17 @@ export class ClienteComponent implements OnInit {
   }
 
   salvarDados() {
-    const cliente = this.form.value
-    this.http.addTypeData('clientes')
-    let clientes: Clientes[] = this.http.getData('clientes')
+    const customer = this.form.value
+    this.http.addTypeData('customers')
+    let customers: Customers[] = this.http.getData('customers')
 
-    if (!clientes?.length) {
-      clientes = []
+    if (!customers?.length) {
+      customers = []
     }
     
-    clientes.push(cliente);
+    customers.push(customer);
 
-    this.http.addData(clientes);
+    this.http.addData(customers);
 
     this.http.saveData();
   }
