@@ -8,17 +8,19 @@ export class ElectronService {
   data: any = {};
   newData: string = '';
 
-  async loadData() {
-    if (this.isElectronAvailable()) {
-      try {
-        this.data = await window.electron.fileSystem.readData();
-        console.log('Data loaded:', this.data);
-        // localStorage.setItem('file', this.data);
-      } catch (error) {
-        console.error('Erro ao carregar dados:', error);
-      }
-    } else {
+  async loadData(): Promise<void> {
+    const isElectronAvailable: boolean = this.isElectronAvailable()
+    
+    if (!isElectronAvailable) {
       console.error('Electron não está disponível');
+      return;
+    }
+
+    try {
+      this.data = await window.electron.fileSystem.readData();
+      console.log('Data loaded:', this.data);
+    } catch (error) {
+      console.error('Erro ao carregar dados:', error);
     }
   }
 
@@ -37,7 +39,7 @@ export class ElectronService {
   addData(data: any) {
     this.data[this.newData] = data;
 
-    console.log('addData', this.data[this.newData])
+    console.log('addData', this.data[this.newData]);
   }
 
   async saveData() {

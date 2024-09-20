@@ -18,8 +18,8 @@ export default class ClientesComponent implements OnInit {
 
   constructor(private router: Router, private http: ElectronService) {}
 
-  ngOnInit() {
-    this.http.loadData();
+  async ngOnInit() {
+    await this.http.loadData();
     const res = this.http.getData('clientes');
     console.log('res', res);
     

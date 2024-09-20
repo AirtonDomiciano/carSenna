@@ -10,7 +10,7 @@ button {
   overflow: hidden;
   top: 0;
   left: 0;
-  width: 4%;
+  width: 100px;
   height: 100%;
   background: #048480;
   transition: width 0.8s;
@@ -114,4 +114,24 @@ button {
 .is-expanded .sidebar button > span {
   opacity: 1;
   animation: appear 0.3s both;
+}
+
+// Responsive
+
+@media (max-width: 1336px) {
+  .big-icon {
+    font-size: 18px;
+  }
+
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar-burger {
+    width: 67px;
+  }
+
+  .is-expanded .sidebar {
+    width: 22%;
+  }
 }
