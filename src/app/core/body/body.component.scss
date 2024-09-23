@@ -10,11 +10,11 @@
 .container-body {
   width: 100%;
   height: 100%;
-  background: #4777be;
+  background: var(--blue-400) ;
 }
 
 .body-router {
-  width: 95%;
+  width: 93%;
   padding: 4% 2% 0% 0%;
   &.is-expanded {
     width: 84%;

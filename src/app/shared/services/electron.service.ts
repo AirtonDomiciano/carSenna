@@ -9,8 +9,8 @@ export class ElectronService {
   newData: string = '';
 
   async loadData(): Promise<void> {
-    const isElectronAvailable: boolean = this.isElectronAvailable()
-    
+    const isElectronAvailable: boolean = this.isElectronAvailable();
+
     if (!isElectronAvailable) {
       console.error('Electron não está disponível');
       return;
@@ -38,20 +38,22 @@ export class ElectronService {
 
   addData(data: any) {
     this.data[this.newData] = data;
-
-    console.log('addData', this.data[this.newData]);
   }
 
   async saveData() {
-    if (this.isElectronAvailable()) {
-      try {
-        const result = await window.electron.fileSystem.writeData(this.data);
-        console.log('Dados salvos com sucesso:', result);
-      } catch (error) {
-        console.error('Erro ao salvar dados:', error);
-      }
-    } else {
+    const isElectronAvailable: boolean = this.isElectronAvailable();
+
+    if (!isElectronAvailable) {
       console.error('Electron não está disponível');
+      return false;
+    }
+
+    try {
+      await window.electron.fileSystem.writeData(this.data);
+      return true;
+    } catch (error) {
+      console.error('Erro ao salvar dados:', error);
+      return false;
     }
   }
 

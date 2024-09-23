@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -6,45 +13,109 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { TableModule } from 'primeng/table';
-import { BrowserModule } from '@angular/platform-browser';
 import { ElectronService } from '../../shared/services/electron.service';
-import { Customers } from '../../shared/interface/clientes.interface';
+import { Customer } from '../../shared/models/clientes';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  selector: 'app-cliente',
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, DrawerComponent],
+  selector: 'app-customer',
   templateUrl: 'customer.component.html',
+  providers: [ToastMessageService],
 })
 export class CustomerComponent implements OnInit {
-  public form!: FormGroup;
+  @Input() customers: Customer[] = [];
+  @Output() onFiltrar: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder, private http: ElectronService) {}
+  @ViewChild(DrawerComponent) drawer!: DrawerComponent;
+
+  public form!: FormGroup;
+  public headerDrawer: string = 'Cadastrar cliente';
+
+  constructor(
+    private fb: FormBuilder,
+    private http: ElectronService,
+    private toast: ToastMessageService
+  ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      name: [''],
-      telephone: [''],
-      email: [''],
-    });
-
-
+    this.form = this.fb.group(new Customer());
   }
 
-  salvarDados() {
-    const customer = this.form.value
-    this.http.addTypeData('customers')
-    let customers: Customers[] = this.http.getData('customers')
+  add() {
+    this.form.setValue(new Customer());
+    this.drawer.openDrawer();
+  }
 
-    if (!customers?.length) {
-      customers = []
-    }
-    
-    customers.push(customer);
+  edit(customer: Customer) {
+    this.form.setValue(customer);
+    this.drawer.openDrawer();
+  }
+
+  async delete(id: number): Promise<void> {
+    const customers = this.customers.filter((el) => el.id !== id);
+
+    console.log('deletando custom', customers);
 
     this.http.addData(customers);
 
-    this.http.saveData();
+    const res = await this.http.saveData();
+
+    if (res) {
+      this.toast.mostrarSucesso('Cliente excluído!');
+      this.onFiltrar.emit();
+    }
+  }
+
+  fecharDrawer() {
+    this.drawer.closeDrawer();
+  }
+
+  async salvar() {
+    this.salvarCustomers();
+
+    this.http.saveData().then((ver) => {
+      if (ver) {
+        this.drawer.closeDrawer();
+        this.onFiltrar.emit();
+        this.toast.mostrarSucesso('Cliente Salvo!');
+      }
+    });
+  }
+
+  async salvarCustomers(): Promise<void> {
+    const customer: Customer = this.form.value;
+
+    const newId = customer?.id ? customer?.id : this.customers?.length + 1;
+
+    if (!this.customers?.length) {
+      this.customers = [];
+    }
+
+    if (customer?.id) {
+      this.editaCustomer(customer);
+    } else {
+      customer.id = newId;
+      this.customers.push(customer);
+    }
+
+    this.http.addData(this.customers);
+  }
+
+  editaCustomer(editCustomer: Customer) {
+    for (const customer of this.customers) {
+      if (customer.id !== editCustomer.id) {
+        continue;
+      }
+
+      customer.name = editCustomer.name;
+      customer.cpf = editCustomer.cpf;
+      customer.telephone = editCustomer.telephone;
+      customer.email = editCustomer.email;
+    }
   }
 }

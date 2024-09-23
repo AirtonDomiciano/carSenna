@@ -12,7 +12,7 @@ button {
   left: 0;
   width: 72px;
   height: 100%;
-  background: #198754;
+  background: var(--green-600);
   transition: width 0.8s;
   z-index: 1000; 
   border-radius: 0px 10px 10px 0px;
@@ -38,7 +38,7 @@ button {
   align-items: center;
   height: 72px;
   padding: 0 1.25rem 0 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--green-800);
 }
 
 .sidebar-burger {
@@ -83,20 +83,20 @@ button {
 }
 
 .sidebar button > span:hover {
-  color: aqua;
+  color: var(--cyan-700);
 }
 
 .sidebar button > .big-icon:hover {
-  color: aqua;
+  color: var(--cyan-700);
 }
 
 .big-icon {
   font-size: 27px;
-  color: #f9f9f9;
+  color: var(--cyan-50);
 }
 
 .sidebar button > span {
-  color: #f9f9f9;
+  color: var(--cyan-50);;
   opacity: 0;
   transition: 0.3s;
 }

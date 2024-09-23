@@ -1,0 +1,43 @@
+<div
+  id="fade-{{ idDrawer }}"
+  [ngClass]="open === true ? 'fade-drawer' : ''"
+></div>
+
+<aside
+  id="drawer-{{ idDrawer }}"
+  [ngClass]="open === true ? 'drawer-open' : 'drawer-closed'"
+  class="navigation-drawer width-default"
+>
+  <div
+    *ngIf="visible"
+    class="drawer-container"
+    id="drawer-container-{{ idDrawer }}"
+  >
+    <header
+      id="drawer-header-{{ idDrawer }}"
+      class="drawer-header align-items-center mb-2"
+    >
+      <h5 class="drawer-title fs-3">{{ header }}</h5>
+      <button
+        type="button"
+        class="btn btn-outline-secondary border-0"
+        aria-label="Close"
+        (click)="closeDrawer()"
+      >
+        <i class="bi bi-box-arrow-left fs-3"></i>
+      </button>
+    </header>
+    <div class="padding-hr-drawer">
+      <hr />
+    </div>
+    <nav id="drawer-body-{{ idDrawer }}" class="body-drawer">
+      <ng-container [ngTemplateOutlet]="templateBody"></ng-container>
+    </nav>
+    <div class="padding-hr-drawer">
+      <hr />
+    </div>
+    <footer id="drawer-footer-{{ idDrawer }}" class="footer-drawer text-end">
+      <ng-container [ngTemplateOutlet]="templateFooter"></ng-container>
+    </footer>
+  </div>
+</aside>

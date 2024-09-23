@@ -13,49 +13,20 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <p-table
-      #myTab
-      [value]="customers"
-      [globalFilterFields]="['nome', 'telefone', 'email']"
-      [scrollable]="true"
-      scrollHeight="400px"
-      [tableStyle]="{
-        'min-width': '75rem'
-      }"
-      [paginator]="true"
-      [rows]="5"
-      [rowsPerPageOptions]="[5, 10, 20]"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th class="header-cell" pSortableColumn="nome">
-            Nome: <p-sortIcon field="nome"></p-sortIcon>
-          </th>
-          <th pSortableColumn="telefone">
-            Telefone: <p-sortIcon field="telefone"></p-sortIcon>
-          </th>
-          <th pSortableColumn="email">
-            E-mail: <p-sortIcon field="email"></p-sortIcon>
-          </th>
-          <th>Ações</th>
-        </tr>
-      </ng-template>
-
-      <ng-template pTemplate="body" let-obj>
-        <tr>
-          <td>{{ obj.name }}</td>
-          <td>{{ obj.telephone }}</td>
-          <td>{{ obj.email }}</td>
-          <td>
-            <button class="btn-editar btn btn-primary">
-              <span class="bi bi-pencil" (click)="edit(obj.id)"></span>
-            </button>
-            <button class="btn btn-danger" (click)="delete(obj.id)">
-              <span class="bi bi-trash"></span>
-            </button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+    <app-table
+      [columns]="[
+        { title: 'Nome', name: 'name' },
+        { title: 'Email', name: 'email' },
+        { title: 'Telefone', name: 'telephone' }
+      ]"
+      [buttons]="[
+        { id: 'id-edit', icon: 'bi bi-pencil-square' },
+        { id: 'id-trash', icon: 'bi bi-trash' }
+      ]"
+      [tBodyList]="customers"
+      (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
+    ></app-table>
   </div>
 </div>
+
+<app-customer [customers]="customers" (onFiltrar)="loadData()"></app-customer>

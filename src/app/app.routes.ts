@@ -9,7 +9,7 @@ import { CustomerComponent } from './pages/customer/customer.component';
 export const routes: Routes = [
   { path: 'deashBoard', title: 'Home', component: DeashBoardComponent },
   { path: 'customers', title: 'Clientes', component: CustomersComponent },
-  { path: 'customer/:id', title: 'Cliente', component: CustomerComponent },
+  // { path: 'customer/:id', title: 'Cliente', component: CustomerComponent } Vai abrir com drawer,
   { path: 'vehicles', title: 'Veículos', component: VeiculosComponent },
   { path: 'osClient', title: 'OS-Clientes', component: OSClientesComponent },
   { path: 'osVehicle', title: 'OS-Veículos', component: OSVeiculosComponent },

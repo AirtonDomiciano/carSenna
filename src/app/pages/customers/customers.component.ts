@@ -1,40 +1,55 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TableModule } from 'primeng/table';
 import { ElectronService } from '../../shared/services/electron.service';
-import { Customers } from '../../shared/interface/clientes.interface';
+import { Customer } from '../../shared/models/clientes';
+import TableDataComponent from '../../shared/components/table/table.component';
+import { CustomerComponent } from '../customer/customer.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, TableModule],
+  imports: [CommonModule, FormsModule, TableDataComponent, CustomerComponent],
   selector: 'app-customers',
   templateUrl: 'customers.component.html',
   styleUrls: ['customers.component.scss'],
 })
 export default class CustomersComponent implements OnInit {
-  customers: Customers[] = [];
+  customers: Customer[] = [];
+  @ViewChild(CustomerComponent) customer!: CustomerComponent;
 
   constructor(private router: Router, private http: ElectronService) {}
 
   async ngOnInit() {
+    this.loadData();
+    this.http.addTypeData('customers');
+  }
+
+  async loadData() {
+    this.customers = [];
+    
     await this.http.loadData();
     const res = this.http.getData('customers');
-    console.log('res', res);
 
     if (res?.length > 0) {
       this.customers = res;
     }
   }
 
+  onEventClickBotaoAcoes($event: any) {
+    switch ($event.id) {
+      case 'id-edit':
+        this.customer.edit($event.obj);
+        break;
+      case 'id-trash':
+        this.customer.delete($event.obj);
+        break;
+      default:
+        break;
+    }
+  }
+
   add() {
-    this.router.navigate(['customer/0']);
+    this.customer.add();
   }
-
-  edit(id: number) {
-    this.router.navigate([`customer/${id}`]);
-  }
-
-  delete($event: any) {}
 }
