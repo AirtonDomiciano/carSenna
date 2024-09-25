@@ -14,11 +14,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ElectronService } from '../../shared/services/electron.service';
-import { Customer } from '../../shared/models/clientes';
+import { Customer } from '../../shared/models/customer';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   standalone: true,

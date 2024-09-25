@@ -1,0 +1,91 @@
+<app-drawer
+  idDrawer="drawer-customer"
+  [header]="headerDrawer"
+  [templateBody]="templateBody"
+  [templateFooter]="templateFooter"
+  iconHeader="bi bi-question-circle"
+  classDrawer="drawer-navigation drawer-navigation-sm"
+>
+</app-drawer>
+<ng-template #templateBody>
+  <form [formGroup]="form">
+    <div class="row g-2">
+      <div class="col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Marca do carro"
+            formControlName="marca"
+          />
+          <label for="floatingInputGrid">Marca</label>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Placa do carro"
+            formControlName="placa"
+          />
+          <label for="floatingInputGrid">Placa</label>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Model do carro"
+            formControlName="modelo"
+          />
+          <label for="floatingInputGrid">Modelo</label>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ano fabricação"
+            formControlName="ano"
+          />
+          <label for="floatingInputGrid">Ano </label>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Cor do carro"
+            formControlName="cor"
+          />
+          <label for="floatingInputGrid">cor</label>
+        </div>
+      </div>
+      <div class="p-2 g-col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Chassi do carro"
+            formControlName="chassi"
+          />
+          <label for="floatingInputGrid">Chassi</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #templateFooter>
+  <button (click)="fecharDrawer()" type="button" class="btn btn-secondary m-1">
+    Cancelar
+  </button>
+
+  <button (click)="salvar()" type="button" class="btn btn-success">
+    Salvar
+  </button>
+</ng-template>

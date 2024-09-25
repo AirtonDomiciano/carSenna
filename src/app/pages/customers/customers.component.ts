@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ElectronService } from '../../shared/services/electron.service';
-import { Customer } from '../../shared/models/clientes';
+import { Customer } from '../../shared/models/customer';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CustomerComponent } from '../customer/customer.component';
 
