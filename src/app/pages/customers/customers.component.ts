@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ElectronService } from '../../shared/services/electron.service';
-import { Customer } from '../../shared/models/customer';
+import Customer from '../../shared/models/customer';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CustomerComponent } from '../customer/customer.component';
 
@@ -18,7 +18,7 @@ export default class CustomersComponent implements OnInit {
   customers: Customer[] = [];
   @ViewChild(CustomerComponent) customer!: CustomerComponent;
 
-  constructor(private router: Router, private http: ElectronService) {}
+  constructor(private http: ElectronService) {}
 
   async ngOnInit() {
     this.loadData();
@@ -27,13 +27,17 @@ export default class CustomersComponent implements OnInit {
 
   async loadData() {
     this.customers = [];
-    
+
     await this.http.loadData();
     const res = this.http.getData('customers');
 
     if (res?.length > 0) {
       this.customers = res;
     }
+  }
+
+  add() {
+    this.customer.add();
   }
 
   onEventClickBotaoAcoes($event: any) {
@@ -47,9 +51,5 @@ export default class CustomersComponent implements OnInit {
       default:
         break;
     }
-  }
-
-  add() {
-    this.customer.add();
   }
 }

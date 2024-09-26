@@ -1,0 +1,69 @@
+<app-drawer
+  idDrawer="drawer-mechanical"
+  [header]="headerDrawer"
+  [templateBody]="templateBody"
+  [templateFooter]="templateFooter"
+  iconHeader="bi bi-question-circle"
+  classDrawer="drawer-navigation drawer-navigation-sm"
+>
+</app-drawer>
+<ng-template #templateBody>
+  <form [formGroup]="form">
+    <div class="row g-2">
+      <div class="col-12">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nome do mecânico"
+            formControlName="name"
+          />
+          <label for="floatingInputGrid">Nome</label>
+        </div>
+      </div>
+      <div class="p-2 g-col-12">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="E-mail"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">E-mail</label>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Telefone"
+            formControlName="telephone"
+          />
+          <label for="floatingInputGrid">Telefone</label>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="CPF"
+            formControlName="cpf"
+          />
+          <label for="floatingInputGrid">Cpf</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #templateFooter>
+  <button (click)="fecharDrawer()" type="button" class="btn btn-secondary m-1">
+    Cancelar
+  </button>
+
+  <button (click)="salvar()" type="button" class="btn btn-success">
+    Salvar
+  </button>
+</ng-template>

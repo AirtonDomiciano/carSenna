@@ -1,0 +1,129 @@
+<!-- Botão para abrir o modal -->
+<button
+  type="button"
+  class="btn btn-secondary"
+  data-bs-toggle="modal"
+  data-bs-target="#previewModal"
+>
+  Visualizar Nota
+</button>
+
+<!-- Modal de Visualização -->
+<div
+  class="modal fade"
+  id="previewModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Visualização da Nota</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="nota-fiscal-container">
+          <!-- Título e Cabeçalho -->
+          <div class="nota-fiscal-header text-center">
+            <h2>{{ notaFiscalPreview.nomeEmpresa }}</h2>
+            <p>{{ notaFiscalPreview.nomeMecanico }}</p>
+            <!-- <p>
+              * Chaves em Geral - Abertura de Fechadura de Cofres - Troca de
+              Segredo de Cofres *
+            </p> -->
+            <p>Tel.: {{ notaFiscalPreview.telefoneEmpresa }}</p>
+            <p>
+              {{ notaFiscalPreview.ruaEmpresa }},
+              {{ notaFiscalPreview.numeroEmpresa }} -
+              {{ notaFiscalPreview.bairroEmpresa }} - Cep
+              {{ notaFiscalPreview.cepEmpresa }} -
+              {{ notaFiscalPreview.cidadeEmpresa }} -{{
+                notaFiscalPreview.estadoEmpresa
+              }}
+            </p>
+            <p>CNPJ: {{ notaFiscalPreview.CNPJ }} - NIRE: 33-8-0666557-0</p>
+          </div>
+
+          <!-- Dados do Cliente -->
+          <div class="nota-fiscal-dados-cliente">
+            <div class="row">
+              <div class="col-6 text-start">
+                <p>
+                  <strong>Data da Emissão:</strong>
+                  {{ notaFiscalPreview.dataEmissao }}
+                </p>
+              </div>
+              <div class="col-6 text-end">
+                <h5 class="text-danger">No 001</h5>
+              </div>
+              <div class="col-12 text-start">
+                <p><strong>Nome:</strong> {{ notaFiscalPreview.nome }}</p>
+              </div>
+              <div class="col-12 text-start">
+                <p>
+                  <strong>Endereço:</strong> {{ notaFiscalPreview.endereco }}
+                </p>
+              </div>
+              <div class="col-12 text-start">
+                <p><strong>CNPJ:</strong> {{ notaFiscalPreview.cnpj }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabela de Serviços -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Quant.</th>
+                <th>Discriminação dos Serviços</th>
+                <th>P. Unit.</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let servico of notaFiscalPreview?.servicos">
+                <td>{{ servico.quantidade }}</td>
+                <td>{{ servico.descricao }}</td>
+                <td>{{ servico.precoUnitario }}</td>
+                <td>{{ servico.total }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Informações do Procon -->
+          <div class="nota-fiscal-footer">
+            <p>
+              PROCON/RJ - Praça Cristiano Otoni, s/n - Tel.: 151 ou 2334-5197
+            </p>
+            <p>ALERJ - 0800 282 7060 - R. da Alfândega, 8 - Centro - RJ</p>
+            <p>05 talões 50x2 vias - Num. 751 a 1000</p>
+            <p>
+              <strong>
+                Valor Total da Nota R$:
+                {{ notaFiscalPreview.valorTotal }}
+              </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="downloadNotaFiscal()"
+        >
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

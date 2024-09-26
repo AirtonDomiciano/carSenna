@@ -1,1 +1,128 @@
-work NEW OS Clientes
+<!-- <app-screenshot></app-screenshot> -->
+
+<form [formGroup]="form">
+  <div class="card text-start">
+    <div class="card-header">Crie sua ordem de serviço</div>
+    <div class="card-body">
+      <div class="row g-2">
+        <div class="col-12">
+          <h5>Informações da Empresa</h5>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nomeEmpresa"
+              placeholder=""
+            />
+            <label for="floatingInputGrid">Nome empresa</label>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="telefoneEmpresa"
+            />
+            <label for="floatingInputGrid">Telefone</label>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="CNPJ"
+            />
+            <label for="floatingInputGrid">CNPJ</label>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="cepEmpresa"
+            />
+            <label for="floatingInputGrid">Cep </label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="ruaEmpresa"
+            />
+            <label for="floatingInputGrid">Rua </label>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="numeroEmpresa"
+            />
+            <label for="floatingInputGrid">Nº </label>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="bairroEmpresa"
+            />
+            <label for="floatingInputGrid">Bairro </label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <h5>Informações do Mecânico</h5>
+        </div>
+
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="nomeMecanico"
+            />
+            <label for="floatingInputGrid">Nome Mecânico </label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <h5>Informações do Cliente</h5>
+        </div>
+
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=""
+              formControlName="nomeMecanico"
+            />
+            <label for="floatingInputGrid">Nome Cliente </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-body-secondary text-end">
+      <!-- <button type="button" class="btn btn-info m-1">Visualizar</button> -->
+      <app-screenshot></app-screenshot>
+      <button type="button" class="btn btn-success m-1">Baixar</button>
+    </div>
+  </div>
+</form>

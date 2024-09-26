@@ -1,0 +1,32 @@
+<div class="row mb-2">
+  <div class="col">
+    <div class="form-floating">
+      <input type="text" class="form-control" placeholder="telephone" />
+      <label for="floatingInputGrid">Pesquisar</label>
+    </div>
+  </div>
+  <div class="col text-end">
+    <button (click)="add()" type="button" class="btn btn-lg btn-success">
+      Adicionar Mecânico
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <app-table
+      [columns]="[
+        { title: 'Nome', name: 'name' },
+        { title: 'Cpf', name: 'cpf' },
+        { title: 'E-mail', name: 'email' },
+      ]"
+      [buttons]="[
+        { id: 'id-edit', icon: 'bi bi-pencil-square' },
+        { id: 'id-trash', icon: 'bi bi-trash' }
+      ]"
+      [tBodyList]="mechanicals"
+      (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
+    ></app-table>
+  </div>
+</div>
+
+<app-mechanical [mechanicals]="mechanicals" (onFiltrar)="loadData()" ></app-mechanical>

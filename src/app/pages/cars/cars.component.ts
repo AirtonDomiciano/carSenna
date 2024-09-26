@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CarComponent } from '../car/car.component';
-import { Car } from '../../shared/models/car';
+import Car from '../../shared/models/car';
 
 @Component({
   standalone: true,

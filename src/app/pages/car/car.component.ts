@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
-import { Car } from '../../shared/models/car';
+import Car from '../../shared/models/car';
 import { ElectronService } from '../../shared/services/electron.service';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -6,33 +7,34 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ElectronService } from '../../shared/services/electron.service';
-import Customer from '../../shared/models/customer';
-import { ToastMessageService } from '../../shared/components/toast/toast.service';
+
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
+import { ElectronService } from '../../shared/services/electron.service';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import Mechanical from '../../shared/models/mechanical';
 
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, DrawerComponent],
-  selector: 'app-customer',
-  templateUrl: 'customer.component.html',
+  selector: 'app-mechanical',
+  templateUrl: 'mechanical.component.html',
+  styleUrls: ['mechanical.component.scss'],
   providers: [ToastMessageService],
 })
-export class CustomerComponent implements OnInit {
-  @Input() customers: Customer[] = [];
+export class MechanicalComponent implements OnInit {
+  @Input() mechanicals: Mechanical[] = [];
   @Output() onFiltrar: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild(DrawerComponent) drawer!: DrawerComponent;
 
+  public headerDrawer = 'Cadastrar Mecanico';
   public form!: FormGroup;
-  public headerDrawer: string = 'Cadastrar cliente';
 
   constructor(
     private fb: FormBuilder,
@@ -40,70 +42,64 @@ export class CustomerComponent implements OnInit {
     private toast: ToastMessageService
   ) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group(new Customer());
+  ngOnInit() {
+    this.form = this.fb.group(new Mechanical());
   }
 
   add() {
-    this.form.setValue(new Customer());
+    this.form.setValue(new Mechanical());
     this.drawer.openDrawer();
   }
 
-  edit(customer: Customer) {
-    this.form.setValue(customer);
+  edit(mechanical: Mechanical) {
+    this.form.setValue(mechanical);
     this.drawer.openDrawer();
   }
 
   async delete(id: number): Promise<void> {
-    const customers = this.customers.filter((el) => el.id !== id);
+    const mechanical = this.mechanicals.filter((el) => el.id !== id);
 
-    this.http.addData(customers);
+    this.http.addData(mechanical);
 
     const res = await this.http.saveData();
 
     if (res) {
-      this.toast.mostrarSucesso('Cliente excluído!');
+      this.toast.mostrarSucesso('Mecânico excluído!');
       this.onFiltrar.emit();
     }
   }
 
-  fecharDrawer() {
+  async fecharDrawer() {
     this.drawer.closeDrawer();
   }
 
   async salvar() {
-    this.salvarCustomers();
+    const mechanical: Mechanical = this.form.value;
+
+    const newId = mechanical?.id
+      ? mechanical?.id
+      : this.mechanicals?.length + 1;
+
+    if (mechanical?.id) {
+      this.editaCustomer(mechanical);
+    } else {
+      mechanical.id = newId;
+      this.mechanicals.push(mechanical);
+    }
+
+    this.http.addData(this.mechanicals);
 
     this.http.saveData().then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();
-        this.toast.mostrarSucesso('Cliente Salvo!');
+        this.toast.mostrarSucesso('Mecânico Salvo!');
       }
     });
   }
 
-  async salvarCustomers(): Promise<void> {
-    const customer: Customer = this.form.value;
-
-    const newId = customer?.id ? customer?.id : this.customers?.length + 1;
-
-    if (!this.customers?.length) {
-      this.customers = [];
-    }
-
-    if (customer?.id) {
-      this.editaCustomer(customer);
-    } else {
-      customer.id = newId;
-      this.customers.push(customer);
-    }
-
-    this.http.addData(this.customers);
-  }
-
-  editaCustomer(editCustomer: Customer) {
-    for (const customer of this.customers) {
+  editaCustomer(editCustomer: Mechanical) {
+    for (const customer of this.mechanicals) {
       if (customer.id !== editCustomer.id) {
         continue;
       }
