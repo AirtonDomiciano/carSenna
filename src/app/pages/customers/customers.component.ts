@@ -6,10 +6,16 @@ import { ElectronService } from '../../shared/services/electron.service';
 import Customer from '../../shared/models/customer';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CustomerComponent } from '../customer/customer.component';
+import { TelefonePipe } from '../../shared/pipes/telephone.pipe';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, TableDataComponent, CustomerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableDataComponent,
+    CustomerComponent,
+  ],
   selector: 'app-customers',
   templateUrl: 'customers.component.html',
   styleUrls: ['customers.component.scss'],
@@ -46,7 +52,7 @@ export default class CustomersComponent implements OnInit {
         this.customer.edit($event.obj);
         break;
       case 'id-trash':
-        this.customer.delete($event.obj);
+        this.customer.delete($event.obj.id);
         break;
       default:
         break;

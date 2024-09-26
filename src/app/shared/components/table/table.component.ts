@@ -11,10 +11,12 @@ import {
 import { TypeButtons, TypeColumns } from './table-data.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TelefonePipe } from '../../pipes/telephone.pipe';
+import { CpfCnpjPipe } from '../../pipes/cpfCnpj.pipe';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TelefonePipe, CpfCnpjPipe],
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
@@ -93,7 +95,7 @@ export default class TableDataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.colspan = this.columns.length +1
+    this.colspan = this.columns.length + 1;
   }
 
   onClickBotaoAcoes($event: { id: string; obj: any; index?: number }): void {

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CarComponent } from '../car/car.component';
 import Car from '../../shared/models/car';
+import { ElectronService } from '../../shared/services/electron.service';
 
 @Component({
   standalone: true,
@@ -23,9 +24,27 @@ export class CarsComponent implements OnInit {
   public cars: Car[] = [];
   @ViewChild(CarComponent) car!: CarComponent;
 
-  constructor() {}
+  constructor(private http: ElectronService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadData();
+    this.http.addTypeData('cars');
+  }
+
+  async loadData() {
+    this.cars = [];
+
+    await this.http.loadData();
+    const res = this.http.getData('cars');
+
+    if (res?.length > 0) {
+      this.cars = res;
+    }
+  }
+
+  add() {
+    this.car.add();
+  }
 
   onEventClickBotaoAcoes($event: any) {
     switch ($event.id) {
@@ -33,14 +52,10 @@ export class CarsComponent implements OnInit {
         this.car.edit($event.obj);
         break;
       case 'id-trash':
-        this.car.delete($event.obj);
+        this.car.delete($event.obj.id);
         break;
       default:
         break;
     }
-  }
-
-  add() {
-    this.car.add();
   }
 }

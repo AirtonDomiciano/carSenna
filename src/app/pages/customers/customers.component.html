@@ -16,8 +16,9 @@
     <app-table
       [columns]="[
         { title: 'Nome', name: 'name' },
-        { title: 'Email', name: 'email' },
-        { title: 'Telefone', name: 'telephone' }
+        { title: 'CPF', name: 'cpf', type: 'cpfCnpj' },
+        { title: 'Telefone', name: 'telephone', type: 'telephone' },
+        { title: 'Email', name: 'email' }
       ]"
       [buttons]="[
         { id: 'id-edit', icon: 'bi bi-pencil-square' },

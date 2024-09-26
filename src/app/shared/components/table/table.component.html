@@ -44,13 +44,19 @@
             </tbody>
             <tbody id="table-data-tbody-{{ id }}" *ngIf="tBodyList.length > 0">
               <tr *ngFor="let obj of tBodyList; let i = index">
-                <ng-container *ngFor="let column of columns">
-                  <!-- <td *ngSwitchCase="'currency'">
-                    {{ obj[column.name] | currency : (column?.currencyFormat?.length ? column.currencyFormat : '  ') }}
-                  </td> -->
+                <ng-container
+                  *ngFor="let column of columns"
+                  [ngSwitch]="column?.type"
+                >
+                  <td *ngSwitchCase="'telephone'">
+                    {{ obj[column.name] | telephone }}
+                  </td>
+                  <td *ngSwitchCase="'cpfCnpj'">
+                    {{ obj[column.name] | cpfCnpj }}
+                  </td>
                   <!-- <td *ngSwitchCase="'cpfCnpj'">{{ obj[column.name] | cpfCnpj }}</td> -->
                   <!-- <td *ngSwitchCase="'data'">{{ obj[column.name] | date : 'dd/MM/yyyy' }}</td> -->
-                  <td>
+                  <td *ngSwitchDefault>
                     {{ obj[column?.name || ""] }}
                   </td>
                 </ng-container>

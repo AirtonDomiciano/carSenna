@@ -19,7 +19,6 @@
         { title: 'Marca', name: 'marca' },
         { title: 'Ano', name: 'ano' },
         { title: 'Placa', name: 'placa' },
-        { title: 'Tipo Combustivel', name: 'tipoCombustivel' }
       ]"
       [buttons]="[
         { id: 'id-edit', icon: 'bi bi-pencil-square' },
@@ -31,4 +30,4 @@
   </div>
 </div>
 
-<app-car></app-car>
+<app-car [cars]="cars" (onFiltrar)="loadData()"></app-car>
