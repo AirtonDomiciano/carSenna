@@ -17,10 +17,17 @@ import { ElectronService } from '../../shared/services/electron.service';
 import Customer from '../../shared/models/customer';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
+import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, DrawerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DrawerComponent,
+    PhoneInputComponent,
+  ],
   selector: 'app-customer',
   templateUrl: 'customer.component.html',
   providers: [ToastMessageService],

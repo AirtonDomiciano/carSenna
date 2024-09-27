@@ -7,25 +7,62 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    OnlyNumbersDirective,
+  ],
   selector: 'app-phone-input',
-  templateUrl: './phone-input.component.html',
+  template: `<div [formGroup]="phoneForm" class="phone-input-container">
+    <div class="form-floating">
+      <input
+        type="text"
+        id="phoneNumber"
+        class="form-control"
+        formControlName="{{ frmPhone }}"
+        (input)="formatPhoneNumber($event)"
+        placeholder="(99) 99999-9999"
+        onlyNumbers
+      />
+      <label for="phoneNumber">Telefone 2</label>
+    </div>
+
+    <div
+      *ngIf="
+        phoneForm.get(frmPhone)?.invalid && phoneForm.get(frmPhone)?.touched
+      "
+      class="text-danger"
+    >
+      Número de telefone inválido. Formato esperado: (99) 99999-9999
+    </div>
+  </div> `,
 })
 export class PhoneInputComponent implements OnInit {
   @Input() phoneForm!: FormGroup;
+  @Input() frmPhone: string = '';
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.phoneForm = this.fb.group({
-      phoneNumber: [
-        '',
-        [Validators.required, Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/)],
-      ],
-    });
+    this.validRequired();
+    // this.phoneForm = this.fb.group({
+    //   phoneNumber: [
+    //     '',
+    //     [Validators.required, Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/)],
+    //   ],
+    // });
+  }
+
+  validRequired() {
+    this.phoneForm.controls[this.frmPhone].setValidators([
+      Validators.required,
+      Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/),
+    ]);
   }
 
   // Função para formatar o número enquanto o usuário digita

@@ -1,6 +1,6 @@
 import { Component, Injectable, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import Toast from '../../interface/toast.interface';
+import Toast from '../../interfaces/toast.interface';
 
 @Injectable({
   providedIn: 'root',
