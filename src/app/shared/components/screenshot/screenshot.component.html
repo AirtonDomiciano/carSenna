@@ -1,14 +1,13 @@
-<!-- Botão para abrir o modal -->
 <button
   type="button"
   class="btn btn-secondary"
+  (click)="visualizarNotaFiscal()"
   data-bs-toggle="modal"
   data-bs-target="#previewModal"
 >
   Visualizar Nota
 </button>
 
-<!-- Modal de Visualização -->
 <div
   class="modal fade"
   id="previewModal"
@@ -31,23 +30,19 @@
         <div class="nota-fiscal-container">
           <!-- Título e Cabeçalho -->
           <div class="nota-fiscal-header text-center">
-            <h2>{{ notaFiscalPreview.nomeEmpresa }}</h2>
-            <p>{{ notaFiscalPreview.nomeMecanico }}</p>
+            <h2>{{ preview.nomeEmpresa }}</h2>
+            <p>{{ preview.nomeMecanico }}</p>
             <!-- <p>
               * Chaves em Geral - Abertura de Fechadura de Cofres - Troca de
               Segredo de Cofres *
             </p> -->
-            <p>Tel.: {{ notaFiscalPreview.telefoneEmpresa }}</p>
+            <p>Tel.: {{ preview.telefoneEmpresa }}</p>
             <p>
-              {{ notaFiscalPreview.ruaEmpresa }},
-              {{ notaFiscalPreview.numeroEmpresa }} -
-              {{ notaFiscalPreview.bairroEmpresa }} - Cep
-              {{ notaFiscalPreview.cepEmpresa }} -
-              {{ notaFiscalPreview.cidadeEmpresa }} -{{
-                notaFiscalPreview.estadoEmpresa
-              }}
+              {{ preview.ruaEmpresa }}, {{ preview.numeroEmpresa }} -
+              {{ preview.bairroEmpresa }} - Cep {{ preview.cepEmpresa }} -
+              {{ preview.cidadeEmpresa }} -{{ preview.estadoEmpresa }}
             </p>
-            <p>CNPJ: {{ notaFiscalPreview.CNPJ }} - NIRE: 33-8-0666557-0</p>
+            <p>CNPJ: {{ preview.CNPJ }} - NIRE: 33-8-0666557-0</p>
           </div>
 
           <!-- Dados do Cliente -->
@@ -56,22 +51,20 @@
               <div class="col-6 text-start">
                 <p>
                   <strong>Data da Emissão:</strong>
-                  {{ notaFiscalPreview.dataEmissao }}
+                  {{ preview.dataEmissao }}
                 </p>
               </div>
               <div class="col-6 text-end">
                 <h5 class="text-danger">No 001</h5>
               </div>
               <div class="col-12 text-start">
-                <p><strong>Nome:</strong> {{ notaFiscalPreview.nome }}</p>
+                <p><strong>Nome:</strong> {{ preview.nome }}</p>
               </div>
               <div class="col-12 text-start">
-                <p>
-                  <strong>Endereço:</strong> {{ notaFiscalPreview.endereco }}
-                </p>
+                <p><strong>Endereço:</strong> {{ preview.endereco }}</p>
               </div>
               <div class="col-12 text-start">
-                <p><strong>CNPJ:</strong> {{ notaFiscalPreview.cnpj }}</p>
+                <p><strong>CNPJ:</strong> {{ preview.cnpj }}</p>
               </div>
             </div>
           </div>
@@ -80,24 +73,24 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th>Quant.</th>
                 <th>Discriminação dos Serviços</th>
+                <th>Quant.</th>
                 <th>P. Unit.</th>
-                <th>Total</th>
+                <!-- <th>Total</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let servico of notaFiscalPreview?.servicos">
-                <td>{{ servico.quantidade }}</td>
-                <td>{{ servico.descricao }}</td>
-                <td>{{ servico.precoUnitario }}</td>
-                <td>{{ servico.total }}</td>
+              <tr *ngFor="let item of itemsNota">
+                <td>{{ item.description }}</td>
+                <td>{{ item.amount }}</td>
+                <td>{{ item.value }}</td>
+                <!-- <td>{{ item.total }}</td> -->
               </tr>
             </tbody>
           </table>
 
           <!-- Informações do Procon -->
-          <div class="nota-fiscal-footer">
+          <!-- <div class="nota-fiscal-footer">
             <p>
               PROCON/RJ - Praça Cristiano Otoni, s/n - Tel.: 151 ou 2334-5197
             </p>
@@ -109,7 +102,7 @@
                 {{ notaFiscalPreview.valorTotal }}
               </strong>
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="modal-footer">

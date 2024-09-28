@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, ElementRef, Input } from '@angular/core';
+import { FormGroup, FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import NovaOsModel from '../../models/os';
+import { itemsNota } from '../../interfaces/items-nota.interface';
 
 @Component({
   standalone: true,
@@ -12,13 +13,16 @@ import NovaOsModel from '../../models/os';
   styleUrls: ['./screenshot.component.css'],
 })
 export class ScreenshotComponent {
-  // public notaFiscal
-  notaFiscalPreview: NovaOsModel = new NovaOsModel(); // Variável para armazenar os dados da visualização
+  preview: any = new NovaOsModel();
+  @Input() form!: FormGroup;
+  @Input() itemsNota: itemsNota[] = [];
 
-  visualizarNotaFiscal(formData: any) {
-    // Copiamos os dados do formulário para uma variável sem alterá-los diretamente
-    this.notaFiscalPreview = { ...formData };
-    // Aqui você pode abrir um modal ou navegar para uma nova rota de visualização
+  constructor(private elementRef: ElementRef) {}
+
+  visualizarNotaFiscal() {
+    const nota = this.form.value;
+
+    this.preview = { ...nota };
   }
 
   takeScreenshot(): void {
@@ -40,7 +44,9 @@ export class ScreenshotComponent {
   }
 
   downloadNotaFiscal() {
-    const element = document.querySelector('.nota-fiscal-container') as HTMLElement;
+    const element = document.querySelector(
+      '.nota-fiscal-container'
+    ) as HTMLElement;
     html2canvas(element).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const link = document.createElement('a');

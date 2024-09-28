@@ -9,16 +9,18 @@ export default class NovaOsModel {
   estadoEmpresa: string;
   CNPJ: string;
 
-  nomeMecanico: string;
-
-  nome: string;
-  endereco: string;
-  cnpj: string;
-
   dataEmissao: string;
+  
+  idCustomer:number;
+  idMechanical: number;
+  
+  descriptionItem: string;
+  amountItem: number;
+  valueItem: number;
+  unitPriceItem: number;
 
-  servicos: Array<any>;
-  valorTotal: number;
+  totalValue: number;
+
   constructor() {
     this.nomeEmpresa = 'AIRTON LTDA';
     this.telefoneEmpresa = '46 9 99099164';
@@ -29,15 +31,18 @@ export default class NovaOsModel {
     this.bairroEmpresa = 'La salle';
     this.cidadeEmpresa = 'Pato Branco';
     this.estadoEmpresa = 'PR';
-    this.nomeMecanico = 'AIRTON EVANDRO DOMICIANO';
-
-    this.nome = '';
-    this.endereco = '';
-    this.cnpj = '';
 
     this.dataEmissao = '';
 
-    this.servicos = [];
-    this.valorTotal = 0;
+    
+    this.descriptionItem = ''
+    this.amountItem = 0;
+    this.valueItem = 0;
+    this.unitPriceItem = 0;
+
+    this.totalValue = 0;
+
+    this.idCustomer = 0;
+    this.idMechanical = 0;
   }
 }

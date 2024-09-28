@@ -1,5 +1,6 @@
 export default class Car {
   id: number;
+  idCustomer: number;
   marca: string;
   modelo: string;
   ano: string;
@@ -12,6 +13,7 @@ export default class Car {
 
   constructor() {
     this.id = 0;
+    this.idCustomer = 0;
     this.marca = '';
     this.placa = '';
     this.modelo = '';

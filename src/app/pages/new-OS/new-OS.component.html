@@ -1,128 +1,206 @@
-<!-- <app-screenshot></app-screenshot> -->
-
 <form [formGroup]="form">
-  <div class="card text-start">
-    <div class="card-header">Crie sua ordem de serviço</div>
-    <div class="card-body">
-      <div class="row g-2">
-        <div class="col-12">
-          <h5>Informações da Empresa</h5>
-        </div>
-        <div class="col-6">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              formControlName="nomeEmpresa"
-              placeholder=""
-            />
-            <label for="floatingInputGrid">Nome empresa</label>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="telefoneEmpresa"
-            />
-            <label for="floatingInputGrid">Telefone</label>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="CNPJ"
-            />
-            <label for="floatingInputGrid">CNPJ</label>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="cepEmpresa"
-            />
-            <label for="floatingInputGrid">Cep </label>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="ruaEmpresa"
-            />
-            <label for="floatingInputGrid">Rua </label>
-          </div>
-        </div>
-        <div class="col-1">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="numeroEmpresa"
-            />
-            <label for="floatingInputGrid">Nº </label>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="bairroEmpresa"
-            />
-            <label for="floatingInputGrid">Bairro </label>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <h5>Informações do Mecânico</h5>
-        </div>
-
-        <div class="col-6">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="nomeMecanico"
-            />
-            <label for="floatingInputGrid">Nome Mecânico </label>
-          </div>
-        </div>
-
-        <div class="col-12">
-          <h5>Informações do Cliente</h5>
-        </div>
-
-        <div class="col-6">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              placeholder=""
-              formControlName="nomeMecanico"
-            />
-            <label for="floatingInputGrid">Nome Cliente </label>
-          </div>
-        </div>
+  <div class="row g-2">
+    <div class="col-12">
+      <h5>Informações da Empresa</h5>
+    </div>
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="nomeEmpresa"
+          placeholder=""
+        />
+        <label for="floatingInputGrid">Nome empresa</label>
       </div>
     </div>
-    <div class="card-footer text-body-secondary text-end">
-      <!-- <button type="button" class="btn btn-info m-1">Visualizar</button> -->
-      <app-screenshot></app-screenshot>
-      <button type="button" class="btn btn-success m-1">Baixar</button>
+    <div class="col-3">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="telefoneEmpresa"
+        />
+        <label for="floatingInputGrid">Telefone</label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="CNPJ"
+        />
+        <label for="floatingInputGrid">CNPJ</label>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="cepEmpresa"
+        />
+        <label for="floatingInputGrid">Cep </label>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="ruaEmpresa"
+        />
+        <label for="floatingInputGrid">Rua </label>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="numeroEmpresa"
+        />
+        <label for="floatingInputGrid">Nº </label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="bairroEmpresa"
+        />
+        <label for="floatingInputGrid">Bairro </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mecanico -->
+  <div class="row g-2 mt-1 align-items-center">
+    <div class="col-6">
+      <h5>Informações do Mecânico</h5>
+    </div>
+    <div class="col-6">
+      <h5>Informações do Cliente</h5>
+    </div>
+    <div class="col-6">
+      <app-customers-select
+        [form]="form"
+        label="Selecione o Mecânico"
+        frmName="idCustomer"
+        typeList="mechanicals"
+      >
+      </app-customers-select>
+    </div>
+    <div class="col-6">
+      <app-customers-select
+        [form]="form"
+        label="Selecione o Cliente"
+        frmName="idCustomer"
+      >
+      </app-customers-select>
+    </div>
+  </div>
+
+  <!-- Serviços -->
+  <div class="row g-2">
+    <div class="col-12">
+      <h5>Serviço do Realizado</h5>
+    </div>
+    <div class="col-12">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="nomeEmpresa"
+          placeholder=""
+        />
+        <label for="floatingInputGrid">Nome empresa</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Serviços -->
+  <div class="row g-2">
+    <div class="col-12">
+      <h5>Itens usado</h5>
+    </div>
+    <div class="col-5">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Descrição do que foi feito"
+          formControlName="descriptionItem"
+        />
+        <label for="floatingInputGrid">Descrição</label>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Quantidade do produto"
+          formControlName="amountItem"
+          onlyNumbers
+          (ngModelChange)="onCalcTotal()"
+        />
+        <label for="floatingInputGrid">Quantidade</label>
+      </div>
+    </div>
+    <div class="col-2">
+      <app-currency-input
+        label="Valor unidade"
+        [form]="form"
+        (onEmitter)="onCalcTotal()"
+        frmCurrency="unitPriceItem"
+      ></app-currency-input>
+    </div>
+    <div class="col-2">
+      <app-currency-input
+        label="Valor Total"
+        [form]="form"
+        frmCurrency="valueItem"
+        [disabled]="true"
+      ></app-currency-input>
+    </div>
+    <div class="col-2 text-end">
+      <button
+        type="button"
+        (click)="addItem()"
+        class="btn btn-lg btn-success m-1"
+      >
+        <i class="bi bi-cart-plus"></i> Adicionar item
+      </button>
+    </div>
+    <div class="col-12">
+      <app-table
+        [columns]="[
+          { title: 'Descrição', name: 'description', width: '70%' },
+          { title: 'Quantidade', name: 'amount', width: '10%' },
+          { title: 'P. Unit.', name: 'unitPrice', width: '10%' },
+          { title: 'valor', name: 'value', width: '10%' }
+        ]"
+        [buttons]="[{ id: 'id-trash', icon: 'bi bi-trash' }]"
+        [tBodyList]="itemsNota"
+        (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
+      ></app-table>
+    </div>
+    <div class="col-12 text-end">
+      <app-screenshot
+        [itemsNota]="itemsNota"
+        [form]="form"
+        class="m-1"
+      ></app-screenshot>
+      <button type="button" class="btn btn-success">Baixar</button>
     </div>
   </div>
 </form>

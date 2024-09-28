@@ -8,6 +8,7 @@ export interface CondicaoTable {
 export interface TypeColumns {
   title: string;
   name: string;
+  width?: string;
   type?: string;
 }
 

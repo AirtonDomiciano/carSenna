@@ -18,10 +18,21 @@ import { DrawerComponent } from '../../shared/components/drawer/drawer.component
 import Car from '../../shared/models/car';
 import { ElectronService } from '../../shared/services/electron.service';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import { PlateInputComponent } from '../../shared/components/plate-input/plate-input.component';
+import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
+import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, DrawerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DrawerComponent,
+    PlateInputComponent,
+    OnlyNumbersDirective,
+    CustomersSelectComponent
+  ],
   selector: 'app-car',
   templateUrl: 'car.component.html',
   styleUrls: ['car.component.scss'],
@@ -52,6 +63,7 @@ export class CarComponent implements OnInit {
   }
 
   edit(car: Car) {
+    console.log('EDITANDO', car);
     this.form.setValue(car);
     this.drawer.openDrawer();
   }

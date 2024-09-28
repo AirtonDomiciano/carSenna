@@ -33,12 +33,12 @@ export class DrawerComponent {
 
   @HostListener('document:click', ['$event'])
   clickout(event: any) {
-    if (
-      event.target?.id === `fade-${this.idDrawer}` ||
-      event.target?.id === `drawer-${this.idDrawer}`
-    ) {
-      this.closeDrawer();
-    }
+    // if (
+    //   event.target?.id === `fade-${this.idDrawer}` ||
+    //   event.target?.id === `drawer-${this.idDrawer}`
+    // ) {
+    //   this.closeDrawer();
+    // }
   }
 
   constructor(private eRef: ElementRef, public cdRef: ChangeDetectorRef) {}

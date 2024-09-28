@@ -8,7 +8,12 @@ import {
 } from '@angular/forms';
 import { ScreenshotComponent } from '../../shared/components/screenshot/screenshot.component';
 import NovaOsModel from '../../shared/models/os';
-import { ElectronService } from '../../shared/services/electron.service';
+import TableDataComponent from '../../shared/components/table/table.component';
+import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
+import { itemsNota } from '../../shared/interfaces/items-nota.interface';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import { CurrencyInputComponent } from '../../shared/components/currency-input/currency-input';
+import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
 @Component({
   standalone: true,
   imports: [
@@ -16,18 +21,73 @@ import { ElectronService } from '../../shared/services/electron.service';
     FormsModule,
     ReactiveFormsModule,
     ScreenshotComponent,
+    TableDataComponent,
+    CustomersSelectComponent,
+    CurrencyInputComponent,
+    OnlyNumbersDirective
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',
   styleUrls: ['new-OS.component.scss'],
+  providers: [ToastMessageService],
 })
 export class NewOSComponent implements OnInit {
   public form!: FormGroup;
   public model: NovaOsModel = new NovaOsModel();
+  public itemsNota: itemsNota[] = [];
 
-  constructor(private fb: FormBuilder, private http: ElectronService) {}
+  constructor(private fb: FormBuilder, private toast: ToastMessageService) {}
 
   ngOnInit() {
     this.form = this.fb.group(new NovaOsModel());
+
+    // this.form.
   }
+
+  onCalcTotal() {
+    const { amountItem, unitPriceItem } = this.form.value;
+
+    if (!amountItem || !unitPriceItem)  {
+      this.form.controls['valueItem'].setValue(0);
+      return
+    };
+
+    const total = amountItem * unitPriceItem;
+
+    this.form.controls['valueItem'].setValue(total);
+  }
+
+  addItem() {
+    const { descriptionItem, amountItem, valueItem, unitPriceItem } =
+      this.form.value;
+
+    if (!descriptionItem) {
+      this.toast.mostrarAviso('Descrição do produto não informado.');
+      return;
+    }
+
+    if (!amountItem) {
+      this.toast.mostrarAviso('Quantidade do produto não informado.');
+      return;
+    }
+
+    if (!amountItem) {
+      this.toast.mostrarAviso('Valor do produto não informado.');
+      return;
+    }
+
+    this.form.controls['descriptionItem'].setValue('');
+    this.form.controls['amountItem'].setValue('');
+    this.form.controls['valueItem'].setValue('');
+    this.form.controls['unitPriceItem'].setValue('');
+
+    this.itemsNota.push({
+      description: descriptionItem,
+      amount: amountItem,
+      unitPrice: unitPriceItem,
+      value: valueItem,
+    });
+  }
+
+  onEventClickBotaoAcoes($event: any) {}
 }
