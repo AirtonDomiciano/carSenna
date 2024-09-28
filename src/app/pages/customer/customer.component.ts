@@ -18,6 +18,7 @@ import Customer from '../../shared/models/customer';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
+import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
 
 @Component({
   standalone: true,
@@ -27,6 +28,7 @@ import { PhoneInputComponent } from '../../shared/components/phone-input/phone-i
     ReactiveFormsModule,
     DrawerComponent,
     PhoneInputComponent,
+    CpfInputComponent
   ],
   selector: 'app-customer',
   templateUrl: 'customer.component.html',

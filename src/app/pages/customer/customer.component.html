@@ -24,15 +24,6 @@
       <div class="p-2 g-col-6">
         <app-phone-input [phoneForm]="form" frmPhone="telephone">
         </app-phone-input>
-        <!-- <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Telefone"
-            formControlName="telephone"
-          />
-          <label for="floatingInputGrid">Telefone</label>
-        </div> -->
       </div>
       <div class="p-2 g-col-6">
         <div class="form-floating">
@@ -46,29 +37,18 @@
         </div>
       </div>
       <div class="p-2 g-col-6">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="CPF"
-            formControlName="cpf"
-          />
-          <label for="floatingInputGrid">CPF</label>
-        </div>
+        <app-cpf-input [cpfForm]="form" frmCPF="cpf"></app-cpf-input>
       </div>
     </div>
   </form>
 </ng-template>
 
 <ng-template #templateFooter>
-  <!-- <div class="col-10"> -->
   <button (click)="fecharDrawer()" type="button" class="btn btn-secondary m-1">
     Cancelar
   </button>
-  <!-- </div> -->
-  <!-- <div class="text-start col-2"> -->
+  
   <button (click)="salvar()" type="button" class="btn btn-success">
     Salvar
   </button>
-  <!-- </div> -->
 </ng-template>

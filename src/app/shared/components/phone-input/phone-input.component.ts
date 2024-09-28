@@ -18,18 +18,22 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     OnlyNumbersDirective,
   ],
   selector: 'app-phone-input',
-  template: `<div [formGroup]="phoneForm" class="phone-input-container">
+  template: `<div [formGroup]="phoneForm">
     <div class="form-floating">
       <input
         type="text"
         id="phoneNumber"
         class="form-control"
         formControlName="{{ frmPhone }}"
+        [ngClass]="{
+          'is-invalid':
+            phoneForm.get(frmPhone)?.invalid && phoneForm.get(frmPhone)?.touched
+        }"
         (input)="formatPhoneNumber($event)"
         placeholder="(99) 99999-9999"
         onlyNumbers
       />
-      <label for="phoneNumber">Telefone 2</label>
+      <label for="phoneNumber">Telefone</label>
     </div>
 
     <div
@@ -46,16 +50,8 @@ export class PhoneInputComponent implements OnInit {
   @Input() phoneForm!: FormGroup;
   @Input() frmPhone: string = '';
 
-  constructor(private fb: FormBuilder) {}
-
   ngOnInit(): void {
     this.validRequired();
-    // this.phoneForm = this.fb.group({
-    //   phoneNumber: [
-    //     '',
-    //     [Validators.required, Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/)],
-    //   ],
-    // });
   }
 
   validRequired() {
@@ -65,7 +61,6 @@ export class PhoneInputComponent implements OnInit {
     ]);
   }
 
-  // Função para formatar o número enquanto o usuário digita
   formatPhoneNumber(event: any): void {
     let input = event.target.value.replace(/\D/g, '');
 
@@ -77,16 +72,6 @@ export class PhoneInputComponent implements OnInit {
       input = input.replace(/^(\d{2})/, '($1) ');
     }
 
-    this.phoneForm.get('phoneNumber')?.setValue(input, { emitEvent: false });
-  }
-
-  // Função para lidar com o envio do formulário
-  onSubmit(): void {
-    if (this.phoneForm.valid) {
-      const phoneNumber = this.phoneForm.get('phoneNumber')?.value;
-      console.log('Número de telefone válido:', phoneNumber);
-    } else {
-      console.error('Formulário inválido');
-    }
+    this.phoneForm.get(this.frmPhone)?.setValue(input, { emitEvent: false });
   }
 }
