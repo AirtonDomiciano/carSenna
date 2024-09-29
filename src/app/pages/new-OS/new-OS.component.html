@@ -82,7 +82,7 @@
     </div>
   </div>
 
-  <!-- Mecanico -->
+  <!-- Mecanico e clientes -->
   <div class="row g-2 mt-1 align-items-center">
     <div class="col-6">
       <h5>Informações do Mecânico</h5>
@@ -95,6 +95,7 @@
         [form]="form"
         label="Selecione o Mecânico"
         frmName="idCustomer"
+        (onSelect)="onSelectMecanico($event)"
         typeList="mechanicals"
       >
       </app-customers-select>
@@ -104,6 +105,7 @@
         [form]="form"
         label="Selecione o Cliente"
         frmName="idCustomer"
+        (onSelect)="onSelectCliente($event)"
       >
       </app-customers-select>
     </div>
@@ -169,7 +171,6 @@
         label="Valor Total"
         [form]="form"
         frmCurrency="valueItem"
-        [disabled]="true"
       ></app-currency-input>
     </div>
     <div class="col-2 text-end">

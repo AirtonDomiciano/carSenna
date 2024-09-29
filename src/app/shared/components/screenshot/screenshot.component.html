@@ -27,84 +27,113 @@
         ></button>
       </div>
       <div class="modal-body">
-        <div class="nota-fiscal-container">
-          <!-- Título e Cabeçalho -->
-          <div class="nota-fiscal-header text-center">
-            <h2>{{ preview.nomeEmpresa }}</h2>
-            <p>{{ preview.nomeMecanico }}</p>
-            <!-- <p>
-              * Chaves em Geral - Abertura de Fechadura de Cofres - Troca de
-              Segredo de Cofres *
-            </p> -->
-            <p>Tel.: {{ preview.telefoneEmpresa }}</p>
-            <p>
-              {{ preview.ruaEmpresa }}, {{ preview.numeroEmpresa }} -
-              {{ preview.bairroEmpresa }} - Cep {{ preview.cepEmpresa }} -
-              {{ preview.cidadeEmpresa }} -{{ preview.estadoEmpresa }}
-            </p>
-            <p>CNPJ: {{ preview.CNPJ }} - NIRE: 33-8-0666557-0</p>
+        <div class="container my-5 p-5 border nota-fiscal-container">
+          <!-- Cabeçalho da Nota -->
+          <div class="nota-fiscal-header row align-items-center">
+            <div class="col-md-9 text-start">
+              <h4 class="mb-0">{{ preview.nomeEmpresa }}</h4>
+              <!-- <ng-container *ngIf="preview.mechanical.name"></ng-container> -->
+              <h5 *ngIf="preview.mechanical.name">
+                {{ preview.mechanical.name }}
+              </h5>
+            </div>
+            <div class="col-md-3 text-start">
+              <p class="p-0">CNPJ: {{ preview.CNPJ }}</p>
+              <p class="p-0">NIRE: 33-8-0666557-0</p>
+            </div>
+            <div class="col-md-12 text-center">
+              <h6>
+                Tel.: {{ preview.telefoneEmpresa }} Cel.: {{ preview.telefoneEmpresa }} 
+              </h6>
+            </div>
+            <div class="col-md-12 text-start">
+              <h6>
+                {{ preview.ruaEmpresa }}, {{ preview.numeroEmpresa }} -
+                {{ preview.bairroEmpresa }} - Cep {{ preview.cepEmpresa }} -
+                {{ preview.cidadeEmpresa }} -{{ preview.estadoEmpresa }}
+              </h6>
+            </div>
           </div>
+          <!-- Informações do Cliente -->
+          <div class="row border-top pt-3">
+            <div class="col-md-8 text-start">
+              <p><strong>USUÁRIO:</strong> {{ preview.customer.name }}</p>
+            </div>
+            <div class="col-md-4 text-start">
+              <p>
+                <strong>Data da Emissão:</strong>
+                {{ preview.dataEmissao }}
+              </p>
+            </div>
+            <div class="col-md-6 text-start">
+              <p><strong>ENDEREÇO:</strong></p>
+            </div>
+            <div class="col-md-2 text-start">
+              <p>
+                <strong>UF:</strong>
+              </p>
+            </div>
 
-          <!-- Dados do Cliente -->
-          <div class="nota-fiscal-dados-cliente">
-            <div class="row">
-              <div class="col-6 text-start">
-                <p>
-                  <strong>Data da Emissão:</strong>
-                  {{ preview.dataEmissao }}
-                </p>
-              </div>
-              <div class="col-6 text-end">
-                <h5 class="text-danger">No 001</h5>
-              </div>
-              <div class="col-12 text-start">
-                <p><strong>Nome:</strong> {{ preview.nome }}</p>
-              </div>
-              <div class="col-12 text-start">
-                <p><strong>Endereço:</strong> {{ preview.endereco }}</p>
-              </div>
-              <div class="col-12 text-start">
-                <p><strong>CNPJ:</strong> {{ preview.cnpj }}</p>
-              </div>
+            <div class="col-md-4 text-start">
+              <p>
+                <strong>MUNICÍPIO:</strong>
+              </p>
+            </div>
+            <div class="col-md-8 text-start">
+              <p>
+                <strong>CPF:{{ preview.customer.cpf }} </strong>
+              </p>
+            </div>
+            <div class="col-md-4 text-start">
+              <p>
+                <strong>INSC. ESTADUAL:</strong>
+              </p>
             </div>
           </div>
 
-          <!-- Tabela de Serviços -->
-          <table class="table table-bordered">
+          <!-- Tabela de Discriminação dos Serviços -->
+          <table class="table table-bordered mt-3">
             <thead>
               <tr>
                 <th>Discriminação dos Serviços</th>
                 <th>Quant.</th>
                 <th>P. Unit.</th>
-                <!-- <th>Total</th> -->
+                <th>Total</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of itemsNota">
                 <td>{{ item.description }}</td>
                 <td>{{ item.amount }}</td>
+                <td>{{ item.unitPrice }}</td>
                 <td>{{ item.value }}</td>
-                <!-- <td>{{ item.total }}</td> -->
               </tr>
             </tbody>
           </table>
 
-          <!-- Informações do Procon -->
-          <!-- <div class="nota-fiscal-footer">
+          <!-- Valor Total -->
+          <div class="row">
+            <div class="col text-end">
+              <p>
+                <strong>VALOR TOTAL: {{ preview.totalValue }}</strong>
+              </p>
+            </div>
+          </div>
+
+          <!-- Informações do Rodapé -->
+          <div class="text-center mt-3">
+            <!-- <p>
+              Nome, endereço e inscrições estadual e no CNPJ do impressor; o nº
+              da AIDF, a data e a quantidade da impressão; o nº de ordem do 1º e
+              do último documento impresso e a sua série e subsérie.
+            </p> -->
             <p>
-              PROCON/RJ - Praça Cristiano Otoni, s/n - Tel.: 151 ou 2334-5197
+              Data limite para utilização do documento fiscal (quando exigida).
             </p>
-            <p>ALERJ - 0800 282 7060 - R. da Alfândega, 8 - Centro - RJ</p>
-            <p>05 talões 50x2 vias - Num. 751 a 1000</p>
-            <p>
-              <strong>
-                Valor Total da Nota R$:
-                {{ notaFiscalPreview.valorTotal }}
-              </strong>
-            </p>
-          </div> -->
+          </div>
         </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
           Fechar

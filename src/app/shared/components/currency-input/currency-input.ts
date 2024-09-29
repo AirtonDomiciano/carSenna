@@ -30,13 +30,11 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
             form.get(frmCurrency)?.invalid && form.get(frmCurrency)?.touched
         }"
         (input)="formatCurrency($event)"
-        (ngModelChange)="onEmitter.emit()"
         placeholder="R$ 0,00"
         [disabled]="disabled"
       />
       <label for="currency">{{ label }}</label>
     </div>
-    
 
     <!-- <div
       *ngIf="form.get(frmCurrency)?.invalid && form.get(frmCurrency)?.touched"
@@ -46,7 +44,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     </div> -->
   </div> `,
 })
-export class CurrencyInputComponent implements OnInit {
+export class CurrencyInputComponent {
   @Input() form!: FormGroup;
   @Input() frmCurrency: string = '';
   @Input() label: string = 'Valor';
@@ -54,26 +52,16 @@ export class CurrencyInputComponent implements OnInit {
 
   @Output() onEmitter: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit(): void {
-    this.validRequired();
-  }
-
-  validRequired() {
-    this.form.controls[this.frmCurrency].setValidators([
-      Validators.required,
-      Validators.pattern(/^\d{1,3}(,\d{3})*(\.\d+)?$/),
-    ]);
-  }
-
   formatCurrency(event: any): void {
     let input = event.target.value.replace(/\D/g, '');
 
     if (input.length > 0) {
-      input = input.replace(/(\d)(\d{3})$/, '$1.$2');
-      input = input.replace(/(\d)(\d{3})$/, '$1.$2');
+      input = input.replace(/(\d)(\d{2})$/, '$1,$2');
       input = 'R$ ' + input;
     }
 
     this.form.get(this.frmCurrency)?.setValue(input, { emitEvent: false });
+
+    this.onEmitter.emit();
   }
 }

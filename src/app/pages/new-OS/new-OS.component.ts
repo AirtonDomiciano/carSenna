@@ -14,6 +14,7 @@ import { itemsNota } from '../../shared/interfaces/items-nota.interface';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import { CurrencyInputComponent } from '../../shared/components/currency-input/currency-input';
 import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
+import UtilsCurrencyService from '../../shared/utils/utils.currency';
 @Component({
   standalone: true,
   imports: [
@@ -24,7 +25,7 @@ import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.direc
     TableDataComponent,
     CustomersSelectComponent,
     CurrencyInputComponent,
-    OnlyNumbersDirective
+    OnlyNumbersDirective,
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',
@@ -35,31 +36,39 @@ export class NewOSComponent implements OnInit {
   public form!: FormGroup;
   public model: NovaOsModel = new NovaOsModel();
   public itemsNota: itemsNota[] = [];
+  // public preview: NovaOsModel = new NovaOsModel()
 
-  constructor(private fb: FormBuilder, private toast: ToastMessageService) {}
+  constructor(
+    private fb: FormBuilder,
+    private toast: ToastMessageService,
+    private utils: UtilsCurrencyService
+  ) {}
 
   ngOnInit() {
     this.form = this.fb.group(new NovaOsModel());
 
-    // this.form.
+    this.form.controls['valueItem'].disable();
   }
 
   onCalcTotal() {
     const { amountItem, unitPriceItem } = this.form.value;
 
-    if (!amountItem || !unitPriceItem)  {
+    if (!amountItem || !unitPriceItem) {
       this.form.controls['valueItem'].setValue(0);
-      return
-    };
+      return;
+    }
+    const utilsValueNumber = this.utils.getValor(unitPriceItem);
 
-    const total = amountItem * unitPriceItem;
+    const total = amountItem * utilsValueNumber;
 
-    this.form.controls['valueItem'].setValue(total);
+    const totalValue = this.utils.formatarValor(total);
+
+    this.form.controls['valueItem'].setValue(`${totalValue}`);
   }
 
   addItem() {
-    const { descriptionItem, amountItem, valueItem, unitPriceItem } =
-      this.form.value;
+    const { descriptionItem, amountItem, unitPriceItem } = this.form.value;
+    const valueItem = this.form.controls['valueItem'].value;
 
     if (!descriptionItem) {
       this.toast.mostrarAviso('Descrição do produto não informado.');
@@ -71,7 +80,7 @@ export class NewOSComponent implements OnInit {
       return;
     }
 
-    if (!amountItem) {
+    if (!unitPriceItem) {
       this.toast.mostrarAviso('Valor do produto não informado.');
       return;
     }
@@ -90,4 +99,13 @@ export class NewOSComponent implements OnInit {
   }
 
   onEventClickBotaoAcoes($event: any) {}
+
+  onSelectMecanico($event: any) {
+    this.form.value.mechanical = $event;
+    this.form.controls['mechanical'].setValue($event);
+  }
+
+  onSelectCliente($event: any) {
+    this.form.controls['customer'].setValue($event);
+  }
 }

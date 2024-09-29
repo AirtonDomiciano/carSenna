@@ -7,12 +7,6 @@ import {
 } from '@angular/forms';
 import { ElectronService } from '../../services/electron.service';
 import { CommonModule } from '@angular/common';
-import Customer from '../../models/customer';
-
-export interface customerSelect {
-  id: number;
-  name: string;
-}
 
 @Component({
   standalone: true,
@@ -27,7 +21,7 @@ export interface customerSelect {
         (ngModelChange)="onChange($event)"
       >
         <option *ngFor="let option of customers" [value]="option.id">
-        {{ option.id }} - {{ option.name }}
+          {{ option.id }} - {{ option.name }}
         </option>
       </select>
     </div>
@@ -35,18 +29,23 @@ export interface customerSelect {
   styleUrls: ['customers-select.component.scss'],
 })
 export class CustomersSelectComponent implements OnInit {
-  customers: customerSelect[] = [];
-  
+  customers: any[] = [];
+
   @Input() form!: FormGroup;
   @Input() label: string = 'Selecione o Proprietário';
   @Input() frmName: string = '';
-  @Input() typeList: string = 'customers'
+  @Input() typeList: string = 'customers';
 
   @Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
 
   public placeholder = 'Selecione o Proprietário do veículo cadastrado.';
 
-  constructor(private http: ElectronService) {}
+  constructor(private http: ElectronService) {
+    this.customers = [
+      { id: 1, name: 'vamos ver' },
+      { id: 2, name: 'vamos ver 2' },
+    ];
+  }
 
   async ngOnInit(): Promise<void> {
     await this.http.loadData();
@@ -54,18 +53,12 @@ export class CustomersSelectComponent implements OnInit {
 
     if (res?.length > 0) {
       this.customers = res;
-
-      // this.customers = res.map((el: Customer) => {
-      //   return {
-      //     id: el.id,
-      //     name: `${el.id} - ${el.name}`,
-      //   };
-      // });
     }
   }
 
-
-  onChange(item: any): void {
-    this.onSelect.emit(item);
+  onChange(id: any): void {
+    if (+id) {
+      this.onSelect.emit(this.customers.find((el) => el.id == Number(id)));
+    }
   }
 }

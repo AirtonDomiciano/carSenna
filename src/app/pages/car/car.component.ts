@@ -44,7 +44,7 @@ export class CarComponent implements OnInit {
 
   @ViewChild(DrawerComponent) drawer!: DrawerComponent;
 
-  public headerDrawer = 'Cadastrar Carro';
+  public headerDrawer = 'Cadastrar Veículo';
   public form!: FormGroup;
 
   constructor(
@@ -63,7 +63,6 @@ export class CarComponent implements OnInit {
   }
 
   edit(car: Car) {
-    console.log('EDITANDO', car);
     this.form.setValue(car);
     this.drawer.openDrawer();
   }

@@ -1,3 +1,6 @@
+import Customer from "./customer";
+import Mechanical from "./mechanical";
+
 export default class NovaOsModel {
   nomeEmpresa: string;
   telefoneEmpresa: string;
@@ -13,7 +16,10 @@ export default class NovaOsModel {
   
   idCustomer:number;
   idMechanical: number;
-  
+
+  mechanical: Mechanical = new Mechanical();
+  customer:Customer = new Customer();
+
   descriptionItem: string;
   amountItem: number;
   valueItem: number;
@@ -34,7 +40,6 @@ export default class NovaOsModel {
 
     this.dataEmissao = '';
 
-    
     this.descriptionItem = ''
     this.amountItem = 0;
     this.valueItem = 0;
@@ -44,5 +49,8 @@ export default class NovaOsModel {
 
     this.idCustomer = 0;
     this.idMechanical = 0;
+
+    this.mechanical = new Mechanical();
+    this.customer = new Customer();
   }
 }

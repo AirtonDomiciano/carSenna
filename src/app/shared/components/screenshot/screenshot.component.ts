@@ -4,6 +4,7 @@ import { FormGroup, FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import NovaOsModel from '../../models/os';
 import { itemsNota } from '../../interfaces/items-nota.interface';
+import UtilsCurrencyService from '../../utils/utils.currency';
 
 @Component({
   standalone: true,
@@ -13,16 +14,23 @@ import { itemsNota } from '../../interfaces/items-nota.interface';
   styleUrls: ['./screenshot.component.css'],
 })
 export class ScreenshotComponent {
-  preview: any = new NovaOsModel();
   @Input() form!: FormGroup;
   @Input() itemsNota: itemsNota[] = [];
 
-  constructor(private elementRef: ElementRef) {}
+  preview: NovaOsModel = new NovaOsModel();
+
+  constructor(private utils: UtilsCurrencyService) {}
 
   visualizarNotaFiscal() {
     const nota = this.form.value;
-
     this.preview = { ...nota };
+    this.preview.totalValue = this.itemsNota.reduce(
+      (accumulator, value) =>
+        accumulator + this.utils.getValor(`${value.value}`),
+      0
+    );
+
+    this.preview.totalValue
   }
 
   takeScreenshot(): void {
@@ -47,6 +55,7 @@ export class ScreenshotComponent {
     const element = document.querySelector(
       '.nota-fiscal-container'
     ) as HTMLElement;
+
     html2canvas(element).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const link = document.createElement('a');
