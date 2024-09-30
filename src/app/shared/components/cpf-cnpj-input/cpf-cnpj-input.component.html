@@ -1,0 +1,22 @@
+<div [formGroup]="cpfCnpjForm">
+  <div class="form-floating">
+    <input
+      type="text"
+      id="cpfCnpj"
+      class="form-control"
+      formControlName="{{ frmName }}"
+      mask="000.000.000-00||00.000.000/0000-00"
+      placeholder="CPF/CNPJ"
+    />
+    <label for="cpfCnpj">CPF/CNPJ</label>
+  </div>
+
+  <div
+    *ngIf="
+      cpfCnpjForm.get(frmName)?.invalid && cpfCnpjForm.get(frmName)?.touched
+    "
+    class="text-danger"
+  >
+    CPF/CNPJ inválido. Formato esperado: 000.000.000-00 | 00.000.000/0000-00
+  </div>
+</div>

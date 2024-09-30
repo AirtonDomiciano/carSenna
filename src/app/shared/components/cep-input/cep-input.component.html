@@ -1,0 +1,20 @@
+<div [formGroup]="cepForm">
+  <div class="form-floating">
+    <input
+      type="text"
+      id="cep"
+      class="form-control"
+      formControlName="{{ frmName }}"
+      mask="00000-000"
+      placeholder="CEP"
+    />
+    <label for="cep">CEP</label>
+  </div>
+
+  <div
+    *ngIf="cepForm.get(frmName)?.invalid && cepForm.get(frmName)?.touched"
+    class="text-danger"
+  >
+    CEP inválido. Formato esperado: 00000-000
+  </div>
+</div>
