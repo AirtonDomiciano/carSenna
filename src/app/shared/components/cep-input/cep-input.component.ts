@@ -1,16 +1,65 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
+import { CepInputService } from '../../services/cep-input.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxMaskDirective],
-  providers: [provideNgxMask()],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    OnlyNumbersDirective,
+    HttpClientModule,
+  ],
   selector: 'app-cep-input',
   templateUrl: './cep-input.component.html',
 })
 export class CepInputComponent {
+  @Output() emitterCEP: EventEmitter<any> = new EventEmitter<any>();
   @Input() cepForm!: FormGroup;
-  @Input() frmName: string = '';
+  @Input() frmCEP: string = '';
+
+  constructor(private cepInputService: CepInputService) {}
+
+  ngOnInit(): void {
+    this.validRequired();
+  }
+
+  validRequired() {
+    this.cepForm.controls[this.frmCEP].setValidators([
+      Validators.required,
+      Validators.pattern(/^\d{5}\-\d{3}/),
+    ]);
+  }
+
+  formatCEP(event: any): void {
+    let input = event.target.value.replace(/\D/g, '');
+
+    if (input.length > 5) {
+      input = input.replace(/^(\d{5})(\d{0,3})/, '$1-$2');
+    }
+
+    this.cepForm.get(this.frmCEP)?.setValue(input, { emitEvent: false });
+  }
+
+  loadCEP() {
+    const cep = this.cepForm.value;
+    this.getCEP(cep);
+  }
+
+  getCEP(cep: string) {
+    this.cepInputService.getAll(cep).subscribe((endereco) => {
+      const valor = endereco;
+      // this.emitterCEP.emit(valor);
+      console.log(valor);
+    });
+  }
 }
