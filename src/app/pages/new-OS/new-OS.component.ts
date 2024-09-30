@@ -15,6 +15,7 @@ import { ToastMessageService } from '../../shared/components/toast/toast.service
 import { CurrencyInputComponent } from '../../shared/components/currency-input/currency-input';
 import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
 import UtilsCurrencyService from '../../shared/utils/utils.currency';
+import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
 @Component({
   standalone: true,
   imports: [
@@ -26,6 +27,7 @@ import UtilsCurrencyService from '../../shared/utils/utils.currency';
     CustomersSelectComponent,
     CurrencyInputComponent,
     OnlyNumbersDirective,
+    CepInputComponent,
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',

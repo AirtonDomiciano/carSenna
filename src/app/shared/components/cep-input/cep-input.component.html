@@ -4,15 +4,18 @@
       type="text"
       id="cep"
       class="form-control"
-      formControlName="{{ frmName }}"
-      mask="00000-000"
+      formControlName="{{ frmCEP }}"
+      (input)="formatCEP($event)"
       placeholder="CEP"
+      placeholder="99999-999"
+      (focusout)="loadCEP()"
+      onlyNumbers
     />
     <label for="cep">CEP</label>
   </div>
 
   <div
-    *ngIf="cepForm.get(frmName)?.invalid && cepForm.get(frmName)?.touched"
+    *ngIf="cepForm.get(frmCEP)?.invalid && cepForm.get(frmCEP)?.touched"
     class="text-danger"
   >
     CEP inválido. Formato esperado: 00000-000
