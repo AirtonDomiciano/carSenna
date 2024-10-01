@@ -41,7 +41,7 @@ export class MechanicalsComponent implements OnInit {
   async loadData() {
     this.mechanicals = [];
 
-    await this.http.loadData();
+    await this.http.loadData('mechanicals');
     const res = this.http.getData('mechanicals');
 
     if (res?.length > 0) {

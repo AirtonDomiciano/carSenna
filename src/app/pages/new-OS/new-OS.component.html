@@ -121,10 +121,9 @@
         <input
           type="text"
           class="form-control"
-          formControlName="nomeEmpresa"
-          placeholder=""
+          formControlName="descricaoServico"
         />
-        <label for="floatingInputGrid">Nome empresa</label>
+        <label for="floatingInputGrid">Descrição</label>
       </div>
     </div>
   </div>
@@ -199,9 +198,9 @@
       <app-screenshot
         [itemsNota]="itemsNota"
         [form]="form"
+        nameButton="Gerar Nota"
         class="m-1"
       ></app-screenshot>
-      <button type="button" class="btn btn-success">Baixar</button>
     </div>
   </div>
 </form>

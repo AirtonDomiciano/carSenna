@@ -48,12 +48,12 @@ export class CustomersSelectComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.http.loadData();
-    const res = this.http.getData(this.typeList);
+    // await this.http.loadData('customers');
+    // const res = this.http.getData();
 
-    if (res?.length > 0) {
-      this.customers = res;
-    }
+    // if (res?.length > 0) {
+    //   this.customers = res;
+    // }
   }
 
   onChange(id: any): void {

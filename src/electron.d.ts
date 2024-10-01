@@ -7,10 +7,9 @@ declare global {
         invoke: (channel: string, ...args: any[]) => Promise<any>;
       };
       fileSystem: {
-        readData: () => Promise<any>;
-        writeData: (data: any) => Promise<boolean>;
+        readData: (fileName: string) => Promise<any>;
+        writeData: (fileName: string, data: any) => Promise<boolean>;
       };
-      
     };
   }
 }

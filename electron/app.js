@@ -42,12 +42,28 @@ app.on("activate", function () {
   if (win === null) createWindow();
 });
 
-// Caminho para o arquivo JSON
-// const dataPath = path.join(app.getPath("userData"), "data-electron-angular.json");
-const dataPath = path.join(app.getPath("documents"), "data-electron-angular.json");
+// Obter o caminho da pasta Documents
+const documentsPath = app.getPath("documents");
+// Criar pasta Db dentro da pasta Documents
+const dbPath = path.join(documentsPath, "Db");
+// const dataPath = path.join(app.getPath("documents"), "data-electron-angular.json");
+
+if (!fs.existsSync(dbPath)) {
+  fs.mkdirSync(dbPath);
+}
+
+// Criar arquivos JSON dentro da pasta Db
+const filesName = ["nota", "customers", "cars", "mechanicals", "config"];
+filesName.forEach((fileName) => {
+  if (!fs.existsSync(dbPath, `${fileName}.json`)) {
+    const filePath = path.join(dbPath, `${fileName}.json`);
+    fs.writeFileSync(filePath, "{}"); // Criar arquivo vazio
+  }
+});
 
 // Função para ler o arquivo JSON
-function readJSONFile() {
+function readJSONFile(fileName) {
+  const dataPath = path.join(dbPath, fileName + ".json");
   try {
     if (fs.existsSync(dataPath)) {
       const data = fs.readFileSync(dataPath, "utf-8");
@@ -62,7 +78,8 @@ function readJSONFile() {
 }
 
 // Função para escrever no arquivo JSON
-function writeJSONFile(data) {
+function writeJSONFile(fileName, data) {
+  const dataPath = path.join(dbPath, `${fileName}.json`);
   try {
     fs.writeFileSync(dataPath, JSON.stringify(data));
     return true;
@@ -72,11 +89,11 @@ function writeJSONFile(data) {
   }
 }
 
-// Configurar listeners do IPC
-ipcMain.handle("read-data", () => {
-  return readJSONFile();
+// Listener no processo principal para o canal 'read-data'
+ipcMain.handle("read-data", (event, fileName) => {
+  return readJSONFile(fileName);
 });
 
-ipcMain.handle("write-data", (event, data) => {
-  return writeJSONFile(data);
+ipcMain.handle("write-data", (event, fileName, data) => {
+  return writeJSONFile(fileName, data);
 });

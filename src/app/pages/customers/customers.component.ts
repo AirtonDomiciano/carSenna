@@ -34,7 +34,8 @@ export default class CustomersComponent implements OnInit {
   async loadData() {
     this.customers = [];
 
-    await this.http.loadData();
+    await this.http.loadData('customers');
+
     const res = this.http.getData('customers');
 
     if (res?.length > 0) {

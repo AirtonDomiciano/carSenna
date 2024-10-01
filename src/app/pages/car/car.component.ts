@@ -72,7 +72,7 @@ export class CarComponent implements OnInit {
 
     this.http.addData(car);
 
-    const res = await this.http.saveData();
+    const res = await this.http.saveData('cars');
 
     if (res) {
       this.toast.mostrarSucesso('Carro excluído!');
@@ -98,7 +98,7 @@ export class CarComponent implements OnInit {
 
     this.http.addData(this.cars);
 
-    this.http.saveData().then((ver) => {
+    this.http.saveData('cars').then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { DataComponent } from './data.component';
 import { BodyComponent } from './core/body/body.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,7 +19,6 @@ import { CommonModule } from '@angular/common';
     SidebarComponent,
     BodyComponent,
     FormsModule,
-    DataComponent,
     ToastModule
   ],
   selector: 'app-root',

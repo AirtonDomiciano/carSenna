@@ -11,10 +11,11 @@ import UtilsCurrencyService from '../../utils/utils.currency';
   imports: [CommonModule, FormsModule],
   selector: 'app-screenshot',
   templateUrl: './screenshot.component.html',
-  styleUrls: ['./screenshot.component.css'],
+  styleUrls: ['./screenshot.component.scss'],
 })
 export class ScreenshotComponent {
   @Input() form!: FormGroup;
+  @Input() nameButton: string = 'View Nota';
   @Input() itemsNota: itemsNota[] = [];
 
   preview: NovaOsModel = new NovaOsModel();
@@ -24,13 +25,14 @@ export class ScreenshotComponent {
   visualizarNotaFiscal() {
     const nota = this.form.value;
     this.preview = { ...nota };
-    this.preview.totalValue = this.itemsNota.reduce(
+    const total = this.itemsNota.reduce(
       (accumulator, value) =>
         accumulator + this.utils.getValor(`${value.value}`),
       0
     );
 
-    this.preview.totalValue
+    this.preview.dataEmissao = Date()
+    this.preview.totalValue = this.utils.formatarValor(total);
   }
 
   takeScreenshot(): void {

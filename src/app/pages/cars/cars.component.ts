@@ -34,7 +34,7 @@ export class CarsComponent implements OnInit {
   async loadData() {
     this.cars = [];
 
-    await this.http.loadData();
+    await this.http.loadData('cars');
     const res = this.http.getData('cars');
 
     if (res?.length > 0) {

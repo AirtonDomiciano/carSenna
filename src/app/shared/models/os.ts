@@ -1,5 +1,5 @@
-import Customer from "./customer";
-import Mechanical from "./mechanical";
+import Customer from './customer';
+import Mechanical from './mechanical';
 
 export default class NovaOsModel {
   nomeEmpresa: string;
@@ -13,19 +13,20 @@ export default class NovaOsModel {
   CNPJ: string;
 
   dataEmissao: string;
-  
-  idCustomer:number;
+  descricaoServico: string;
+
+  idCustomer: number;
   idMechanical: number;
 
   mechanical: Mechanical = new Mechanical();
-  customer:Customer = new Customer();
+  customer: Customer = new Customer();
 
   descriptionItem: string;
   amountItem: number;
   valueItem: number;
   unitPriceItem: number;
 
-  totalValue: number;
+  totalValue: number | string;
 
   constructor() {
     this.nomeEmpresa = 'AIRTON LTDA';
@@ -39,8 +40,9 @@ export default class NovaOsModel {
     this.estadoEmpresa = 'PR';
 
     this.dataEmissao = '';
+    this.descricaoServico = '';
 
-    this.descriptionItem = ''
+    this.descriptionItem = '';
     this.amountItem = 0;
     this.valueItem = 0;
     this.unitPriceItem = 0;

@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,7 +7,7 @@ export class ElectronService {
   data: any = {};
   newData: string = '';
 
-  async loadData(): Promise<void> {
+  async loadData(fileName: string): Promise<void> {
     const isElectronAvailable: boolean = this.isElectronAvailable();
 
     if (!isElectronAvailable) {
@@ -17,7 +16,7 @@ export class ElectronService {
     }
 
     try {
-      this.data = await window.electron.fileSystem.readData();
+      this.data = await window.electron.fileSystem.readData(fileName);
       console.log('Data loaded:', this.data);
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
@@ -40,7 +39,7 @@ export class ElectronService {
     this.data[this.newData] = data;
   }
 
-  async saveData() {
+  async saveData(fileName: string) {
     const isElectronAvailable: boolean = this.isElectronAvailable();
 
     if (!isElectronAvailable) {
@@ -49,7 +48,8 @@ export class ElectronService {
     }
 
     try {
-      await window.electron.fileSystem.writeData(this.data);
+      console.log('oque está salvando ', this.data);
+      await window.electron.fileSystem.writeData(fileName, this.data);
       return true;
     } catch (error) {
       console.error('Erro ao salvar dados:', error);

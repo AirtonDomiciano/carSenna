@@ -61,7 +61,7 @@ export class MechanicalComponent implements OnInit {
 
     this.http.addData(mechanical);
 
-    const res = await this.http.saveData();
+    const res = await this.http.saveData('mechanicals');
 
     if (res) {
       this.toast.mostrarSucesso('Mecânico excluído!');
@@ -89,7 +89,7 @@ export class MechanicalComponent implements OnInit {
 
     this.http.addData(this.mechanicals);
 
-    this.http.saveData().then((ver) => {
+    this.http.saveData('mechanicals').then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();

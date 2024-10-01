@@ -68,7 +68,7 @@ export class CustomerComponent implements OnInit {
 
     this.http.addData(customers);
 
-    const res = await this.http.saveData();
+    const res = await this.http.saveData('customers');
 
     if (res) {
       this.toast.mostrarSucesso('Cliente excluído!');
@@ -83,7 +83,7 @@ export class CustomerComponent implements OnInit {
   async salvar() {
     this.salvarCustomers();
 
-    this.http.saveData().then((ver) => {
+    this.http.saveData('customers').then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();

@@ -74,9 +74,9 @@ button {
   gap: 25px;
   align-items: center;
   height: 50px;
-  font-family: "Poppins";
-  font-size: 18px;
-  font-weight: 200;
+  // font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 400;
   letter-spacing: 2px;
   line-height: 1;
   padding: 0 25px;
@@ -117,23 +117,3 @@ button {
   opacity: 1;
   animation: appear 0.3s both;
 }
-
-// Responsive
-
-// @media (max-width: 1336px) {
-//   .big-icon {
-//     font-size: 18px;
-//   }
-
-//   .sidebar {
-//     width: 72px;
-//   }
-
-//   .sidebar-burger {
-//     width: 67px;
-//   }
-
-//   .is-expanded .sidebar {
-//     width: 22%;
-//   }
-// }
