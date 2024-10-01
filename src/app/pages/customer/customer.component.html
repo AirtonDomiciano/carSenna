@@ -140,6 +140,46 @@
           <label for="floatingInputGrid">Complemento</label>
         </div>
       </div>
+      <div class="p-2 g-col-6">
+        <app-cep-input
+          [cepForm]="form"
+          frmCEP="cep"
+          (emitterCEP)="pegarEndereco($event)"
+        ></app-cep-input>
+      </div>
+      <div class="p-2 g-col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Cidade"
+            formControlName="cidade"
+          />
+          <label for="floatingInputGrid">Cidade</label>
+        </div>
+      </div>
+      <div class="p-2 g-col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Bairro"
+            formControlName="bairro"
+          />
+          <label for="floatingInputGrid">Bairro</label>
+        </div>
+      </div>
+      <div class="p-2 g-col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Rua"
+            formControlName="rua"
+          />
+          <label for="floatingInputGrid">Rua</label>
+        </div>
+      </div>
     </div>
   </form>
 </ng-template>

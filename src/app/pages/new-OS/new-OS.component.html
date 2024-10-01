@@ -37,7 +37,15 @@
       </div>
     </div>
     <div class="col-2">
-      <app-cep-input frmCEP="cepEmpresa" [cepForm]="form"></app-cep-input>
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          formControlName="cepEmpresa"
+        />
+        <label for="floatingInputGrid">Cep </label>
+      </div>
     </div>
     <div class="col-6">
       <div class="form-floating">
