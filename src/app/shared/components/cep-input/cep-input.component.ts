@@ -51,15 +51,14 @@ export class CepInputComponent {
   }
 
   loadCEP() {
-    const cep = this.cepForm.value;
+    const cep = this.cepForm.controls[this.frmCEP].value;
     this.getCEP(cep);
   }
 
   getCEP(cep: string) {
-    this.cepInputService.getAll(cep).subscribe((endereco) => {
-      const valor = endereco;
-      // this.emitterCEP.emit(valor);
-      console.log(valor);
+    this.cepInputService.getAll(cep).subscribe((evt) => {
+      const endereco = evt;
+      this.emitterCEP.emit(endereco);
     });
   }
 }
