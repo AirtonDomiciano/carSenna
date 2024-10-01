@@ -76,7 +76,11 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  fecharDrawer() {
+  onGetCep() {
+      this.toast.mostrarAviso('Não foi possível buscar as informações do cep')
+  }
+
+  closeDrawer() {
     this.drawer.closeDrawer();
   }
 

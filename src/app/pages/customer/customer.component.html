@@ -9,8 +9,8 @@
 </app-drawer>
 <ng-template #templateBody>
   <form [formGroup]="form">
-    <div class="grid gap-0 column-gap-3">
-      <div class="p-2 g-col-6">
+    <div class="row g-2 align-items-center">
+      <div class="col-12">
         <div class="form-floating">
           <input
             type="text"
@@ -21,11 +21,25 @@
           <label for="floatingInputGrid">Nome</label>
         </div>
       </div>
-      <div class="p-2 g-col-6">
+      <div class="col-4">
+        <app-cpf-input [cpfForm]="form" frmCPF="cpf"></app-cpf-input>
+      </div>
+      <div class="col-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Insc. Est</label>
+        </div>
+      </div>
+      <div class="col-4">
         <app-phone-input [phoneForm]="form" frmPhone="telephone">
         </app-phone-input>
       </div>
-      <div class="p-2 g-col-6">
+      <div class="col-12">
         <div class="form-floating">
           <input
             type="text"
@@ -36,18 +50,105 @@
           <label for="floatingInputGrid">Email</label>
         </div>
       </div>
-      <div class="p-2 g-col-6">
-        <app-cpf-input [cpfForm]="form" frmCPF="cpf"></app-cpf-input>
+      <div class="col-12">
+        <h5 class="border-bottom pb-2">Endereço</h5>
+      </div>
+
+      <div class="col-6">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Cep</label>
+        </div>
+      </div>
+      <div class="col-1 p-0">
+        <button
+          (click)="onGetCep()"
+          type="button"
+          class="btn btn-lg btn-success"
+        >
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+      <div class="col-9">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Rua</label>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Nº</label>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Estado</label>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Bairro</label>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Cidade</label>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="telephone"
+            formControlName="email"
+          />
+          <label for="floatingInputGrid">Complemento</label>
+        </div>
       </div>
     </div>
   </form>
 </ng-template>
 
 <ng-template #templateFooter>
-  <button (click)="fecharDrawer()" type="button" class="btn btn-secondary m-1">
+  <button (click)="closeDrawer()" type="button" class="btn btn-secondary m-1">
     Cancelar
   </button>
-  
+
   <button (click)="salvar()" type="button" class="btn btn-success">
     Salvar
   </button>
