@@ -1,0 +1,44 @@
+<div class="content">
+  <div
+    class="container d-flex justify-content-center align-items-center"
+    style="height: 100vh"
+  >
+    <div class="card" style="width: 30rem">
+      <div class="card-body">
+        <h4 class="card-title">Parece que você não tem acesso.</h4>
+        <h5 class="card-title">Cadastre sua Empresa</h5>
+        <form [formGroup]="form">
+          <div class="mb-3">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nome"
+                formControlName="name"
+              />
+              <label for="floatingInputGrid">Razão Social</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-floating">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="E-mail"
+                formControlName="email"
+              />
+              <label for="floatingInputGrid">E-mail</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <app-cnpj-input frmCNPJ="cnpj" [cnpjForm]="form"></app-cnpj-input>
+          </div>
+
+          <button type="submit" class="btn btn-primary" (click)="onCadastre()">
+            Cadastre
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

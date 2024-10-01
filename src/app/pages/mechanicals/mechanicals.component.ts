@@ -35,14 +35,14 @@ export class MechanicalsComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    this.http.addTypeData('mechanicals');
+    // this.http.addTypeData('mechanicals');
   }
 
   async loadData() {
     this.mechanicals = [];
 
-    await this.http.loadData('mechanicals');
-    const res = this.http.getData('mechanicals');
+    const res: Mechanical[] = await this.http.loadData('mechanicals');
+    // const res = this.http.getData('mechanicals');
 
     if (res?.length > 0) {
       this.mechanicals = res;

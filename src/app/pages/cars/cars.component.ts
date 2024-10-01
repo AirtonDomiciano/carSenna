@@ -28,14 +28,14 @@ export class CarsComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    this.http.addTypeData('cars');
+    // this.http.addTypeData('cars');
   }
 
   async loadData() {
     this.cars = [];
 
-    await this.http.loadData('cars');
-    const res = this.http.getData('cars');
+    const res: Car[] = await this.http.loadData('cars');
+    // const res = this.http.getData('cars');
 
     if (res?.length > 0) {
       this.cars = res;

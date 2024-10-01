@@ -59,9 +59,9 @@ export class MechanicalComponent implements OnInit {
   async delete(id: number): Promise<void> {
     const mechanical = this.mechanicals.filter((el) => el.id !== id);
 
-    this.http.addData(mechanical);
+    // this.http.addData(mechanical);
 
-    const res = await this.http.saveData('mechanicals');
+    const res = await this.http.saveData('mechanicals', this.mechanicals);
 
     if (res) {
       this.toast.mostrarSucesso('Mecânico excluído!');
@@ -87,9 +87,9 @@ export class MechanicalComponent implements OnInit {
       this.mechanicals.push(mechanical);
     }
 
-    this.http.addData(this.mechanicals);
+    // this.http.addData(this.mechanicals);
 
-    this.http.saveData('mechanicals').then((ver) => {
+    this.http.saveData('mechanicals', this.mechanicals).then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();

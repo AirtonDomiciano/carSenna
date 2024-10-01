@@ -28,15 +28,15 @@ export default class CustomersComponent implements OnInit {
 
   async ngOnInit() {
     this.loadData();
-    this.http.addTypeData('customers');
+    // this.http.addTypeData('customers');
   }
 
   async loadData() {
     this.customers = [];
 
-    await this.http.loadData('customers');
+    const res = await this.http.loadData('customers');
 
-    const res = this.http.getData('customers');
+    // const res = this.http.getData('customers');
 
     if (res?.length > 0) {
       this.customers = res;

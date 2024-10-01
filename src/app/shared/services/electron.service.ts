@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ElectronService {
-  data: any = {};
-  newData: string = '';
+  // data: any = {};
+  // newData: string = '';
 
-  async loadData(fileName: string): Promise<void> {
+  async loadData(fileName: string): Promise<any> {
     const isElectronAvailable: boolean = this.isElectronAvailable();
 
     if (!isElectronAvailable) {
@@ -16,30 +16,32 @@ export class ElectronService {
     }
 
     try {
-      this.data = await window.electron.fileSystem.readData(fileName);
-      console.log('Data loaded:', this.data);
+      const data = await window.electron.fileSystem.readData(fileName);
+      console.log('Data loaded:', data);
+      return data;
     } catch (error) {
       console.error('Erro ao carregar dados:', error);
+      return null;
     }
   }
 
-  getData(typeData?: string) {
-    if (typeData?.length) {
-      return this.data[typeData];
-    }
+  // getData(typeData?: string) {
+  //   if (typeData?.length) {
+  //     return this.data[typeData];
+  //   }
 
-    return this.data;
-  }
+  //   return this.data;
+  // }
 
-  addTypeData(newData: string) {
-    this.newData = newData;
-  }
+  // addTypeData(newData: string) {
+  //   this.newData = newData;
+  // }
 
-  addData(data: any) {
-    this.data[this.newData] = data;
-  }
+  // addData(data: any) {
+  //   this.data[this.newData] = data;
+  // }
 
-  async saveData(fileName: string) {
+  async saveData(fileName: string, data: any) {
     const isElectronAvailable: boolean = this.isElectronAvailable();
 
     if (!isElectronAvailable) {
@@ -48,8 +50,8 @@ export class ElectronService {
     }
 
     try {
-      console.log('oque está salvando ', this.data);
-      await window.electron.fileSystem.writeData(fileName, this.data);
+      console.log('oque está salvando ', data);
+      await window.electron.fileSystem.writeData(fileName, data);
       return true;
     } catch (error) {
       console.error('Erro ao salvar dados:', error);

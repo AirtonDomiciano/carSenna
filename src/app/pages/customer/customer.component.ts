@@ -66,9 +66,9 @@ export class CustomerComponent implements OnInit {
   async delete(id: number): Promise<void> {
     const customers = this.customers.filter((el) => el.id !== id);
 
-    this.http.addData(customers);
+    // this.http.addData(customers);
 
-    const res = await this.http.saveData('customers');
+    const res = await this.http.saveData('customers', customers);
 
     if (res) {
       this.toast.mostrarSucesso('Cliente excluído!');
@@ -83,7 +83,7 @@ export class CustomerComponent implements OnInit {
   async salvar() {
     this.salvarCustomers();
 
-    this.http.saveData('customers').then((ver) => {
+    this.http.saveData('customers', this.customers).then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();
@@ -108,7 +108,7 @@ export class CustomerComponent implements OnInit {
       this.customers.push(customer);
     }
 
-    this.http.addData(this.customers);
+    // this.http.addData(this.customers);
   }
 
   editaCustomer(editCustomer: Customer) {

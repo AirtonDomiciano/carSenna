@@ -31,7 +31,7 @@ import { CustomersSelectComponent } from '../../shared/components/customers-sele
     DrawerComponent,
     PlateInputComponent,
     OnlyNumbersDirective,
-    CustomersSelectComponent
+    CustomersSelectComponent,
   ],
   selector: 'app-car',
   templateUrl: 'car.component.html',
@@ -70,9 +70,9 @@ export class CarComponent implements OnInit {
   async delete(id: number): Promise<void> {
     const car = this.cars.filter((el) => el.id !== id);
 
-    this.http.addData(car);
+    // this.http.addData(car);
 
-    const res = await this.http.saveData('cars');
+    const res = await this.http.saveData('cars', this.cars);
 
     if (res) {
       this.toast.mostrarSucesso('Carro excluído!');
@@ -96,9 +96,9 @@ export class CarComponent implements OnInit {
       this.cars.push(car);
     }
 
-    this.http.addData(this.cars);
+    // this.http.addData(this.cars);
 
-    this.http.saveData('cars').then((ver) => {
+    this.http.saveData('cars', this.cars).then((ver) => {
       if (ver) {
         this.drawer.closeDrawer();
         this.onFiltrar.emit();
