@@ -18,7 +18,6 @@ import { AdressInterface } from '../../interfaces/adress.interface';
     FormsModule,
     ReactiveFormsModule,
     OnlyNumbersDirective,
-    HttpClientModule,
   ],
   selector: 'app-cep-input',
   templateUrl: './cep-input.component.html',
