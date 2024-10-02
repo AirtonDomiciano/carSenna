@@ -8,6 +8,7 @@ export default class Customer {
   cidade: string;
   bairro: string;
   rua: string;
+  estado: string;
 
   constructor() {
     this.id = 0;
@@ -19,5 +20,6 @@ export default class Customer {
     this.cidade = '';
     this.bairro = '';
     this.rua = '';
+    this.estado = '';
   }
 }

@@ -9,6 +9,7 @@ import {
 import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
 import { CepInputService } from '../../services/cep-input.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AdressInterface } from '../../interfaces/adress.interface';
 
 @Component({
   standalone: true,
@@ -36,7 +37,7 @@ export class CepInputComponent {
   validRequired() {
     this.cepForm.controls[this.frmCEP].setValidators([
       Validators.required,
-      Validators.pattern(/^\d{5}\-\d{3}/),
+      Validators.pattern(/^\d{5}\-\d{3}$/),
     ]);
   }
 
@@ -57,8 +58,7 @@ export class CepInputComponent {
 
   getCEP(cep: string) {
     this.cepInputService.getAll(cep).subscribe((evt) => {
-      const endereco = evt;
-      this.emitterCEP.emit(endereco);
+      this.emitterCEP.emit(evt);
     });
   }
 }
