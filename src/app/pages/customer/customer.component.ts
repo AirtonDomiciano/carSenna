@@ -43,8 +43,6 @@ export class CustomerComponent implements OnInit {
 
   @ViewChild(DrawerComponent) drawer!: DrawerComponent;
 
-  public teste = true;
-
   public form!: FormGroup;
   public headerDrawer: string = 'Cadastrar cliente';
 
@@ -82,7 +80,7 @@ export class CustomerComponent implements OnInit {
   }
 
   onGetCep() {
-      this.toast.mostrarAviso('Não foi possível buscar as informações do cep')
+    this.toast.mostrarAviso('Não foi possível buscar as informações do cep');
   }
 
   closeDrawer() {
@@ -133,12 +131,16 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  pegarEndereco(obj: AdressInterface) {
+  setarEndereco(obj: AdressInterface) {
     this.form.controls['cidade'].setValue(obj.localidade);
     this.form.controls['bairro'].setValue(obj.bairro);
     this.form.controls['rua'].setValue(obj.logradouro);
-    this.form.controls['cidade'].disable();
-    this.form.controls['bairro'].disable();
-    this.form.controls['rua'].disable();
+    this.form.controls['estado'].setValue(obj.uf);
+    if (obj.localidade) {
+      this.form.controls['cidade'].disable();
+      this.form.controls['bairro'].disable();
+      this.form.controls['rua'].disable();
+      this.form.controls['estado'].disable();
+    }
   }
 }
