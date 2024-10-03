@@ -1,9 +1,9 @@
 export default class Customer {
   id: number;
   name: string;
-  telephone: string;
-  email: string;
-  cpf: string;
+  telephone?: string;
+  email?: string;
+  cpf?: string;
   
   constructor() {
     this.id = 0;

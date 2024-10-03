@@ -21,6 +21,7 @@ import { ToastMessageService } from '../../shared/components/toast/toast.service
 import { PlateInputComponent } from '../../shared/components/plate-input/plate-input.component';
 import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
 import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
+import { ClientInputComponent } from '../../shared/components/customers-input/customers-input.component';
 
 @Component({
   standalone: true,
@@ -32,6 +33,7 @@ import { CustomersSelectComponent } from '../../shared/components/customers-sele
     PlateInputComponent,
     OnlyNumbersDirective,
     CustomersSelectComponent,
+    ClientInputComponent
   ],
   selector: 'app-car',
   templateUrl: 'car.component.html',

@@ -11,21 +11,11 @@
   <form [formGroup]="form">
     <div class="row g-2">
       <div class="col-12">
-        <app-customers-select [form]="form" frmName="idCustomer">
-        </app-customers-select>
+        <app-client-input label="Proprietário" [form]="form" frmName="marca"></app-client-input>
+        <!-- <app-customers-select [form]="form" frmName="idCustomer">
+        </app-customers-select> -->
       </div>
-      <div class="col-6">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Marca do carro"
-            formControlName="marca"
-          />
-          <label for="floatingInputGrid">Marca</label>
-        </div>
-      </div>
-      <div class="col-6">
+      <div class="col-4">
         <div class="form-floating">
           <input
             type="text"
@@ -38,6 +28,18 @@
 
         <!-- <app-plate-input frmName="placa" [plateForm]="form"></app-plate-input> -->
       </div>
+      <div class="col-4">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Marca do carro"
+            formControlName="marca"
+          />
+          <label for="floatingInputGrid">Marca</label>
+        </div>
+      </div>
+
       <div class="col-4">
         <div class="form-floating">
           <input
@@ -73,7 +75,7 @@
           <label for="floatingInputGrid">cor</label>
         </div>
       </div>
-      <div class="p-2 g-col-6">
+      <div class="col-4">
         <div class="form-floating">
           <input
             type="text"

@@ -1,0 +1,46 @@
+/* customers-input.component.scss */
+
+.search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: #f7f7f7;
+}
+
+.search-results li.active {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.ul-input {
+  list-style: none;
+  padding-left: 1rem;
+  background: var(--blue-50);
+  border: 1px solid var(--blue-100);
+  border-radius: 0px 0px 5px 5px;
+  max-height: 150px; /* Altura máxima antes de exibir o scroll */
+  overflow-y: auto; /* Scroll vertical quando a lista for grande */
+
+  li {
+    padding: 5px 0px 5px 0px;
+  }
+}
+/* Estilo do contêiner da barra de rolagem */
+.ul-input::-webkit-scrollbar {
+  width: 8px; /* Largura da barra de rolagem */
+}
+
+/* Estilo da parte deslizante da barra de rolagem (thumb) */
+.ul-input::-webkit-scrollbar-thumb {
+  background-color: #007bff; /* Cor da barra de rolagem */
+  border-radius: 10px; /* Arredondar os cantos */
+}
