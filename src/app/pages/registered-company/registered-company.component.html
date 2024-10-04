@@ -1,43 +1,79 @@
 <div class="content">
-  <div
-    class="container d-flex justify-content-center align-items-center"
-    style="height: 100vh"
-  >
-    <div class="card" style="width: 30rem">
-      <div class="card-body">
-        <h4 class="card-title">Parece que você não tem acesso.</h4>
-        <h5 class="card-title">Cadastre sua Empresa</h5>
-        <form [formGroup]="form">
-          <div class="mb-3">
-            <div class="form-floating">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Nome"
-                formControlName="name"
-              />
-              <label for="floatingInputGrid">Razão Social</label>
+  <div class="container">
+    <div class="row gy-4 align-items-center">
+      <div class="d-flex justify-content-center text-light">
+        <div class="col-12 col-xl-9">
+          <img
+            src="../../../assets/icons/blocklord-logo.png"
+            class="sidebar-logo"
+          />
+          <hr class="border-primary-subtle mb-4" />
+          <h2 class="h1 mb-4">
+            <!-- Fazendo um layoutzinho pro Airton que eu nao sei se vai ficar bom. -->
+            Bem vindo ao CarSenna!
+          </h2>
+          <p class="lead mb-5">
+            <!-- To ajudando ele nesse projeto que eu nem sei pra que que serve
+            kkkkkkkkkkkkkkkkkkkkkkk. -->
+            Cadastre sua empresa no nosso sistema para usufruir dos nossos
+            serviços!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-5">
+      <div class="card border-0 rounded-4">
+        <div class="card-body bg-light p-3 p-md-4 p-xl-5">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-4">
+                <h4 class="card-title text-success">Acesso Negado!</h4>
+                <h5 class="card-subtitle mb-4">Cadastre sua Empresa</h5>
+              </div>
             </div>
           </div>
-          <div class="mb-3">
-            <div class="form-floating">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="E-mail"
-                formControlName="email"
-              />
-              <label for="floatingInputGrid">E-mail</label>
+          <form action="#!">
+            <div class="row gy-3 overflow-hidden">
+              <div class="col-12">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Razão Social"
+                    formControlName="name"
+                  />
+                  <label for="name">Razão Social</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="E-mail"
+                    formControlName="email"
+                  />
+                  <label for="email">E-mail</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mb-3">
+                  <app-cnpj-input
+                    frmCNPJ="cnpj"
+                    [cnpjForm]="form"
+                  ></app-cnpj-input>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="d-grid">
+                  <button class="btn btn-success btn-lg" type="submit">
+                    Cadastre-se
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="mb-3">
-            <app-cnpj-input frmCNPJ="cnpj" [cnpjForm]="form"></app-cnpj-input>
-          </div>
-
-          <button type="submit" class="btn btn-primary" (click)="onCadastre()">
-            Cadastre
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>

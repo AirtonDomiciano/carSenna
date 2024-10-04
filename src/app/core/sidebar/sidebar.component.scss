@@ -14,7 +14,7 @@ button {
   height: 100%;
   background: var(--green-600);
   transition: width 0.8s;
-  z-index: 99; 
+  z-index: 99;
   border-radius: 0px 10px 10px 0px;
 }
 
@@ -96,7 +96,7 @@ button {
 }
 
 .sidebar button > span {
-  color: var(--cyan-50);;
+  color: var(--cyan-50);
   opacity: 0;
   transition: 0.3s;
 }
