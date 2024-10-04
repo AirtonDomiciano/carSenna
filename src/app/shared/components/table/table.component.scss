@@ -13,7 +13,7 @@
 .table-data-wrap table {
   width: 100%;
   border-collapse: separate;
-  
+
   border-spacing: 0;
 }
 
@@ -22,7 +22,6 @@
   position: sticky;
   padding: 0.57rem;
   color: var(--blue-50);
-  border-bottom: 1px solid var(--blue-700);
   background: var(--green-700);
   white-space: nowrap;
   font-weight: 600;
@@ -30,7 +29,6 @@
 
 .table-data-wrap table td {
   padding: 0.57rem;
-  border-bottom: 1px solid var(--blue-100);
   white-space: nowrap;
   background: var(--blue-50);
 }
