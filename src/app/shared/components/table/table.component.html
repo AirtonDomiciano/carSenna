@@ -12,7 +12,12 @@
             <thead class="table-thead">
               <tr>
                 <ng-container *ngFor="let column of columns">
-                  <th scope="col" draggable="true">
+                  <th
+                    scope="col"
+                    draggable="true"
+                    (click)="onSort()"
+                    role="button"
+                  >
                     {{ column?.title }}
                     <!-- <i
                       class="fa-solid fa-arrow-up-wide-short"
