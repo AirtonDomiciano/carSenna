@@ -17,6 +17,8 @@
 .card-body {
   width: 100%;
   border-radius: 15px;
+  background-color: var(--bluegray-50);
+  box-shadow: 12px 12px var(--green-750);
   padding: 20px;
 }
 
@@ -27,4 +29,8 @@
 .card-subtitle {
   color: #555;
   margin-bottom: 20px;
+}
+
+.logo {
+  width: 430px;
 }
