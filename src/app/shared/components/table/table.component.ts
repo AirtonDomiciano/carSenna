@@ -102,4 +102,6 @@ export default class TableDataComponent implements OnInit {
     // $event.index = this.verificaIndiceDoItemNaLista($event.obj);
     this.onEventClickBotaoAcoes.emit($event);
   }
+
+  onSort() {}
 }
