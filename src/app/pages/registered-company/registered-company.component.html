@@ -8,12 +8,50 @@
           </div>
 
           <hr class="border-primary-subtle mb-4" />
-          <h2 class="h1 mb-4 text-center">Bem vindo ao CarSenna!</h2>
-          <p class="lead text-center texto">
+          <h3 class="mb-4 text-center">
             <app-type-writer
-              text="Cadastre sua empresa no nosso sistema para usufruir dos nossos serviços!"
+              text=" Automatize sua Mecânica com CarSenna!"
             ></app-type-writer>
+          </h3>
+
+          <!-- <p class="lead text-left texto">
+            <strong> Economia de Tempo: </strong> Gerencie todos os processos da
+            sua empresa com eficiência, de cadastros à emissão de notas fiscais,
+            tudo em um só lugar.
           </p>
+          <p class="lead text-left texto">
+            <strong> Controle Total: </strong> Acompanhe os serviços e organize
+            os dados de clientes e veículos com facilidade.
+          </p> -->
+          <!-- <p class="lead text-left texto">
+            <strong> Segurança Garantida: </strong>
+
+            Seus dados e documentos sempre protegidos com nossa tecnologia de
+            ponta.
+          </p> -->
+          <!-- <p class="lead text-left texto">
+            <strong> Suporte Personalizado: </strong>
+            Nossa equipe está sempre pronta para ajudar no que você precisar.
+            Transforme a gestão da sua mecânica e foque no que realmente
+            importa: seu negócio!
+          </p> -->
+          <p class="lead text-left texto">
+            <strong> Ganhe Tempo: </strong> Gestão rápida de cadastros e emissão
+            de notas.
+          </p>
+          <p class="lead text-left texto">
+            <strong> Organização: </strong> Controle fácil de clientes e
+            serviços.
+          </p>
+          <p class="lead text-left texto">
+            <strong> Segurança: </strong> Proteção completa dos seus dados.
+          </p>
+          <p class="lead text-left texto">
+            <strong> Suporte Dedicado: </strong> Assistência sempre que
+            precisar.
+          </p>
+
+          <!-- Transforme a gestão da sua mecânica e foque no que realmente importa: seu negócio!  -->
         </div>
       </div>
     </div>
@@ -23,12 +61,14 @@
           <div class="row">
             <div class="col-12">
               <div class="mb-4">
-                <h4 class="card-title text-success">Acesso Negado!</h4>
+                <h4 class="card-title text-success">
+                  Você ainda não está cadastrado!
+                </h4>
                 <h5 class="card-subtitle mb-4">Cadastre sua Empresa</h5>
               </div>
             </div>
           </div>
-          <form action="#!">
+          <form [formGroup]="form" action="#!">
             <div class="row gy-3 overflow-hidden">
               <div class="col-12">
                 <div class="form-floating">
