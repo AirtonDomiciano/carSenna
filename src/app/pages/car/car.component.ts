@@ -33,7 +33,7 @@ import { ClientInputComponent } from '../../shared/components/customers-input/cu
     PlateInputComponent,
     OnlyNumbersDirective,
     CustomersSelectComponent,
-    ClientInputComponent
+    ClientInputComponent,
   ],
   selector: 'app-car',
   templateUrl: 'car.component.html',
@@ -74,7 +74,7 @@ export class CarComponent implements OnInit {
 
     // this.http.addData(car);
 
-    const res = await this.http.saveData('cars', this.cars);
+    const res = await this.http.saveData('cars', car);
 
     if (res) {
       this.toast.mostrarSucesso('Carro excluído!');
