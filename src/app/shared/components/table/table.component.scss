@@ -22,7 +22,7 @@
   position: sticky;
   padding: 0.57rem;
   color: var(--blue-50);
-  background: var(--green-700);
+
   white-space: nowrap;
   font-weight: 600;
 }
@@ -59,4 +59,12 @@
 
 input {
   display: none;
+}
+
+.sorted {
+  background-color: var(--green-800);
+}
+
+.not-sorted {
+  background: var(--green-700);
 }

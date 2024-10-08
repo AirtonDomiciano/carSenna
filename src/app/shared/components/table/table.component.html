@@ -12,7 +12,16 @@
             <thead class="table-thead">
               <tr>
                 <ng-container *ngFor="let column of columns">
-                  <th scope="col" draggable="true">
+                  <th
+                    scope="col"
+                    draggable="true"
+                    (click)="onSort(column)"
+                    role="button"
+                    [ngClass]="{
+                      sorted: columnSorted === column.name,
+                      'not-sorted': columnSorted !== column.name
+                    }"
+                  >
                     {{ column?.title }}
                     <!-- <i
                       class="fa-solid fa-arrow-up-wide-short"
@@ -30,7 +39,7 @@
                   width="10%"
                   *ngIf="usarAcoes === true"
                   id="table-data-acoes-{{ id }}"
-                  class="table-data-sticky table-data-sticky-right table-data-acoes text-center"
+                  class="table-data-sticky table-data-sticky-right table-data-acoes text-center not-sorted"
                   scope="col"
                 >
                   Ações

@@ -84,6 +84,8 @@ export default class TableDataComponent implements OnInit {
 
   public sumHeightContent = 0;
 
+  public columnSorted = '';
+
   constructor(private eRef: ElementRef, public cdRef: ChangeDetectorRef) {}
 
   getPaginate(): string {
@@ -101,5 +103,17 @@ export default class TableDataComponent implements OnInit {
   onClickBotaoAcoes($event: { id: string; obj: any; index?: number }): void {
     // $event.index = this.verificaIndiceDoItemNaLista($event.obj);
     this.onEventClickBotaoAcoes.emit($event);
+  }
+
+  onSort(column: TypeColumns) {
+    this.columnSorted = column.name;
+    this.tBodyList = this.tBodyList.sort((a, b) => {
+      const aValue = a[column.name];
+      const bValue = b[column.name];
+
+      if (aValue < bValue) return -1;
+      if (aValue > bValue) return 1;
+      return 0;
+    });
   }
 }
