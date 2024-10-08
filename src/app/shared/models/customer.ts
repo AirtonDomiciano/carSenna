@@ -4,11 +4,11 @@ export default class Customer {
   telephone?: string;
   email?: string;
   cpf?: string;
-  cep: string;
-  cidade: string;
-  bairro: string;
-  rua: string;
-  estado: string;
+  cep?: string;
+  cidade?: string;
+  bairro?: string;
+  rua?: string;
+  estado?: string;
 
   constructor() {
     this.id = 0;
