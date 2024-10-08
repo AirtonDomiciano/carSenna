@@ -54,25 +54,12 @@
         <h5 class="border-bottom pb-2">Endereço</h5>
       </div>
 
-      <div class="col-6">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="telephone"
-            formControlName="email"
-          />
-          <label for="floatingInputGrid">Cep</label>
-        </div>
-      </div>
-      <div class="col-1 p-0">
-        <button
-          (click)="onGetCep()"
-          type="button"
-          class="btn btn-lg btn-success"
-        >
-          <i class="bi bi-search"></i>
-        </button>
+      <div class="col-12">
+        <app-cep-input
+          frmCEP="cep"
+          [cepForm]="form"
+          (emitterCEP)="setarEndereco($event)"
+        ></app-cep-input>
       </div>
       <div class="col-9">
         <div class="form-floating">
@@ -80,7 +67,7 @@
             type="text"
             class="form-control"
             placeholder="telephone"
-            formControlName="email"
+            formControlName="rua"
           />
           <label for="floatingInputGrid">Rua</label>
         </div>
@@ -102,7 +89,7 @@
             type="text"
             class="form-control"
             placeholder="telephone"
-            formControlName="email"
+            formControlName="estado"
           />
           <label for="floatingInputGrid">Estado</label>
         </div>
@@ -113,7 +100,7 @@
             type="text"
             class="form-control"
             placeholder="telephone"
-            formControlName="email"
+            formControlName="bairro"
           />
           <label for="floatingInputGrid">Bairro</label>
         </div>
@@ -124,7 +111,7 @@
             type="text"
             class="form-control"
             placeholder="telephone"
-            formControlName="email"
+            formControlName="cidade"
           />
           <label for="floatingInputGrid">Cidade</label>
         </div>

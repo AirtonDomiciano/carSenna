@@ -19,6 +19,8 @@ import { ToastMessageService } from '../../shared/components/toast/toast.service
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
 import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
+import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
+import { AdressInterface } from '../../shared/interfaces/adress.interface';
 
 @Component({
   standalone: true,
@@ -28,7 +30,8 @@ import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.c
     ReactiveFormsModule,
     DrawerComponent,
     PhoneInputComponent,
-    CpfInputComponent
+    CpfInputComponent,
+    CepInputComponent,
   ],
   selector: 'app-customer',
   templateUrl: 'customer.component.html',
@@ -76,10 +79,6 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  onGetCep() {
-      this.toast.mostrarAviso('Não foi possível buscar as informações do cep')
-  }
-
   closeDrawer() {
     this.drawer.closeDrawer();
   }
@@ -125,6 +124,19 @@ export class CustomerComponent implements OnInit {
       customer.cpf = editCustomer.cpf;
       customer.telephone = editCustomer.telephone;
       customer.email = editCustomer.email;
+    }
+  }
+
+  setarEndereco(obj: AdressInterface) {
+    this.form.controls['cidade'].setValue(obj.localidade);
+    this.form.controls['bairro'].setValue(obj.bairro);
+    this.form.controls['rua'].setValue(obj.logradouro);
+    this.form.controls['estado'].setValue(obj.uf);
+    if (obj.localidade) {
+      this.form.controls['cidade'].disable();
+      this.form.controls['bairro'].disable();
+      this.form.controls['rua'].disable();
+      this.form.controls['estado'].disable();
     }
   }
 }

@@ -1,0 +1,31 @@
+<div [formGroup]="cepForm">
+  <div class="row">
+    <div class="col-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          id="cep"
+          class="form-control"
+          formControlName="{{ frmCEP }}"
+          (input)="formatCEP($event)"
+          placeholder="CEP"
+          placeholder="99999-999"
+          onlyNumbers
+        />
+        <label for="cep">CEP</label>
+      </div>
+    </div>
+    <div class="col-1">
+      <button (click)="loadCEP()" type="button" class="btn btn-lg btn-success">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngIf="cepForm.get(frmCEP)?.invalid && cepForm.get(frmCEP)?.touched"
+    class="text-danger"
+  >
+    CEP inválido. Formato esperado: 00000-000
+  </div>
+</div>
