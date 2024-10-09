@@ -7,6 +7,7 @@ import Customer from '../../shared/models/customer';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CustomerComponent } from '../customer/customer.component';
 import { TelefonePipe } from '../../shared/pipes/telephone.pipe';
+import { SearchComponent } from '../../shared/components/search/search.component';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ import { TelefonePipe } from '../../shared/pipes/telephone.pipe';
     FormsModule,
     TableDataComponent,
     CustomerComponent,
+    SearchComponent,
   ],
   selector: 'app-customers',
   templateUrl: 'customers.component.html',
@@ -31,15 +33,16 @@ export default class CustomersComponent implements OnInit {
     // this.http.addTypeData('customers');
   }
 
-  async loadData() {
-    this.customers = [];
+  async loadData(customers?: any) {
+    if (customers) {
+      this.customers = customers;
+    } else {
+      this.customers = [];
+      const res = await this.http.loadData('customers');
 
-    const res = await this.http.loadData('customers');
-
-    // const res = this.http.getData('customers');
-
-    if (res?.length > 0) {
-      this.customers = res;
+      if (res?.length > 0) {
+        this.customers = res;
+      }
     }
   }
 

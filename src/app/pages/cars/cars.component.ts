@@ -6,6 +6,7 @@ import TableDataComponent from '../../shared/components/table/table.component';
 import { CarComponent } from '../car/car.component';
 import Car from '../../shared/models/car';
 import { ElectronService } from '../../shared/services/electron.service';
+import { SearchComponent } from '../../shared/components/search/search.component';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ import { ElectronService } from '../../shared/services/electron.service';
     FormsModule,
     TableDataComponent,
     CarComponent,
+    SearchComponent,
   ],
   selector: 'app-cars',
   templateUrl: 'cars.component.html',
@@ -31,14 +33,16 @@ export class CarsComponent implements OnInit {
     // this.http.addTypeData('cars');
   }
 
-  async loadData() {
-    this.cars = [];
+  async loadData(cars?: any) {
+    if (cars) {
+      this.cars = cars;
+    } else {
+      this.cars = [];
 
-    const res: Car[] = await this.http.loadData('cars');
-    // const res = this.http.getData('cars');
-
-    if (res?.length > 0) {
-      this.cars = res;
+      const res: Car[] = await this.http.loadData('cars');
+      if (res?.length > 0) {
+        this.cars = res;
+      }
     }
   }
 

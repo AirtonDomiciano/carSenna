@@ -1,9 +1,6 @@
 <div class="row mb-2">
   <div class="col">
-    <div class="form-floating">
-      <input type="text" class="form-control" placeholder="telephone" />
-      <label for="floatingInputGrid">Pesquisar</label>
-    </div>
+    <app-search table="cars" (emitterData)="loadData($event)"></app-search>
   </div>
   <div class="col text-end">
     <button (click)="add()" type="button" class="btn btn-lg btn-success">
@@ -18,7 +15,7 @@
         { title: 'Modelo', name: 'modelo' },
         { title: 'Marca', name: 'marca' },
         { title: 'Ano', name: 'ano' },
-        { title: 'Placa', name: 'placa' },
+        { title: 'Placa', name: 'placa' }
       ]"
       [buttons]="[
         { id: 'id-edit', icon: 'bi bi-pencil-square' },

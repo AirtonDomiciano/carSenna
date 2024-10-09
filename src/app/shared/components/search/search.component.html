@@ -1,0 +1,10 @@
+<div class="form-floating">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Pesquisar"
+    (focusout)="loadData()"
+    [(ngModel)]="searchTerm"
+  />
+  <label for="floatingInputGrid">Pesquisar</label>
+</div>
