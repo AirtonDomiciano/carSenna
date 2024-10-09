@@ -12,6 +12,7 @@ import { ToastMessageService } from '../../shared/components/toast/toast.service
 import Mechanical from '../../shared/models/mechanical';
 import { MechanicalComponent } from '../mechanical/mechanical.component';
 import TableDataComponent from '../../shared/components/table/table.component';
+import { SearchComponent } from '../../shared/components/search/search.component';
 
 @Component({
   standalone: true,
@@ -21,6 +22,7 @@ import TableDataComponent from '../../shared/components/table/table.component';
     ReactiveFormsModule,
     TableDataComponent,
     MechanicalComponent,
+    SearchComponent,
   ],
   selector: 'app-mechanicals',
   templateUrl: 'mechanicals.component.html',
@@ -38,14 +40,17 @@ export class MechanicalsComponent implements OnInit {
     // this.http.addTypeData('mechanicals');
   }
 
-  async loadData() {
-    this.mechanicals = [];
+  async loadData(mechanicals?: any) {
+    if (mechanicals) {
+      this.mechanicals = mechanicals;
+    } else {
+      this.mechanicals = [];
 
-    const res: Mechanical[] = await this.http.loadData('mechanicals');
-    // const res = this.http.getData('mechanicals');
+      const res: Mechanical[] = await this.http.loadData('mechanicals');
 
-    if (res?.length > 0) {
-      this.mechanicals = res;
+      if (res?.length > 0) {
+        this.mechanicals = res;
+      }
     }
   }
 

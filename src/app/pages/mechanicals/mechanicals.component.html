@@ -1,9 +1,9 @@
 <div class="row mb-2">
   <div class="col">
-    <div class="form-floating">
-      <input type="text" class="form-control" placeholder="telephone" />
-      <label for="floatingInputGrid">Pesquisar</label>
-    </div>
+    <app-search
+      table="mechanicals"
+      (emitterData)="loadData($event)"
+    ></app-search>
   </div>
   <div class="col text-end">
     <button (click)="add()" type="button" class="btn btn-lg btn-success">
@@ -17,7 +17,7 @@
       [columns]="[
         { title: 'Nome', name: 'name' },
         { title: 'Cpf', name: 'cpf', type: 'cpfCnpj' },
-        { title: 'E-mail', name: 'email' },
+        { title: 'E-mail', name: 'email' }
       ]"
       [buttons]="[
         { id: 'id-edit', icon: 'bi bi-pencil-square' },
@@ -29,4 +29,7 @@
   </div>
 </div>
 
-<app-mechanical [mechanicals]="mechanicals" (onFiltrar)="loadData()" ></app-mechanical>
+<app-mechanical
+  [mechanicals]="mechanicals"
+  (onFiltrar)="loadData()"
+></app-mechanical>
