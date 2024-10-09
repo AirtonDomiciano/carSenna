@@ -84,13 +84,17 @@
 
   <!-- Mecanico e clientes -->
   <div class="row g-2 mt-1 align-items-center">
-    <div class="col-6">
+    <div class="col-4">
       <h5>Informações do Mecânico</h5>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <h5>Informações do Cliente</h5>
     </div>
-    <div class="col-6">
+    <div class="col-4">
+      <h5>Informações do Carro</h5>
+    </div>
+
+    <div class="col-4">
       <app-customers-select
         [form]="form"
         label="Selecione o Mecânico"
@@ -100,7 +104,7 @@
       >
       </app-customers-select>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <app-customers-select
         [form]="form"
         label="Selecione o Cliente"
@@ -109,12 +113,21 @@
       >
       </app-customers-select>
     </div>
+    <div class="col-4">
+      <app-cars-select
+        [form]="form"
+        label="Selecione o Carro"
+        frmName="idCar"
+        (onSelect)="onSelectCarro($event)"
+      >
+      </app-cars-select>
+    </div>
   </div>
 
   <!-- Serviços -->
   <div class="row g-2">
     <div class="col-12">
-      <h5>Serviço do Realizado</h5>
+      <h5>Serviço Realizado</h5>
     </div>
     <div class="col-12">
       <div class="form-floating">
@@ -129,9 +142,9 @@
   </div>
 
   <!-- Serviços -->
-  <div class="row g-2">
+  <div class="row g-2 mt-2">
     <div class="col-12">
-      <h5>Itens usado</h5>
+      <h5>Itens usados</h5>
     </div>
     <div class="col-5">
       <div class="form-floating">
@@ -187,14 +200,14 @@
           { title: 'Descrição', name: 'description', width: '70%' },
           { title: 'Quantidade', name: 'amount', width: '10%' },
           { title: 'P. Unit.', name: 'unitPrice', width: '10%' },
-          { title: 'valor', name: 'value', width: '10%' }
+          { title: 'Valor', name: 'value', width: '10%' }
         ]"
         [buttons]="[{ id: 'id-trash', icon: 'bi bi-trash' }]"
         [tBodyList]="itemsNota"
         (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
       ></app-table>
     </div>
-    <div class="col-12 text-end">
+    <div class="col-12 text-end py-3">
       <app-screenshot
         [itemsNota]="itemsNota"
         [form]="form"

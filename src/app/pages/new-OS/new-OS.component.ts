@@ -16,6 +16,7 @@ import { CurrencyInputComponent } from '../../shared/components/currency-input/c
 import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
 import UtilsCurrencyService from '../../shared/utils/utils.currency';
 import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
+import { CarsSelectComponent } from '../../shared/components/cars-select/cars-select.component';
 @Component({
   standalone: true,
   imports: [
@@ -28,6 +29,7 @@ import { CepInputComponent } from '../../shared/components/cep-input/cep-input.c
     CurrencyInputComponent,
     OnlyNumbersDirective,
     CepInputComponent,
+    CarsSelectComponent,
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',
@@ -109,5 +111,9 @@ export class NewOSComponent implements OnInit {
 
   onSelectCliente($event: any) {
     this.form.controls['customer'].setValue($event);
+  }
+
+  onSelectCarro($event: any) {
+    this.form.controls['car'].setValue($event);
   }
 }

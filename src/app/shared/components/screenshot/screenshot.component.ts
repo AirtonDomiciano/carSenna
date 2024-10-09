@@ -24,6 +24,7 @@ export class ScreenshotComponent {
 
   visualizarNotaFiscal() {
     const nota = this.form.value;
+    console.log(nota);
     this.preview = { ...nota };
     const total = this.itemsNota.reduce(
       (accumulator, value) =>
@@ -31,7 +32,7 @@ export class ScreenshotComponent {
       0
     );
 
-    this.preview.dataEmissao = Date()
+    this.preview.dataEmissao = Date();
     this.preview.totalValue = this.utils.formatarValor(total);
   }
 
