@@ -1,3 +1,4 @@
+import Car from './car';
 import Customer from './customer';
 import Mechanical from './mechanical';
 
@@ -17,9 +18,11 @@ export default class NovaOsModel {
 
   idCustomer: number;
   idMechanical: number;
+  idCar: number;
 
   mechanical: Mechanical = new Mechanical();
   customer: Customer = new Customer();
+  car: Car = new Car();
 
   descriptionItem: string;
   amountItem: number;
@@ -51,8 +54,10 @@ export default class NovaOsModel {
 
     this.idCustomer = 0;
     this.idMechanical = 0;
+    this.idCar = 0;
 
     this.mechanical = new Mechanical();
     this.customer = new Customer();
+    this.car = new Car();
   }
 }
