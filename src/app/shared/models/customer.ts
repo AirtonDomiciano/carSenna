@@ -9,6 +9,9 @@ export default class Customer {
   bairro?: string;
   rua?: string;
   estado?: string;
+  complemento?: string;
+  numero?: string;
+  inscEst?: string;
 
   constructor() {
     this.id = 0;
@@ -21,5 +24,8 @@ export default class Customer {
     this.bairro = '';
     this.rua = '';
     this.estado = '';
+    this.complemento = '';
+    this.numero = '';
+    this.inscEst = '';
   }
 }
