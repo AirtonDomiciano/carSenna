@@ -29,8 +29,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
-            formControlName="email"
+            placeholder="Insc. Est"
+            formControlName="inscEst"
           />
           <label for="floatingInputGrid">Insc. Est</label>
         </div>
@@ -44,7 +44,7 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
+            placeholder="Email"
             formControlName="email"
           />
           <label for="floatingInputGrid">Email</label>
@@ -66,7 +66,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
+            placeholder="Rua"
+            [readOnly]="cepReadOnly"
             formControlName="rua"
           />
           <label for="floatingInputGrid">Rua</label>
@@ -77,8 +78,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
-            formControlName="email"
+            placeholder="Nº"
+            formControlName="numero"
           />
           <label for="floatingInputGrid">Nº</label>
         </div>
@@ -88,7 +89,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
+            placeholder="Estado"
+            [readOnly]="cepReadOnly"
             formControlName="estado"
           />
           <label for="floatingInputGrid">Estado</label>
@@ -99,7 +101,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
+            placeholder="Bairro"
+            [readOnly]="cepReadOnly"
             formControlName="bairro"
           />
           <label for="floatingInputGrid">Bairro</label>
@@ -110,7 +113,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
+            placeholder="Cidade"
+            [readOnly]="cepReadOnly"
             formControlName="cidade"
           />
           <label for="floatingInputGrid">Cidade</label>
@@ -121,8 +125,8 @@
           <input
             type="text"
             class="form-control"
-            placeholder="telephone"
-            formControlName="email"
+            placeholder="Complemento"
+            formControlName="complemento"
           />
           <label for="floatingInputGrid">Complemento</label>
         </div>

@@ -45,6 +45,7 @@ export class CustomerComponent implements OnInit {
 
   public form!: FormGroup;
   public headerDrawer: string = 'Cadastrar cliente';
+  public cepReadOnly: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -133,10 +134,7 @@ export class CustomerComponent implements OnInit {
     this.form.controls['rua'].setValue(obj.logradouro);
     this.form.controls['estado'].setValue(obj.uf);
     if (obj.localidade) {
-      this.form.controls['cidade'].disable();
-      this.form.controls['bairro'].disable();
-      this.form.controls['rua'].disable();
-      this.form.controls['estado'].disable();
+      this.cepReadOnly = true;
     }
   }
 }
