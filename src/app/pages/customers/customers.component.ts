@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ElectronService } from '../../shared/services/electron.service';
 import Customer from '../../shared/models/customer';
 import TableDataComponent from '../../shared/components/table/table.component';
 import { CustomerComponent } from '../customer/customer.component';
-import { TelefonePipe } from '../../shared/pipes/telephone.pipe';
 import { SearchComponent } from '../../shared/components/search/search.component';
+import { TableModule } from 'primeng/table';
 
 @Component({
   standalone: true,
@@ -17,6 +16,7 @@ import { SearchComponent } from '../../shared/components/search/search.component
     TableDataComponent,
     CustomerComponent,
     SearchComponent,
+    TableModule,
   ],
   selector: 'app-customers',
   templateUrl: 'customers.component.html',
