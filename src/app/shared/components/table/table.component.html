@@ -4,55 +4,30 @@
       <div class="col-sm-12 mt-1">
         <div
           id="table-data-wrap-{{ id }}"
-          class="table-data-wrap bg-white"
+          class="table-data-wrap"
           Directiva
           appReorderColumnTable
         >
-          <table id="table-data-{{ id }}">
-            <thead class="table-thead">
+          <p-table [value]="tBodyList" #dt (onSort)="onSort()">
+            <ng-template pTemplate="header">
               <tr>
-                <ng-container *ngFor="let column of columns">
-                  <th
-                    scope="col"
-                    draggable="true"
-                    (click)="onSort(column)"
-                    role="button"
-                    [ngClass]="{
-                      sorted: columnSorted === column.name,
-                      'not-sorted': columnSorted !== column.name
-                    }"
-                  >
-                    {{ column?.title }}
-                    <!-- <i
-                      class="fa-solid fa-arrow-up-wide-short"
-                      *ngIf="onAscSortable(column)"
-                      >
-                    </i>
-                    <i
-                      class="fa-solid fa-arrow-down-wide-short"
-                      *ngIf="onDescSortable(column)"
-                    >
-                    </i> -->
+                <ng-container *ngFor="let obj of columns">
+                  <th [pSortableColumn]="obj.name">
+                    {{ obj.title }}
+                    <p-sortIcon [field]="obj.name" />
                   </th>
                 </ng-container>
                 <th
-                  width="10%"
                   *ngIf="usarAcoes === true"
-                  id="table-data-acoes-{{ id }}"
-                  class="table-data-sticky table-data-sticky-right table-data-acoes text-center not-sorted"
-                  scope="col"
+                  pFrozenColumn
+                  class="text-center"
                 >
                   Ações
                 </th>
               </tr>
-            </thead>
-            <tbody *ngIf="tBodyList.length === 0">
+            </ng-template>
+            <ng-template pTemplate="body" let-obj>
               <tr>
-                <td [attr.colspan]="colspan">Nenhum registro encontrado.</td>
-              </tr>
-            </tbody>
-            <tbody id="table-data-tbody-{{ id }}" *ngIf="tBodyList.length > 0">
-              <tr *ngFor="let obj of tBodyList; let i = index">
                 <ng-container
                   *ngFor="let column of columns"
                   [ngSwitch]="column?.type"
@@ -63,19 +38,13 @@
                   <td *ngSwitchCase="'cpfCnpj'">
                     {{ obj[column.name] | cpfCnpj }}
                   </td>
-                  <!-- <td *ngSwitchCase="'cpfCnpj'">{{ obj[column.name] | cpfCnpj }}</td> -->
-                  <!-- <td *ngSwitchCase="'data'">{{ obj[column.name] | date : 'dd/MM/yyyy' }}</td> -->
                   <td *ngSwitchDefault>
                     {{ obj[column?.name || ""] }}
                   </td>
                 </ng-container>
-
-                <td
-                  *ngIf="usarAcoes === true"
-                  class="table-data-sticky table-data-sticky-right table-data-acoes text-center"
-                >
+                <td *ngIf="usarAcoes === true" pFrozenColumn>
                   <div class="d-flex justify-content-center align-items-center">
-                    <ng-container *ngFor="let button of buttons">
+                    <ng-container *ngFor="let button of buttons; let i = index">
                       <button
                         id="table-data-button-{{ i }}"
                         [disabled]="button.disabled"
@@ -100,64 +69,10 @@
                   </div>
                 </td>
               </tr>
-            </tbody>
-            <!-- <tfoot *ngIf="showTFoot === true">
-              <tr>
-                <td *ngIf="usarCheckboxSel === true" class="text-center font-weight-bolder">Total</td>
-                <ng-container *ngFor="let column of columns; let i = index" [ngSwitch]="column.sum">
-                  <td *ngSwitchCase="true" class="text-left">
-                    {{
-                      tBodyList
-                        | TableDataSum : column?.name
-                        | currency : (column?.currencyFormat?.length ? column.currencyFormat : '  ')
-                    }}
-                  </td>
-                  <td *ngSwitchCase="false" class="text-left">
-                    <h6 *ngIf="i === 0 && usarCheckboxSel === false">Total</h6>
-                  </td>
-                  <td *ngSwitchDefault class="text-left">
-                    <h6 *ngIf="i === 0 && usarCheckboxSel === false">Total</h6>
-                  </td>
-                </ng-container>
-              </tr>
-            </tfoot> -->
-          </table>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>
-
-    <!-- FOOTER  -->
-    <!-- <div
-      *ngIf="showFooter"
-      id="table-data-footer-{{ id }}"
-      class="d-flex flex-gap-2 justify-content-between align-items-center p-3 bg-primary rounded-bottom"
-    >
-      <div *ngIf="isEmptyList === false">
-        <select
-          id="select-table-data-{{ id }}"
-          [ngModel]="itemsPerPageInput"
-          class="custom-select custom-select-sm"
-          [disabled]="lengthGridBlock"
-          (change)="onClickSelectPage($event.target.value)"
-        >
-          <option [value]="i" *ngFor="let i of selecionaTamanhoGrid">
-            <ng-container> {{ selectValueBlock || i }} de {{ changeStates.size }} itens </ng-container>
-          </option>
-        </select>
-      </div>
-      <div>
-        <ng-container *ngIf="isEmptyList === false">
-          <app-pagination-controls
-            id="paginate-{{ this.id }}"
-            (statesChange)="onStatesChange($event)"
-            (pageChange)="mudaDePagina($event)"
-          >
-          </app-pagination-controls>
-        </ng-container>
-      </div>
-      <div id="table-data-footer-container-{{ id }}">
-        <ng-container [ngTemplateOutlet]="tFootTemplate"></ng-container>
-      </div>
-    </div> -->
   </div>
 </div>
