@@ -1,16 +1,16 @@
-<!-- <ng-container *ngIf="registeredCompany; else elseBlock"> -->
-<app-sidebar
-  [isExpanded]="isExpanded"
-  (onToggleEvent)="toggleEvent($event)"
-></app-sidebar>
-<app-body [isExpanded]="isExpanded"></app-body>
-<!-- </ng-container> -->
+<ng-container *ngIf="registeredCompany; else elseBlock">
+  <app-sidebar
+    [isExpanded]="isExpanded"
+    (onToggleEvent)="toggleEvent($event)"
+  ></app-sidebar>
+  <app-body [isExpanded]="isExpanded"></app-body>
+</ng-container>
 
-<!-- <ng-template #elseBlock>
-</ng-template> -->
-<!-- <app-registered-company
-  (onRegistred)="onRegistred($event)"
-></app-registered-company> -->
+<ng-template #elseBlock>
+  <app-registered-company
+    (onRegistred)="onRegistred($event)"
+  ></app-registered-company>
+</ng-template>
 
 <p-toast></p-toast>
 
