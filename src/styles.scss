@@ -131,4 +131,27 @@
 .card-header,
 .card-footer {
   background-color: var(--blue-500);
+  color: var(--bluegray-100);
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  color: var(--bluegray-100);
+  background: var(--green-700);
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: var(--bluegray-100);
+}
+
+.p-datatable .p-sortable-column.p-highlight {
+  background: var(--green-800);
+  color: #ffffff;
+
+  .p-sortable-column-icon {
+    color: #ffffff;
+  }
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #ffffff;
 }

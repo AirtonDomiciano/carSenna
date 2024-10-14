@@ -6,7 +6,7 @@
 .table-data-wrap {
   width: 100%;
   overflow: auto;
-  border-radius: 10px 10px 5px 8px;
+  border-radius: 10px 10px 0px 0px;
   /* max-height: calc(100vh - 325px); */
 }
 
@@ -59,12 +59,4 @@
 
 input {
   display: none;
-}
-
-.sorted {
-  background-color: var(--green-800);
-}
-
-.not-sorted {
-  background: var(--green-700);
 }
