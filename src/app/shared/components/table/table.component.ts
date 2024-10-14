@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import { TypeButtons, TypeColumns } from './table-data.interface';
 import { CommonModule } from '@angular/common';
