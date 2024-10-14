@@ -7,14 +7,13 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 import { TypeButtons, TypeColumns } from './table-data.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TelefonePipe } from '../../pipes/telephone.pipe';
 import { CpfCnpjPipe } from '../../pipes/cpfCnpj.pipe';
-import { Table, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 
 @Component({
   standalone: true,
@@ -24,8 +23,6 @@ import { Table, TableModule } from 'primeng/table';
   styleUrls: ['./table.component.scss'],
 })
 export default class TableDataComponent implements OnInit {
-  @ViewChild('dt', { static: true }) dt: Table | undefined;
-
   @Input() id = 0;
   @Input() tFootTemplate: string | TemplateRef<any> | any;
 
@@ -107,21 +104,5 @@ export default class TableDataComponent implements OnInit {
   onClickBotaoAcoes($event: { id: string; obj: any; index?: number }): void {
     // $event.index = this.verificaIndiceDoItemNaLista($event.obj);
     this.onEventClickBotaoAcoes.emit($event);
-  }
-
-  // onSort(column: TypeColumns) {
-  //   this.columnSorted = column.name;
-  //   this.tBodyList = this.tBodyList.sort((a, b) => {
-  //     const aValue = a[column.name];
-  //     const bValue = b[column.name];
-
-  //     if (aValue < bValue) return -1;
-  //     if (aValue > bValue) return 1;
-  //     return 0;
-  //   });
-  // }
-
-  onSort() {
-    if (this.dt) console.log(this.dt.sortField);
   }
 }

@@ -8,7 +8,7 @@
           Directiva
           appReorderColumnTable
         >
-          <p-table [value]="tBodyList" #dt (onSort)="onSort()">
+          <p-table [value]="tBodyList">
             <ng-template pTemplate="header">
               <tr>
                 <ng-container *ngFor="let obj of columns">
@@ -67,6 +67,13 @@
                       </button>
                     </ng-container>
                   </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td [colSpan]="columns.length + (usarAcoes ? 1 : 0)">
+                  Nenhum registro encontrado.
                 </td>
               </tr>
             </ng-template>
