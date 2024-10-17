@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ElectronService } from './shared/services/electron.service';
 import registeredCompany from './shared/models/registered-company';
 import { RegisteredCompanyComponent } from './pages/registered-company/registered-company.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   standalone: true,
   imports: [
@@ -22,6 +23,7 @@ import { RegisteredCompanyComponent } from './pages/registered-company/registere
     FormsModule,
     ToastModule,
     RegisteredCompanyComponent,
+    NgbModule,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',

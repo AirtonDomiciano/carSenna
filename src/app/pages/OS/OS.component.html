@@ -1,9 +1,14 @@
 <app-table
   [columns]="[
-    { title: 'Id CLiente', name: 'idCustomer' },
-    { title: 'Descrição do Serviço', name: 'descricaoServico' }
+    { title: 'Descrição', name: 'descricao' },
+    { title: 'Emissão', name: 'emissao', type: 'date' },
+    { title: 'Nome/Firma', name: 'nomeFirma' },
+    { title: 'CPF/CNPJ', name: 'cpfCnpj' },
+    { title: 'Carro', name: 'carro' },
+    { title: 'Fone', name: 'fone' }
   ]"
-  [tBodyList]="os"
-  [usarAcoes]="false"
+  [buttons]="[{ id: 'id-open', icon: 'bi bi-eye' }]"
+  [tBodyList]="listaOs"
+  (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
 >
 </app-table>

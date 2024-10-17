@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import TableDataComponent from '../../shared/components/table/table.component';
 import NovaOsModel from '../../shared/models/os';
 import { ElectronService } from '../../shared/services/electron.service';
+import { OSTable } from '../../shared/interfaces/os-table.interface';
+import { ScreenshotComponent } from '../../shared/components/screenshot/screenshot.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-os',
   standalone: true,
-  imports: [TableDataComponent],
+  imports: [TableDataComponent, ScreenshotComponent],
   templateUrl: './os.component.html',
   styleUrl: './os.component.scss',
 })
 export class OSComponent implements OnInit {
-  public os: Array<NovaOsModel> = [];
+  public listaOs: OSTable[] = [];
+  public os: NovaOsModel[] = [];
 
-  constructor(private http: ElectronService) {}
+  constructor(private http: ElectronService, private modal: NgbModal) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -21,14 +25,39 @@ export class OSComponent implements OnInit {
 
   async loadData(os?: any) {
     if (os) {
-      this.os = os;
+      this.listaOs = os;
     } else {
-      this.os = [];
+      this.listaOs = [];
 
-      const res: NovaOsModel[] = await this.http.loadData('os');
-      if (res?.length > 0) {
-        this.os = res;
+      this.os = await this.http.loadData('os');
+      if (this.os.length > 0) {
+        for (let item of this.os) {
+          const obj: OSTable = {
+            id: item.id,
+            descricao: item.descricaoServico,
+            emissao: item.dataEmissao,
+            nomeFirma: item.customer.name,
+            cpfCnpj: item.customer.cpf,
+            carro:
+              item.car.modelo + ' - ' + item.car.cor + ' - ' + item.car.placa,
+            fone: item.customer.telephone,
+          };
+          this.listaOs.push(obj);
+        }
       }
+    }
+  }
+
+  onEventClickBotaoAcoes($event: any) {
+    const obj = this.os.find((el) => el.id === $event.obj.id);
+
+    switch ($event.id) {
+      case 'id-open':
+        const modal = this.modal.open(ScreenshotComponent, { size: 'xl' });
+        modal.componentInstance.preview = obj;
+        break;
+      default:
+        break;
     }
   }
 }

@@ -1,40 +1,20 @@
+import { Component, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input } from '@angular/core';
-import { FormGroup, FormsModule } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import NovaOsModel from '../../models/os';
-import { itemsNota } from '../../interfaces/items-nota.interface';
-import UtilsCurrencyService from '../../utils/utils.currency';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   selector: 'app-screenshot',
   templateUrl: './screenshot.component.html',
-  styleUrls: ['./screenshot.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
+  providers: [NgbActiveModal],
 })
 export class ScreenshotComponent {
-  @Input() form!: FormGroup;
-  @Input() nameButton: string = 'View Nota';
-  @Input() itemsNota: itemsNota[] = [];
+  @Input() preview!: NovaOsModel;
 
-  preview: NovaOsModel = new NovaOsModel();
-
-  constructor(private utils: UtilsCurrencyService) {}
-
-  visualizarNotaFiscal() {
-    const nota = this.form.value;
-    console.log(nota);
-    this.preview = { ...nota };
-    const total = this.itemsNota.reduce(
-      (accumulator, value) =>
-        accumulator + this.utils.getValor(`${value.value}`),
-      0
-    );
-
-    this.preview.dataEmissao = Date();
-    this.preview.totalValue = this.utils.formatarValor(total);
-  }
+  constructor(public activeModal: NgbActiveModal) {}
 
   takeScreenshot(): void {
     const element = document.getElementById('screenshot-target');
@@ -66,5 +46,10 @@ export class ScreenshotComponent {
       link.download = 'nota-fiscal.png';
       link.click();
     });
+  }
+
+  dismissModal() {
+    console.log('Modal dismissed');
+    this.activeModal.dismiss();
   }
 }

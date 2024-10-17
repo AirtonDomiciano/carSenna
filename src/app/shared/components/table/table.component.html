@@ -38,6 +38,9 @@
                   <td *ngSwitchCase="'cpfCnpj'">
                     {{ obj[column.name] | cpfCnpj }}
                   </td>
+                  <td *ngSwitchCase="'date'">
+                    {{ obj[column.name] | date : "dd/MM/yyyy" }}
+                  </td>
                   <td *ngSwitchDefault>
                     {{ obj[column?.name || ""] }}
                   </td>
