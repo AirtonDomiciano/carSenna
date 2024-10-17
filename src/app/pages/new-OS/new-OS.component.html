@@ -208,13 +208,9 @@
       ></app-table>
     </div>
     <div class="col-12 text-end py-3">
-      <app-screenshot
-        [itemsNota]="itemsNota"
-        [form]="form"
-        nameButton="Gerar Nota"
-        class="m-1"
-      ></app-screenshot>
+      <button class="btn btn-lg btn-success" (click)="openModal()">
+        <i class="bi bi-file-earmark-check"></i>Gerar Nota
+      </button>
     </div>
   </div>
-  <button class="btn btn-success" (click)="salvar()">teste salvar</button>
 </form>

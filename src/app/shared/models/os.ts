@@ -1,5 +1,6 @@
 import Car from './car';
 import Customer from './customer';
+import { itemsNota } from './items-nota';
 import Mechanical from './mechanical';
 
 export default class NovaOsModel {
@@ -29,6 +30,8 @@ export default class NovaOsModel {
   amountItem: number;
   valueItem: number;
   unitPriceItem: number;
+
+  itemsNota?: itemsNota[];
 
   totalValue: number | string;
 
