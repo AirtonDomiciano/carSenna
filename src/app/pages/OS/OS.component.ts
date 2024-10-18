@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import TableDataComponent from '../../shared/components/table/table.component';
 import NovaOsModel from '../../shared/models/os';
 import { ElectronService } from '../../shared/services/electron.service';
 import { OSTable } from '../../shared/interfaces/os-table.interface';
 import { ScreenshotComponent } from '../../shared/components/screenshot/screenshot.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-os',
   standalone: true,
-  imports: [TableDataComponent, ScreenshotComponent],
+  imports: [TableDataComponent, ScreenshotComponent, NgbModalModule],
   templateUrl: './os.component.html',
   styleUrl: './os.component.scss',
 })

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import html2canvas from 'html2canvas';
 import NovaOsModel from '../../models/os';
@@ -9,12 +9,12 @@ import NovaOsModel from '../../models/os';
   templateUrl: './screenshot.component.html',
   standalone: true,
   imports: [CommonModule],
-  providers: [NgbActiveModal],
+  providers: [NgbModal],
 })
 export class ScreenshotComponent {
   @Input() preview!: NovaOsModel;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbModal) {}
 
   takeScreenshot(): void {
     const element = document.getElementById('screenshot-target');
@@ -49,7 +49,6 @@ export class ScreenshotComponent {
   }
 
   dismissModal() {
-    console.log('Modal dismissed');
-    this.activeModal.dismiss();
+    this.activeModal.dismissAll();
   }
 }
