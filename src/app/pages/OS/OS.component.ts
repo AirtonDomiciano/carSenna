@@ -34,13 +34,11 @@ export class OSComponent implements OnInit {
         for (let item of this.os) {
           const obj: OSTable = {
             id: item.id,
-            descricao: item.descricaoServico,
-            emissao: item.dataEmissao,
             nomeFirma: item.customer.name,
-            cpfCnpj: item.customer.cpf,
-            carro:
-              item.car.modelo + ' - ' + item.car.cor + ' - ' + item.car.placa,
+            emissao: item.dataEmissao,
+            carro: item.car.modelo,
             fone: item.customer.telephone,
+            descricao: item.descricaoServico,
           };
           this.listaOs.push(obj);
         }

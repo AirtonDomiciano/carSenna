@@ -1,11 +1,10 @@
 <app-table
   [columns]="[
-    { title: 'Descrição', name: 'descricao' },
-    { title: 'Emissão', name: 'emissao', type: 'date' },
     { title: 'Nome/Firma', name: 'nomeFirma' },
-    { title: 'CPF/CNPJ', name: 'cpfCnpj' },
+    { title: 'Emissão', name: 'emissao', type: 'date' },
     { title: 'Carro', name: 'carro' },
-    { title: 'Fone', name: 'fone' }
+    { title: 'Fone', name: 'fone' },
+    { title: 'Descrição', name: 'descricao' }
   ]"
   [buttons]="[{ id: 'id-open', icon: 'bi bi-eye' }]"
   [tBodyList]="listaOs"
