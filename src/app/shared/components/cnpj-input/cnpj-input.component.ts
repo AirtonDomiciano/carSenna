@@ -18,7 +18,8 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     OnlyNumbersDirective,
   ],
   selector: 'app-cnpj-input',
-  template: `<div [formGroup]="cnpjForm">
+  template: `
+  <div [formGroup]="cnpjForm">
     <div class="form-floating">
       <input
         type="text"
@@ -37,7 +38,21 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     </div>
 
     <div
-      *ngIf="cnpjForm.get(frmCNPJ)?.invalid && cnpjForm.get(frmCNPJ)?.touched"
+      *ngIf="
+        !cnpjForm.get(frmCNPJ)?.value &&
+        cnpjForm.get(frmCNPJ)?.invalid &&
+        cnpjForm.get(frmCNPJ)?.touched
+      "
+      class="text-danger"
+    >
+      CNPJ Não informado.
+    </div>
+    <div
+      *ngIf="
+        cnpjForm.get(frmCNPJ)?.value &&
+        cnpjForm.get(frmCNPJ)?.invalid &&
+        cnpjForm.get(frmCNPJ)?.touched
+      "
       class="text-danger"
     >
       CNPJ inválido. Formato esperado: 99.999.999/9999-99
@@ -47,16 +62,22 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
 export class CnpjInputComponent implements OnInit {
   @Input() cnpjForm!: FormGroup;
   @Input() frmCNPJ: string = '';
+  @Input() isRequired: boolean = false;
 
   ngOnInit(): void {
     this.validRequired();
   }
 
   validRequired() {
-    this.cnpjForm.controls[this.frmCNPJ].setValidators([
-      Validators.required,
+    const validators = [
       Validators.pattern(/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/),
-    ]);
+    ];
+
+    if (this.isRequired) {
+      validators.push(Validators.required);
+    }
+
+    this.cnpjForm.controls[this.frmCNPJ].setValidators(validators);
   }
 
   formatCNPJ(event: any): void {

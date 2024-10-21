@@ -36,7 +36,9 @@ export default class AppComponent implements OnInit {
 
   constructor(private http: ElectronService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadData();
+  }
 
   async loadData() {
     this.conf = new registeredCompany();
