@@ -1,8 +1,10 @@
 import Car from './car';
 import Customer from './customer';
+import { itemsNota } from './items-nota';
 import Mechanical from './mechanical';
 
 export default class NovaOsModel {
+  id: number;
   nomeEmpresa: string;
   telefoneEmpresa: string;
   ruaEmpresa: string;
@@ -29,9 +31,12 @@ export default class NovaOsModel {
   valueItem: number;
   unitPriceItem: number;
 
+  itemsNota?: itemsNota[];
+
   totalValue: number | string;
 
   constructor() {
+    this.id = 0;
     this.nomeEmpresa = 'AIRTON LTDA';
     this.telefoneEmpresa = '46 9 99099164';
     this.CNPJ = '454684654984';
