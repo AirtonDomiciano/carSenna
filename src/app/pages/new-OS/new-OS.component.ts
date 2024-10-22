@@ -17,6 +17,8 @@ import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.direc
 import UtilsCurrencyService from '../../shared/utils/utils.currency';
 import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
 import { CarsSelectComponent } from '../../shared/components/cars-select/cars-select.component';
+import { ElectronService } from '../../shared/services/electron.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   standalone: true,
   imports: [
@@ -41,17 +43,44 @@ export class NewOSComponent implements OnInit {
   public model: NovaOsModel = new NovaOsModel();
   public itemsNota: itemsNota[] = [];
   // public preview: NovaOsModel = new NovaOsModel()
+  public OSs: Array<NovaOsModel> = [];
 
   constructor(
     private fb: FormBuilder,
     private toast: ToastMessageService,
-    private utils: UtilsCurrencyService
+    private utils: UtilsCurrencyService,
+    private http: ElectronService,
+    private modal: NgbModal
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group(new NovaOsModel());
 
     this.form.controls['valueItem'].disable();
+  }
+
+  async salvar() {
+    this.OSs = await this.http.loadData('os');
+    const os: NovaOsModel = this.form.value;
+
+    const newId = os?.id ? os?.id : this.OSs?.length + 1;
+
+    const total = this.itemsNota.reduce(
+      (accumulator, value) =>
+        accumulator + this.utils.getValor(`${value.value}`),
+      0
+    );
+    os.totalValue = this.utils.formatarValor(total);
+    os.itemsNota = this.itemsNota;
+    os.id = newId;
+    os.dataEmissao = Date();
+    this.OSs.push(os);
+
+    this.http.saveData('os', this.OSs).then((ver) => {
+      if (ver) {
+        this.toast.mostrarSucesso('Nova OS Salva!');
+      }
+    });
   }
 
   onCalcTotal() {
@@ -115,5 +144,13 @@ export class NewOSComponent implements OnInit {
 
   onSelectCarro($event: any) {
     this.form.controls['car'].setValue($event);
+  }
+
+  openModal() {
+    this.salvar();
+
+    const obj = this.form.value;
+    const modal = this.modal.open(ScreenshotComponent, { size: 'xl' });
+    modal.componentInstance.preview = obj;
   }
 }

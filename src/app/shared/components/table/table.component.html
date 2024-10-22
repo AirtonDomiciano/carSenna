@@ -33,13 +33,34 @@
                   [ngSwitch]="column?.type"
                 >
                   <td *ngSwitchCase="'telephone'">
-                    {{ obj[column.name] | telephone }}
+                    <span
+                      ngbTooltip="{{ column.title }}: {{
+                        obj[column.name] | telephone
+                      }}"
+                      >{{ obj[column.name] | telephone }}</span
+                    >
                   </td>
                   <td *ngSwitchCase="'cpfCnpj'">
-                    {{ obj[column.name] | cpfCnpj }}
+                    <span
+                      ngbTooltip="{{ column.title }}: {{
+                        obj[column.name] | cpfCnpj
+                      }}"
+                      >{{ obj[column.name] | cpfCnpj }}</span
+                    >
+                  </td>
+                  <td *ngSwitchCase="'date'">
+                    <span
+                      ngbTooltip="{{ column.title }}: {{
+                        obj[column.name] | date : 'dd/MM/yyyy'
+                      }}"
+                      >{{ obj[column.name] | date : "dd/MM/yyyy" }}</span
+                    >
                   </td>
                   <td *ngSwitchDefault>
-                    {{ obj[column?.name || ""] }}
+                    <span
+                      ngbTooltip="{{ column.title }}: {{ obj[column.name] }}"
+                      >{{ obj[column.name] }}</span
+                    >
                   </td>
                 </ng-container>
                 <td *ngIf="usarAcoes === true" pFrozenColumn>

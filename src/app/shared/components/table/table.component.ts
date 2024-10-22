@@ -7,7 +7,6 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 import { TypeButtons, TypeColumns } from './table-data.interface';
 import { CommonModule } from '@angular/common';
@@ -15,10 +14,18 @@ import { FormsModule } from '@angular/forms';
 import { TelefonePipe } from '../../pipes/telephone.pipe';
 import { CpfCnpjPipe } from '../../pipes/cpfCnpj.pipe';
 import { TableModule } from 'primeng/table';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, TelefonePipe, CpfCnpjPipe, TableModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TelefonePipe,
+    CpfCnpjPipe,
+    TableModule,
+    NgbTooltipModule,
+  ],
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
