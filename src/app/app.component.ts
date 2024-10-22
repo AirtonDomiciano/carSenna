@@ -12,6 +12,8 @@ import registeredCompany from './shared/models/registered-company';
 import { RegisteredCompanyComponent } from './pages/registered-company/registered-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingPagesComponent } from './shared/components/loading-pages/loading-pages.component';
+import { NGX_ECHARTS_CONFIG } from 'ngx-echarts';
+import * as echarts from 'echarts';
 @Component({
   standalone: true,
   imports: [
@@ -25,12 +27,18 @@ import { LoadingPagesComponent } from './shared/components/loading-pages/loading
     ToastModule,
     RegisteredCompanyComponent,
     LoadingPagesComponent,
-    NgbModule
+    NgbModule,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    {
+      provide: NGX_ECHARTS_CONFIG,
+      useFactory: () => ({ echarts }),
+    },
+  ],
 })
 export default class AppComponent implements OnInit {
   isExpanded = false;
