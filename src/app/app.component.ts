@@ -25,6 +25,7 @@ import { LoadingPagesComponent } from './shared/components/loading-pages/loading
     ToastModule,
     RegisteredCompanyComponent,
     LoadingPagesComponent,
+    NgbModule
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
