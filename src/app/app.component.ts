@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ElectronService } from './shared/services/electron.service';
 import registeredCompany from './shared/models/registered-company';
 import { RegisteredCompanyComponent } from './pages/registered-company/registered-company.component';
+import { LoadingPagesComponent } from './shared/components/loading-pages/loading-pages.component';
 @Component({
   standalone: true,
   imports: [
@@ -22,6 +23,7 @@ import { RegisteredCompanyComponent } from './pages/registered-company/registere
     FormsModule,
     ToastModule,
     RegisteredCompanyComponent,
+    LoadingPagesComponent,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,13 +33,22 @@ import { RegisteredCompanyComponent } from './pages/registered-company/registere
 export default class AppComponent implements OnInit {
   isExpanded = false;
   registeredCompany = false;
+  animationWelcome = false;
 
   conf: registeredCompany = new registeredCompany();
 
   constructor(private http: ElectronService) {}
 
-  ngOnInit(): void {
-    this.loadData();
+  async ngOnInit(): Promise<void> {
+    await this.loadData();
+
+    if (this.registeredCompany) this.loadAnimation();
+  }
+
+  loadAnimation() {
+    setTimeout(() => {
+      this.animationWelcome = true;
+    }, 2900);
   }
 
   async loadData() {
@@ -56,5 +67,6 @@ export default class AppComponent implements OnInit {
 
   onRegistred(registred: boolean) {
     this.registeredCompany = registred;
+    this.loadAnimation();
   }
 }

@@ -45,7 +45,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
       "
       class="text-danger"
     >
-      CNPJ Não informado.
+      CNPJ não informado.
     </div>
     <div
       *ngIf="

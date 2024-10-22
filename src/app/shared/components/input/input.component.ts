@@ -31,7 +31,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
         class="text-danger"
       >
         <span *ngIf="!formGroup.get(nameControl)?.value">
-          {{ label }} Não informado(a).
+          {{ label }} não informado(a).
         </span>
       </div>
     </form>
