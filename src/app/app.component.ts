@@ -11,6 +11,7 @@ import { ElectronService } from './shared/services/electron.service';
 import registeredCompany from './shared/models/registered-company';
 import { RegisteredCompanyComponent } from './pages/registered-company/registered-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoadingPagesComponent } from './shared/components/loading-pages/loading-pages.component';
 @Component({
   standalone: true,
   imports: [
