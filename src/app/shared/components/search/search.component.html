@@ -3,7 +3,7 @@
     type="text"
     class="form-control"
     placeholder="Pesquisar"
-    (focusout)="loadData()"
+    (input)="loadData()"
     [(ngModel)]="searchTerm"
   />
   <label for="floatingInputGrid">Pesquisar</label>
