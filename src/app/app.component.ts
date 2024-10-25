@@ -66,7 +66,7 @@ export default class AppComponent implements OnInit {
 
     const res: registeredCompany = await this.http.loadData('config');
 
-    if (res.cnpj?.length) {
+    if (res?.cnpj?.length) {
       this.registeredCompany = true;
     }
   }
