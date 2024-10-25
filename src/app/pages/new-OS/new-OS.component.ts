@@ -19,6 +19,7 @@ import { CepInputComponent } from '../../shared/components/cep-input/cep-input.c
 import { CarsSelectComponent } from '../../shared/components/cars-select/cars-select.component';
 import { ElectronService } from '../../shared/services/electron.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MechanicalsSelectComponent } from '../../shared/components/mechanicals-select/mechanicals-select.component';
 @Component({
   standalone: true,
   imports: [
@@ -32,6 +33,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     OnlyNumbersDirective,
     CepInputComponent,
     CarsSelectComponent,
+    MechanicalsSelectComponent,
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',

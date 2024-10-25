@@ -1,13 +1,21 @@
-<app-table
-  [columns]="[
-    { title: 'Nome/Firma', name: 'nomeFirma' },
-    { title: 'Emissão', name: 'emissao', type: 'date' },
-    { title: 'Carro', name: 'carro' },
-    { title: 'Fone', name: 'fone' },
-    { title: 'Descrição', name: 'descricao' }
-  ]"
-  [buttons]="[{ id: 'id-open', icon: 'bi bi-eye' }]"
-  [tBodyList]="listaOs"
-  (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
->
-</app-table>
+<div class="row mb-2">
+  <div class="col-6">
+    <app-search table="os" (emitterData)="loadData($event)"></app-search>
+  </div>
+</div>
+
+<div class="row">
+  <app-table
+    [columns]="[
+      { title: 'Nome/Firma', name: 'nomeFirma' },
+      { title: 'Emissão', name: 'emissao', type: 'date' },
+      { title: 'Carro', name: 'carro' },
+      { title: 'Fone', name: 'fone' },
+      { title: 'Descrição', name: 'descricao' }
+    ]"
+    [buttons]="[{ id: 'id-open', icon: 'bi bi-eye' }]"
+    [tBodyList]="listaOs"
+    (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
+  >
+  </app-table>
+</div>
