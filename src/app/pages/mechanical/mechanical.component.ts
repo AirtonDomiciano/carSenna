@@ -18,10 +18,19 @@ import { DrawerComponent } from '../../shared/components/drawer/drawer.component
 import { ElectronService } from '../../shared/services/electron.service';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import Mechanical from '../../shared/models/mechanical';
+import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
+import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, DrawerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DrawerComponent,
+    CpfInputComponent,
+    PhoneInputComponent
+  ],
   selector: 'app-mechanical',
   templateUrl: 'mechanical.component.html',
   styleUrls: ['mechanical.component.scss'],

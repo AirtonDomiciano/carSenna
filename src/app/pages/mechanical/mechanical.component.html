@@ -33,26 +33,11 @@
         </div>
       </div>
       <div class="col-6">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Telefone"
-            formControlName="telephone"
-          />
-          <label for="floatingInputGrid">Telefone</label>
-        </div>
+        <app-phone-input frmPhone="telephone" [phoneForm]="form"></app-phone-input>
+       
       </div>
       <div class="col-6">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="CPF"
-            formControlName="cpf"
-          />
-          <label for="floatingInputGrid">Cpf</label>
-        </div>
+        <app-cpf-input frmCPF="cpf" [cpfForm]="form"> </app-cpf-input>
       </div>
     </div>
   </form>

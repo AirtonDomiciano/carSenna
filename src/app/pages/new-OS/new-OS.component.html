@@ -95,14 +95,14 @@
     </div>
 
     <div class="col-4">
-      <app-mechanicals-select
+      <app-input-select
         [form]="form"
+        frmName="idMechanical"
         label="Selecione o Mecânico"
-        frmName="idCustomer"
         (onSelect)="onSelectMecanico($event)"
         typeList="mechanicals"
       >
-      </app-mechanicals-select>
+      </app-input-select>
     </div>
     <div class="col-4">
       <app-customers-select

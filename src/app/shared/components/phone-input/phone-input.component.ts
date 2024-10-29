@@ -42,23 +42,30 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
       "
       class="text-danger"
     >
-      Número de telefone inválido. Formato esperado: (99) 99999-9999
+      telefone inválido. Formato esperado: (99) 99999-9999
     </div>
   </div> `,
 })
 export class PhoneInputComponent implements OnInit {
   @Input() phoneForm!: FormGroup;
   @Input() frmPhone: string = '';
+  @Input() isRequired: boolean = false;
 
   ngOnInit(): void {
     this.validRequired();
   }
 
   validRequired() {
-    this.phoneForm.controls[this.frmPhone].setValidators([
-      Validators.required,
-      Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/),
-    ]);
+    const validators = [
+      Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/)
+    ];
+
+
+    if (this.isRequired) {
+      validators.push(Validators.required);
+    }
+
+    this.phoneForm.controls[this.frmPhone].setValidators(validators);
   }
 
   formatPhoneNumber(event: any): void {

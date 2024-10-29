@@ -20,6 +20,7 @@ import { CarsSelectComponent } from '../../shared/components/cars-select/cars-se
 import { ElectronService } from '../../shared/services/electron.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MechanicalsSelectComponent } from '../../shared/components/mechanicals-select/mechanicals-select.component';
+import { InputSelectComponent } from '../../shared/components/input-select/input-select.component';
 @Component({
   standalone: true,
   imports: [
@@ -33,7 +34,7 @@ import { MechanicalsSelectComponent } from '../../shared/components/mechanicals-
     OnlyNumbersDirective,
     CepInputComponent,
     CarsSelectComponent,
-    MechanicalsSelectComponent,
+    InputSelectComponent,
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',
@@ -44,7 +45,6 @@ export class NewOSComponent implements OnInit {
   public form!: FormGroup;
   public model: NovaOsModel = new NovaOsModel();
   public itemsNota: itemsNota[] = [];
-  // public preview: NovaOsModel = new NovaOsModel()
   public OSs: Array<NovaOsModel> = [];
 
   constructor(
