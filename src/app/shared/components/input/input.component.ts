@@ -25,6 +25,7 @@ import {
           placeholder="{{ placeHolder }}"
           formControlName="{{ nameControl }}"
           [readOnly]="readOnly"
+          [attr.maxLength]="maxLength"
         />
         <label for="name">{{ label }}</label>
       </div>
@@ -50,6 +51,7 @@ export class InputComponent implements OnInit {
   @Input() placeHolder: string = '';
   @Input() isRequired: boolean = false;
   @Input() readOnly: boolean = false;
+  @Input() maxLength?: string;
 
   constructor() {}
 
@@ -63,5 +65,9 @@ export class InputComponent implements OnInit {
         Validators.required,
       ]);
     }
+  }
+
+  teste() {
+    console.log(this.formGroup.controls[this.nameControl].invalid);
   }
 }

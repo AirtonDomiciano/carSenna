@@ -23,6 +23,7 @@ import { MechanicalsSelectComponent } from '../../shared/components/mechanicals-
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
 import { CnpjInputComponent } from '../../shared/components/cnpj-input/cnpj-input.component';
 import { InputComponent } from '../../shared/components/input/input.component';
+import { InputSelectComponent } from '../../shared/components/input-select/input-select.component';
 @Component({
   standalone: true,
   imports: [
@@ -40,6 +41,7 @@ import { InputComponent } from '../../shared/components/input/input.component';
     PhoneInputComponent,
     CnpjInputComponent,
     InputComponent,
+    InputSelectComponent,
   ],
   selector: 'app-new-OS',
   templateUrl: 'new-OS.component.html',
