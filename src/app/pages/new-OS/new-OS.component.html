@@ -4,7 +4,7 @@
       <h5>Informações da Empresa</h5>
     </div>
     <div class="col-6">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -12,10 +12,16 @@
           placeholder=""
         />
         <label for="floatingInputGrid">Nome empresa</label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="nmoeEmpresa"
+        placeHolder="Nome Empresa"
+        label="Nome Empresa"
+      ></app-input>
     </div>
     <div class="col-3">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -23,10 +29,14 @@
           formControlName="telefoneEmpresa"
         />
         <label for="floatingInputGrid">Telefone</label>
-      </div>
+      </div> -->
+      <app-phone-input
+        [phoneForm]="form"
+        frmPhone="telefoneEmpresa"
+      ></app-phone-input>
     </div>
     <div class="col-3">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -34,10 +44,12 @@
           formControlName="CNPJ"
         />
         <label for="floatingInputGrid">CNPJ</label>
-      </div>
+      </div> -->
+
+      <app-cnpj-input [cnpjForm]="form" frmCNPJ="CNPJ"></app-cnpj-input>
     </div>
     <div class="col-2">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -45,10 +57,11 @@
           formControlName="cepEmpresa"
         />
         <label for="floatingInputGrid">Cep </label>
-      </div>
+      </div> -->
+      <app-cep-input [cepForm]="form" frmCEP="cepEmpresa"></app-cep-input>
     </div>
     <div class="col-6">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -56,10 +69,16 @@
           formControlName="ruaEmpresa"
         />
         <label for="floatingInputGrid">Rua </label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="ruaEmpresa"
+        placeHolder="Rua Empresa"
+        label="Rua"
+      ></app-input>
     </div>
     <div class="col-1">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -67,10 +86,16 @@
           formControlName="numeroEmpresa"
         />
         <label for="floatingInputGrid">Nº </label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="numeroEmpresa"
+        placeHolder="Nº"
+        label="Nº"
+      ></app-input>
     </div>
     <div class="col-3">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -78,7 +103,13 @@
           formControlName="bairroEmpresa"
         />
         <label for="floatingInputGrid">Bairro </label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="bairroEmpresa"
+        placeHolder="Bairro"
+        label="Bairro"
+      ></app-input>
     </div>
   </div>
 
@@ -130,14 +161,20 @@
       <h5>Serviço Realizado</h5>
     </div>
     <div class="col-12">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
           formControlName="descricaoServico"
         />
         <label for="floatingInputGrid">Descrição</label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="descricaoServico"
+        placeHolder="Descrição"
+        label="Descrição"
+      ></app-input>
     </div>
   </div>
 
@@ -147,7 +184,7 @@
       <h5>Itens usados</h5>
     </div>
     <div class="col-5">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -155,10 +192,16 @@
           formControlName="descriptionItem"
         />
         <label for="floatingInputGrid">Descrição</label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="descriptionItem"
+        placeHolder="Descrição"
+        label="Descrição"
+      ></app-input>
     </div>
     <div class="col-1">
-      <div class="form-floating">
+      <!-- <div class="form-floating">
         <input
           type="text"
           class="form-control"
@@ -168,7 +211,13 @@
           (ngModelChange)="onCalcTotal()"
         />
         <label for="floatingInputGrid">Quantidade</label>
-      </div>
+      </div> -->
+      <app-input
+        [formGroup]="form"
+        nameControl="amountItem"
+        placeHolder="Quantidade"
+        label="Quantidade"
+      ></app-input>
     </div>
     <div class="col-2">
       <app-currency-input

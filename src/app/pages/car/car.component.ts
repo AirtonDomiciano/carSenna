@@ -22,6 +22,7 @@ import { PlateInputComponent } from '../../shared/components/plate-input/plate-i
 import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
 import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
 import { ClientInputComponent } from '../../shared/components/customers-input/customers-input.component';
+import { InputComponent } from '../../shared/components/input/input.component';
 
 @Component({
   standalone: true,
@@ -34,6 +35,7 @@ import { ClientInputComponent } from '../../shared/components/customers-input/cu
     OnlyNumbersDirective,
     CustomersSelectComponent,
     ClientInputComponent,
+    InputComponent,
   ],
   selector: 'app-car',
   templateUrl: 'car.component.html',

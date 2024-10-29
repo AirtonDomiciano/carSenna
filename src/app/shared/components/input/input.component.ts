@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -19,6 +24,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
           }"
           placeholder="{{ placeHolder }}"
           formControlName="{{ nameControl }}"
+          [readOnly]="readOnly"
         />
         <label for="name">{{ label }}</label>
       </div>
@@ -43,8 +49,19 @@ export class InputComponent implements OnInit {
   @Input() label: string = '';
   @Input() placeHolder: string = '';
   @Input() isRequired: boolean = false;
+  @Input() readOnly: boolean = false;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.validRequired();
+  }
+
+  validRequired() {
+    if (this.isRequired) {
+      this.formGroup.controls[this.nameControl].setValidators([
+        Validators.required,
+      ]);
+    }
+  }
 }

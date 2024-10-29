@@ -11,7 +11,11 @@
   <form [formGroup]="form">
     <div class="row g-2">
       <div class="col-12">
-        <app-client-input label="Proprietário" [form]="form" frmName="marca"></app-client-input>
+        <app-client-input
+          label="Proprietário"
+          [form]="form"
+          frmName="marca"
+        ></app-client-input>
         <!-- <app-customers-select [form]="form" frmName="idCustomer">
         </app-customers-select> -->
       </div>
@@ -29,62 +33,51 @@
         <!-- <app-plate-input frmName="placa" [plateForm]="form"></app-plate-input> -->
       </div>
       <div class="col-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Marca do carro"
-            formControlName="marca"
-          />
-          <label for="floatingInputGrid">Marca</label>
-        </div>
+        <app-input
+          [formGroup]="form"
+          nameControl="marca"
+          placeHolder="Marca do carro"
+          label="Marca"
+          [isRequired]="true"
+        ></app-input>
       </div>
 
       <div class="col-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Model do carro"
-            formControlName="modelo"
-          />
-          <label for="floatingInputGrid">Modelo</label>
-        </div>
+        <app-input
+          [formGroup]="form"
+          nameControl="modelo"
+          placeHolder="Modelo"
+          label="Modelo"
+          [isRequired]="true"
+        ></app-input>
       </div>
       <div class="col-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Ano fabricação"
-            formControlName="ano"
-            maxlength="4"
-            onlyNumbers
-          />
-          <label for="floatingInputGrid">Ano </label>
-        </div>
+        <app-input
+          [formGroup]="form"
+          nameControl="ano"
+          placeHolder="Ano"
+          label="Ano"
+          [isRequired]="true"
+          onlyNumbers
+        ></app-input>
       </div>
       <div class="col-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Cor do carro"
-            formControlName="cor"
-          />
-          <label for="floatingInputGrid">cor</label>
-        </div>
+        <app-input
+          [formGroup]="form"
+          nameControl="cor"
+          placeHolder="Cor"
+          label="Cor"
+          [isRequired]="true"
+        ></app-input>
       </div>
       <div class="col-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Chassi do carro"
-            formControlName="chassi"
-          />
-          <label for="floatingInputGrid">Chassi</label>
-        </div>
+        <app-input
+          [formGroup]="form"
+          nameControl="chassi"
+          placeHolder="Chassi"
+          label="Chassi"
+          [isRequired]="true"
+        ></app-input>
       </div>
     </div>
   </form>
