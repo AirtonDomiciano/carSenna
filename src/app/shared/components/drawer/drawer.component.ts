@@ -8,7 +8,7 @@ import {
   Input,
   TemplateRef,
 } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerComponent {
+  @Input() form!: FormGroup;
   @Input() header = '';
   @Input() labelButton = 'Open Drawer';
   @Input() idDrawer = 'default';
@@ -54,5 +55,12 @@ export class DrawerComponent {
       this.visible = false;
     }, 1000);
     this.cdRef.detectChanges();
+    this.markAllAsUntouched();
+  }
+
+  markAllAsUntouched() {
+    Object.keys(this.form.controls).forEach((control) => {
+      this.form.get(control)?.markAsUntouched();
+    });
   }
 }
