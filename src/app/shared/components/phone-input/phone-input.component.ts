@@ -57,9 +57,9 @@ export class PhoneInputComponent implements OnInit {
 
   validRequired() {
     const validators = [
-      Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/)
+      Validators.required,
+      Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/),
     ];
-
 
     if (this.isRequired) {
       validators.push(Validators.required);

@@ -16,21 +16,9 @@
           [form]="form"
           frmName="marca"
         ></app-client-input>
-        <!-- <app-customers-select [form]="form" frmName="idCustomer">
-        </app-customers-select> -->
       </div>
       <div class="col-4">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Placa do carro"
-            formControlName="placa"
-          />
-          <label for="floatingInputGrid">Placa</label>
-        </div>
-
-        <!-- <app-plate-input frmName="placa" [plateForm]="form"></app-plate-input> -->
+        <app-plate-input frmName="placa" [plateForm]="form"></app-plate-input>
       </div>
       <div class="col-4">
         <app-input
