@@ -26,6 +26,7 @@ export class CepInputComponent {
   @Output() emitterCEP: EventEmitter<any> = new EventEmitter<any>();
   @Input() cepForm!: FormGroup;
   @Input() frmCEP: string = '';
+  @Input() findCep: boolean = false;
 
   constructor(private cepInputService: CepInputService) {}
 

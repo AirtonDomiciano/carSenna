@@ -21,6 +21,7 @@ import { PhoneInputComponent } from '../../shared/components/phone-input/phone-i
 import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
 import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
 import { AdressInterface } from '../../shared/interfaces/adress.interface';
+import { InputComponent } from '../../shared/components/input/input.component';
 
 @Component({
   standalone: true,
@@ -32,6 +33,7 @@ import { AdressInterface } from '../../shared/interfaces/adress.interface';
     PhoneInputComponent,
     CpfInputComponent,
     CepInputComponent,
+    InputComponent,
   ],
   selector: 'app-customer',
   templateUrl: 'customer.component.html',

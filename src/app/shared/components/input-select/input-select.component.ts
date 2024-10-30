@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
         (ngModelChange)="onChange($event)"
       >
         <option *ngFor="let option of itens" [value]="option.id">
-          {{ option.id }} - {{ option.name }}
+          {{ option.id }} - {{ !objName ? option.name : option[objName] }}
         </option>
       </select>
     </div>
@@ -30,6 +30,7 @@ export class InputSelectComponent implements OnInit {
   @Input() frmName: string = '';
   @Input() idParent: number | null = null;
   @Input() typeList: string = '';
+  @Input() objName: string = '';
 
   @Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
 
@@ -47,7 +48,6 @@ export class InputSelectComponent implements OnInit {
         this.itens = res;
       }
     }
-
   }
 
   onChange(id: any): void {

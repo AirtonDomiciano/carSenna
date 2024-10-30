@@ -20,6 +20,9 @@ import { CarsSelectComponent } from '../../shared/components/cars-select/cars-se
 import { ElectronService } from '../../shared/services/electron.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MechanicalsSelectComponent } from '../../shared/components/mechanicals-select/mechanicals-select.component';
+import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
+import { CnpjInputComponent } from '../../shared/components/cnpj-input/cnpj-input.component';
+import { InputComponent } from '../../shared/components/input/input.component';
 import { InputSelectComponent } from '../../shared/components/input-select/input-select.component';
 @Component({
   standalone: true,
@@ -34,6 +37,10 @@ import { InputSelectComponent } from '../../shared/components/input-select/input
     OnlyNumbersDirective,
     CepInputComponent,
     CarsSelectComponent,
+    MechanicalsSelectComponent,
+    PhoneInputComponent,
+    CnpjInputComponent,
+    InputComponent,
     InputSelectComponent,
   ],
   selector: 'app-new-OS',

@@ -18,8 +18,9 @@ import { DrawerComponent } from '../../shared/components/drawer/drawer.component
 import { ElectronService } from '../../shared/services/electron.service';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import Mechanical from '../../shared/models/mechanical';
-import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
+import { InputComponent } from '../../shared/components/input/input.component';
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
+import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
 
 @Component({
   standalone: true,
@@ -28,8 +29,9 @@ import { PhoneInputComponent } from '../../shared/components/phone-input/phone-i
     FormsModule,
     ReactiveFormsModule,
     DrawerComponent,
+    InputComponent,
+    PhoneInputComponent,
     CpfInputComponent,
-    PhoneInputComponent
   ],
   selector: 'app-mechanical',
   templateUrl: 'mechanical.component.html',
