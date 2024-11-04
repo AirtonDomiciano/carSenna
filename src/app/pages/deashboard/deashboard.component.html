@@ -1,10 +1,13 @@
-<!-- <div echarts [options]="chartOptions" class="echart"></div> -->
-
 <div class="row">
   <div class="col-sm-6">
     <app-chart></app-chart>
   </div>
   <div class="col-sm-6">
-    <app-pie-chart #chartPie></app-pie-chart>
+    <app-pie-chart
+      #chartPie
+      title="Notas do Ano"
+      subtitle="Dados Fictícios"
+      seriesName="Notas"
+    ></app-pie-chart>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import * as echarts from 'echarts';
 
@@ -22,15 +22,19 @@ import * as echarts from 'echarts';
   ],
 })
 export class PieChartComponent {
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
+  @Input() seriesName: string = '';
+
   chartOptions: any;
 
   setValues(values: number[], columns: string[]) {
-    const arrayTest = this.buildArrayObject(values, columns);
+    const data = this.buildData(values, columns);
 
     this.chartOptions = {
       title: {
-        text: 'Notas do ano',
-        subtext: 'Dados Fictícios',
+        text: this.title,
+        subtext: this.subtitle,
         left: 'center',
       },
       tooltip: {
@@ -39,13 +43,14 @@ export class PieChartComponent {
       legend: {
         orient: 'vertical',
         left: 'left',
+        data: columns,
       },
       series: [
         {
           name: 'Notas',
           type: 'pie',
           radius: '50%',
-          data: arrayTest,
+          data: data,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -56,19 +61,24 @@ export class PieChartComponent {
         },
       ],
     };
+
+    const legendSelected: any = {};
+    columns.forEach((column, index) => {
+      legendSelected[column] = values[index] > 0;
+    });
+
+    this.chartOptions.legend.selected = legendSelected;
   }
 
-  buildArrayObject(
+  buildData(
     values: number[],
     columns: string[]
   ): Array<{ value: number; name: string }> {
-    const array: Array<{ value: number; name: string }> = [];
+    const data: Array<{ value: number; name: string }> = [];
 
-    for (let i = 0; i <= values.length; i++) {
-      if (values[i] > 0) {
-        array.push({ value: values[i], name: columns[i] });
-      }
+    for (let i = 0; i < values.length; i++) {
+      data.push({ value: values[i], name: columns[i] });
     }
-    return array;
+    return data;
   }
 }
