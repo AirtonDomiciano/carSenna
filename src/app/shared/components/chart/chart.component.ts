@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import * as echarts from 'echarts';
 
@@ -9,32 +9,39 @@ import * as echarts from 'echarts';
   providers: [
     {
       provide: NGX_ECHARTS_CONFIG,
-      useFactory: () => ({ echarts })  // Aqui você está fornecendo o echarts manualmente
-    }
+      useFactory: () => ({ echarts }), // Aqui você está fornecendo o echarts manualmente
+    },
   ],
-  template: `
-    <div echarts [options]="chartOptions" class="echart"></div>
-  `,
-  styles: [`
-    .echart { height: 400px; }
-  `]
+  template: ` <div echarts [options]="chartOptions" class="echart"></div> `,
+  styles: [
+    `
+      .echart {
+        height: 400px;
+      }
+    `,
+  ],
 })
 export class ChartComponent {
+  // @Input() columns: string[] = [];
+  // @Input() values: number[] = [];
+
   chartOptions: any;
 
   constructor() {
     this.chartOptions = {
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
       },
-      series: [{
-        data: [150, 230, 224, 218, 135, 147, 260],
-        type: 'line'
-      }]
+      series: [
+        {
+          data: [150, 230, 224, 218, 135, 147, 260],
+          type: 'line',
+        },
+      ],
     };
   }
 }

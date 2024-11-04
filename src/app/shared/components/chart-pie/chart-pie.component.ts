@@ -9,54 +9,66 @@ import * as echarts from 'echarts';
   providers: [
     {
       provide: NGX_ECHARTS_CONFIG,
-      useFactory: () => ({ echarts })
-    }
+      useFactory: () => ({ echarts }),
+    },
   ],
-  template: `
-    <div echarts [options]="chartOptions" class="echart"></div>
-  `,
-  styles: [`
-    .echart { height: 400px; }
-  `]
+  template: ` <div echarts [options]="chartOptions" class="echart"></div> `,
+  styles: [
+    `
+      .echart {
+        height: 400px;
+      }
+    `,
+  ],
 })
 export class PieChartComponent {
   chartOptions: any;
 
-  constructor() {
+  setValues(values: number[], columns: string[]) {
+    const arrayTest = this.buildArrayObject(values, columns);
+
     this.chartOptions = {
       title: {
-        text: 'Participação de Mercado',
+        text: 'Notas do ano',
         subtext: 'Dados Fictícios',
-        left: 'center'
+        left: 'center',
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
       },
       legend: {
         orient: 'vertical',
-        left: 'left'
+        left: 'left',
       },
       series: [
         {
-          name: 'Participação',
+          name: 'Notas',
           type: 'pie',
           radius: '50%',
-          data: [
-            { value: 1048, name: 'Google' },
-            { value: 735, name: 'Apple' },
-            { value: 580, name: 'Microsoft' },
-            { value: 484, name: 'Amazon' },
-            { value: 300, name: 'Facebook' }
-          ],
+          data: arrayTest,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
     };
+  }
+
+  buildArrayObject(
+    values: number[],
+    columns: string[]
+  ): Array<{ value: number; name: string }> {
+    const array: Array<{ value: number; name: string }> = [];
+
+    for (let i = 0; i <= values.length; i++) {
+      if (values[i] > 0) {
+        array.push({ value: values[i], name: columns[i] });
+      }
+    }
+    return array;
   }
 }
