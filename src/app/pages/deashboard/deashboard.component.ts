@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,6 @@ import { PieChartComponent } from '../../shared/components/chart-pie/chart-pie.c
 import moment from 'moment';
 import { ElectronService } from '../../shared/services/electron.service';
 import NovaOsModel from '../../shared/models/os';
-import { __values } from 'tslib';
 
 @Component({
   standalone: true,
