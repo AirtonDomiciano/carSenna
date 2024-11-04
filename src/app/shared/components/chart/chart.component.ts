@@ -22,23 +22,28 @@ import * as echarts from 'echarts';
   ],
 })
 export class ChartComponent {
-  // @Input() columns: string[] = [];
-  // @Input() values: number[] = [];
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
 
   chartOptions: any;
 
-  constructor() {
+  setValues(values: number[], columns: string[]) {
     this.chartOptions = {
+      title: {
+        text: this.title,
+        subtext: this.subtitle,
+        left: 'center',
+      },
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: columns,
       },
       yAxis: {
         type: 'value',
       },
       series: [
         {
-          data: [150, 230, 224, 218, 135, 147, 260],
+          data: values,
           type: 'line',
         },
       ],
