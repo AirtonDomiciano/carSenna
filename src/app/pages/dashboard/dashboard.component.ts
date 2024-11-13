@@ -18,11 +18,11 @@ import NovaOsModel from '../../shared/models/os';
     ChartComponent,
     PieChartComponent,
   ],
-  selector: 'app-deashboard',
-  templateUrl: './deashboard.component.html',
-  styleUrl: './deashboard.component.scss',
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss',
 })
-export default class DeashBoardComponent implements OnInit {
+export default class DashBoardComponent implements OnInit {
   @ViewChild('chart') chartComponent!: ChartComponent;
   @ViewChild('chartPie') chartPieComponent!: PieChartComponent;
 
@@ -57,7 +57,11 @@ export default class DeashBoardComponent implements OnInit {
   }
 
   async searchOs() {
-    this.os = await this.http.loadData('os');
+    const os = await this.http.loadData('os');
+    if (os?.length) {
+      this.os = os;
+    }
+
   }
 
   lastSevenDays() {
