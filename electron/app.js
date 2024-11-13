@@ -16,13 +16,18 @@ function createWindow() {
     },
   });
 
-  win.loadURL(
-    url.format({
-      pathname: path.join(__dirname, `../dist/car-senna/browser/index.html`),
-      protocol: "file:",
-      slashes: true,
-    })
-  );
+  //TODO ARRUMAR PRA GERAR O EXEC
+  if (process.env.PROD == "TRUE") {
+    win.loadURL(
+      url.format({
+        pathname: path.join(__dirname, `../dist/car-senna/browser/index.html`),
+        protocol: "file:",
+        slashes: true,
+      })
+    );
+  } else {
+    win.loadURL("http://localhost:4200");
+  }
 
   // Open the DevTools.
   win.webContents.openDevTools();
