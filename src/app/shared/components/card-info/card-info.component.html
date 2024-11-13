@@ -1,0 +1,37 @@
+<div class="card py-3 px-2">
+  <div
+    class="d-flex align-items-center justify-content-center"
+    [ngClass]="{ 'justify-content-start': isLargeScreen }"
+  >
+    <ng-container *ngIf="startContent">
+      <ng-container *ngTemplateOutlet="startContent"></ng-container>
+    </ng-container>
+
+    <div class="stat" [style.marginStart]="startContent ? '18px' : '0px'">
+      <div class="title-info" style="line-height: 100%">
+        {{ title }}
+      </div>
+      <div class="value">
+        {{ value }}
+      </div>
+
+      <ng-container *ngIf="growth">
+        <div class="d-flex align-items-center">
+          <span class="text-success fw-bold me-2" style="font-size: small">
+            {{ growth }}
+          </span>
+          <span
+            class="text-muted"
+            style="font-size: small; font-weight: normal"
+          >
+            since last month
+          </span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="ms-auto" style="width: max-content">
+      <ng-content select="[endContent]"></ng-content>
+    </div>
+  </div>
+</div>

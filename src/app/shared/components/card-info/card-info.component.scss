@@ -1,0 +1,45 @@
+.card {
+  border-radius: 20px !important;
+}
+
+.card {
+  border-color: var(--chakra-colors-chakra-border-color) !important; //#E2E8F0
+  border-radius: 20px !important;
+}
+
+.title-info {
+  font-weight: var(--fontWeights-medium);
+  font-size: var(--fontSizes-sm);
+  line-height: 100%;
+  color: var(--secondary-gray-600);
+  margin-inline-start: 18px;
+}
+
+.value {
+  vertical-align: baseline;
+  font-weight: var(--fontWeights-semibold);
+  font-size: var(--fontSizes-2xl);
+  font-variant-numeric: proportional-nums;
+  color: var(--secondary-gray-900);
+  margin-inline-start: 18px;
+}
+
+.card {
+  background-color: var(--bs-card-bg);
+  color: var(--bs-body-color);
+  border-radius: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  color: #343a40;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}

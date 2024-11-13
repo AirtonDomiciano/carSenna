@@ -7,7 +7,7 @@ import { MechanicalsComponent } from './pages/mechanicals/mechanicals.component'
 import { OSComponent } from './pages/OS/OS.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'deashBoard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashBoard', pathMatch: 'full' },
   { path: 'dashBoard', title: 'Home', component: DashBoardComponent },
   { path: 'customers', title: 'Clientes', component: CustomersComponent },
   { path: 'cars', title: 'Veículos', component: CarsComponent },

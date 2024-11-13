@@ -1,3 +1,42 @@
+<div class="row px-2">
+  <div class="col-12 col-md-6 col-lg-4 col-xxl-2 mb-1">
+    <app-card-info
+      title="Ganhos"
+      [startContent]="startContainerGanhos"
+      value="R$200,00"
+    ></app-card-info>
+    <ng-template #startContainerGanhos>
+      <div class="icon">
+        <i class="bi bi-bar-chart-fill"></i>
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4 col-xxl-2 mb-1">
+    <app-card-info
+      title="Gastos"
+      [startContent]="startContainerGastos"
+      value="R$200,00"
+    ></app-card-info>
+    <ng-template #startContainerGastos>
+      <div class="icon">
+        <i class="bi bi-currency-dollar"></i>
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-12 col-md-6 col-lg-4 col-xxl-2 mb-1">
+    <app-card-info
+      title="Vendas"
+      [startContent]="startContainerGastos"
+      value="R$200,00"
+    ></app-card-info>
+    <ng-template #startContainerVendas>
+      <div class="icon">
+        <i class="bi bi-currency-dollar"></i>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-sm-6">
     <app-chart

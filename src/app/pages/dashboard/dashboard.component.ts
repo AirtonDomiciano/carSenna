@@ -8,6 +8,7 @@ import { PieChartComponent } from '../../shared/components/chart-pie/chart-pie.c
 import moment from 'moment';
 import { ElectronService } from '../../shared/services/electron.service';
 import NovaOsModel from '../../shared/models/os';
+import { CardInfoComponent } from '../../shared/components/card-info/card-info.component';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import NovaOsModel from '../../shared/models/os';
     FormsModule,
     ChartComponent,
     PieChartComponent,
+    CardInfoComponent,
   ],
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -61,7 +63,6 @@ export default class DashBoardComponent implements OnInit {
     if (os?.length) {
       this.os = os;
     }
-
   }
 
   lastSevenDays() {
