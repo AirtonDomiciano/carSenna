@@ -3,7 +3,7 @@
     <app-card-info
       title="Ganhos"
       [startContent]="startContainerGanhos"
-      value="R$200,00"
+      [value]="indicadoresFinanceiros.ganhos | currency : 'BRL'"
     ></app-card-info>
     <ng-template #startContainerGanhos>
       <div class="icon">
@@ -15,7 +15,7 @@
     <app-card-info
       title="Gastos"
       [startContent]="startContainerGastos"
-      value="R$200,00"
+      [value]="indicadoresFinanceiros.gastos | currency : 'BRL'"
     ></app-card-info>
     <ng-template #startContainerGastos>
       <div class="icon">
@@ -27,7 +27,7 @@
     <app-card-info
       title="Vendas"
       [startContent]="startContainerGastos"
-      value="R$200,00"
+      [value]="indicadoresFinanceiros.vendas | currency : 'BRL'"
     ></app-card-info>
     <ng-template #startContainerVendas>
       <div class="icon">
@@ -37,20 +37,20 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-6">
+<div class="row px-2">
+  <div class="col-sm-12">
     <app-chart
       #chart
       title="Notas últimos 7 dias"
       subtitle="Dados Fictícios"
     ></app-chart>
   </div>
-  <div class="col-sm-6">
+  <!--  <div class="col-sm-6">
     <app-pie-chart
       #chartPie
       title="Notas do Ano"
       subtitle="Dados Fictícios"
       seriesName="Notas"
     ></app-pie-chart>
-  </div>
+  </div> -->
 </div>

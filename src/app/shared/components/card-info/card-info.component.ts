@@ -14,7 +14,7 @@ export class CardInfoComponent {
   @Input() endContent?: any;
   @Input() title: string = '';
   @Input() growth?: string;
-  @Input() value: string = '';
+  @Input() value: any = '';
 
   // Determina se a tela é grande para alterar o alinhamento
   isLargeScreen = window.innerWidth >= 1200;

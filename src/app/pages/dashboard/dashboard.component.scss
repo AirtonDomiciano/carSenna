@@ -4,3 +4,23 @@
   height: 100%;
   bottom: 0;
 }
+
+.icon {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  background: var(--secondary-gray-300);
+
+  i {
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1em;
+    flex-shrink: 0;
+    color: var(--brand-scheme-500);
+  }
+}
