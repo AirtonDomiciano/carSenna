@@ -12,14 +12,14 @@ button {
   left: 0;
   width: 72px;
   height: 100%;
-  background: var(--green-600);
+  background: var(--brand-scheme-500);
   transition: width 0.8s;
   z-index: 99;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0px 5px 5px 0px;
 }
 
 .is-expanded .sidebar {
-  width: 230px;
+  width: 220px;
 }
 
 .sidebar-inner {
@@ -38,7 +38,8 @@ button {
   align-items: center;
   height: 72px;
   padding: 0 1.25rem 0 0;
-  background: var(--green-800);
+  border-bottom: 1px solid var(--brand-scheme-600);
+  background: var(--brand-scheme-500);
 }
 
 .sidebar-burger {

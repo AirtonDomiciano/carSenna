@@ -10,23 +10,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
   imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss'],
-  animations: [
-    trigger('routeAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(100%)' }), // Começa abaixo
-        animate(
-          '300ms ease-in',
-          style({ opacity: 1, transform: 'translateY(0)' })
-        ), // Move para a posição original
-      ]),
-      transition(':leave', [
-        animate(
-          '300ms ease-out',
-          style({ opacity: 0, transform: 'translateY(100%)' })
-        ), // Sai para baixo
-      ]),
-    ]),
-  ],
 })
 export class BodyComponent {
   @Input() isExpanded = false;
