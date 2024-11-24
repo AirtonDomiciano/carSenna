@@ -5,6 +5,7 @@ import { NewOSComponent } from './pages/new-OS/new-OS.component';
 import { CarsComponent } from './pages/cars/cars.component';
 import { MechanicalsComponent } from './pages/mechanicals/mechanicals.component';
 import { OSComponent } from './pages/OS/OS.component';
+import { CompanyComponent } from './pages/company/company.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashBoard', title: 'Home', pathMatch: 'full' },
@@ -14,4 +15,5 @@ export const routes: Routes = [
   { path: 'mechanicals', title: 'Mecanicos', component: MechanicalsComponent },
   { path: 'new-OS', title: 'Nova Os', component: NewOSComponent },
   { path: 'os', title: 'OS', component: OSComponent },
+  { path: 'company', title: 'Empresa', component: CompanyComponent },
 ];
