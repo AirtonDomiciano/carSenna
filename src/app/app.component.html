@@ -1,17 +1,17 @@
 <!-- <ng-container *ngIf="registeredCompany; else elseBlock"> -->
 
 <!-- Animation sistem -->
-<ng-container *ngIf="!animationWelcome; else elseLoad">
+<!-- <ng-container *ngIf="!animationWelcome; else elseLoad">
   <app-loading-pages text="Seja bem vindo"> </app-loading-pages>
-</ng-container>
+</ng-container> -->
 
-<ng-template #elseLoad>
-  <app-sidebar
-    [isExpanded]="isExpanded"
-    (onToggleEvent)="toggleEvent($event)"
-  ></app-sidebar>
-  <app-body [isExpanded]="isExpanded"></app-body>
-</ng-template>
+<!-- <ng-template #elseLoad> -->
+<app-sidebar
+  [isExpanded]="isExpanded"
+  (onToggleEvent)="toggleEvent($event)"
+></app-sidebar>
+<app-body [isExpanded]="isExpanded"></app-body>
+<!-- </ng-template> -->
 <!-- </ng-container> -->
 
 <!-- <ng-template #elseBlock>

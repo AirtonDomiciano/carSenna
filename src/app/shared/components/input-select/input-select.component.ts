@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ElectronService } from '../../services/electron.service';
 import { CommonModule } from '@angular/common';
+import { IInputSelectItens } from './input-select-itens';
 
 @Component({
   standalone: true,
@@ -23,7 +24,7 @@ import { CommonModule } from '@angular/common';
   </div>`,
 })
 export class InputSelectComponent implements OnInit {
-  itens: any[] = [];
+  @Input() itens: any[] = []; //IInputSelectItens
 
   @Input() form!: FormGroup;
   @Input() label: string = '';

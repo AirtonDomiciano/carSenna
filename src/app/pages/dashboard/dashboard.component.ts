@@ -9,6 +9,7 @@ import moment from 'moment';
 import { ElectronService } from '../../shared/services/electron.service';
 import NovaOsModel from '../../shared/models/os';
 import { CardInfoComponent } from '../../shared/components/card-info/card-info.component';
+import { series } from './dashboard-const';
 
 @Component({
   standalone: true,
@@ -50,6 +51,12 @@ export default class DashBoardComponent implements OnInit {
     'Dezembro',
   ];
 
+  indicadoresFinanceiros = {
+    ganhos: 5000,
+    gastos: 2000,
+    vendas: 6000,
+  };
+
   constructor(private http: ElectronService) {}
 
   async ngOnInit(): Promise<void> {
@@ -77,8 +84,11 @@ export default class DashBoardComponent implements OnInit {
     this.findByDate(this.dates);
 
     this.chartComponent.setValues(
-      this.chartValues.reverse(),
-      this.chartColumns.reverse()
+      series({
+        receitaValues: [50, 64, 48, 66, 49, 68],
+        lucroValues: [30, 40, 24, 46, 20, 46],
+      }),
+      ['Set', 'Out', 'Nov', 'Dez', 'Jan', 'Fev']
     );
   }
 
@@ -112,6 +122,6 @@ export default class DashBoardComponent implements OnInit {
       const month = moment(os.dataEmissao).month();
       this.chartPieValues[month]++;
     }
-    this.chartPieComponent.setValues(this.chartPieValues, this.chartPieColumns);
+    /*  this.chartPieComponent.setValues(this.chartPieValues, this.chartPieColumns); */
   }
 }

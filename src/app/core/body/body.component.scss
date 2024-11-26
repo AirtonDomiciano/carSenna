@@ -1,40 +1,23 @@
-.container-body,
-.body-router {
+.container-body {
   position: absolute;
   overflow: auto;
   top: 0;
   right: 0;
   transition: width 0.8s;
-}
-
-.container-body {
   width: 100%;
   height: 100%;
   background: #ecf0f1;
 }
 
 .body-router {
-  width: 93%;
-  padding: 4% 2% 0% 0%;
+  position: absolute;
+  overflow: auto !important;
+  top: 0;
+  right: 0;
+  transition: width 0.8s;
+  width: calc(100% - 72px);
+  padding: 4% 1% 0% 1%;
   &.is-expanded {
-    width: 84%;
-  }
-}
-
-@media (max-width: 1336px) {
-  .body-router {
-    width: 93%;
-    &.is-expanded {
-      width: 83%;
-    }
-  }
-}
-
-@media (max-width: 1040px) {
-  .body-router {
-    width: 93%;
-    &.is-expanded {
-      width: 78%;
-    }
+    width: calc(100% - 220px);
   }
 }

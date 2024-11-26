@@ -1,0 +1,248 @@
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button
+      class="nav-link active"
+      id="nav-home-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-home"
+      type="button"
+      role="tab"
+      aria-controls="nav-home"
+      aria-selected="true"
+    >
+      Dados da empresa
+    </button>
+    <button
+      class="nav-link"
+      id="nav-profile-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-profile"
+      type="button"
+      role="tab"
+      aria-controls="nav-profile"
+      aria-selected="false"
+    >
+      Fiscal
+    </button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div
+    class="tab-pane fade show active"
+    id="nav-home"
+    role="tabpanel"
+    aria-labelledby="nav-home-tab"
+  >
+    <div class="row g-2 mt-2">
+      <div class="col-sm-4">
+        <app-cnpj-input
+          [cnpjForm]="form"
+          frmCNPJ="cnpj"
+          (onEvent)="consultarCnpj($event)"
+          [isRequired]="true"
+        ></app-cnpj-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="razaoSocial"
+          label="Razão social"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="nomeFantasia"
+          label="Nome fantasia"
+        ></app-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="inscricaoEstadual"
+          label="Inscrição estadual"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="inscricaoMunicipal"
+          label="Inscrição municipal"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="cnae"
+          label="CNAE"
+        ></app-input>
+      </div>
+
+      <!-- ENDEREÇO -->
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="cep"
+          label="C.E.P"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="logradouro"
+          label="Logradouro"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="numero"
+          label="Número"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="bairro"
+          label="Bairro"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="municipio"
+          label="Município"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="codigoMunicipio"
+          label="Cód. município"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+
+      <div class="col-4">
+        <app-input-select
+          [form]="form"
+          frmName="uf"
+          label="U.F"
+          [itens]="selUF"
+          objName="name"
+        >
+        </app-input-select>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="complemento"
+          label="Complemento"
+        ></app-input>
+      </div>
+
+      <!-- CONTATO -->
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="email"
+          label="E-mail"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-phone-input [phoneForm]="form" frmPhone="telefone">
+        </app-phone-input>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="nav-profile"
+    role="tabpanel"
+    aria-labelledby="nav-profile-tab"
+  >
+    <div class="row g-2 mt-2">
+      <!-- NFSE -->
+
+      <!-- TODO: TRANSFORMAR EM % -->
+      <div class="col-sm-4">
+        <app-currency-input
+          label="Alíquota do ISSQN"
+          [form]="form"
+          frmCurrency="aliquotaIssqn"
+        ></app-currency-input>
+      </div>
+
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="naturezaOperacao"
+          label="Tipo de serviço prestado"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="tokenPrefeitura"
+          label="Token ou senha da prefeitura"
+        ></app-input>
+      </div>
+      <div class="col-sm-4">
+        <app-input
+          [formGroup]="form"
+          nameControl="serieNota"
+          label="Série da nota"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+      <!-- AMBIENTE -->
+
+      <!-- regimeIcms -->
+
+      <div class="col-4">
+        <app-input-select
+          [form]="form"
+          frmName="regimeIcms"
+          label="Regime ICMS"
+          [itens]="selRegime"
+          objName="name"
+        >
+        </app-input-select>
+      </div>
+
+      <div class="col-4">
+        <app-input-select
+          [form]="form"
+          frmName="ambiente"
+          label="Ambiente"
+          [itens]="selAmbiente"
+          objName="name"
+        >
+        </app-input-select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+<div class="col-12 text-end py-3">
+  <button class="btn btn-lg btn-success" (click)="onSubmit()">
+    <i class="bi bi-file-earmark-check"></i>Salvar
+  </button>
+</div>

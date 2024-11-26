@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
+import { ICompEvent } from '../../interfaces/comp-event.interface';
 
 @Component({
   standalone: true,
@@ -19,50 +20,56 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
   ],
   selector: 'app-cnpj-input',
   template: `
-  <div [formGroup]="cnpjForm">
-    <div class="form-floating">
-      <input
-        type="text"
-        id="cnpj"
-        class="form-control"
-        formControlName="{{ frmCNPJ }}"
-        [ngClass]="{
-          'is-invalid':
-            cnpjForm.get(frmCNPJ)?.invalid && cnpjForm.get(frmCNPJ)?.touched
-        }"
-        (input)="formatCNPJ($event)"
-        placeholder="99.999.999/9999-99"
-        onlyNumbers
-      />
-      <label for="cnpj">CNPJ</label>
-    </div>
+    <div [formGroup]="cnpjForm">
+      <div class="form-floating">
+        <input
+          type="text"
+          id="cnpj"
+          class="form-control"
+          formControlName="{{ frmCNPJ }}"
+          [ngClass]="{
+            'is-invalid':
+              cnpjForm.get(frmCNPJ)?.invalid && cnpjForm.get(frmCNPJ)?.touched
+          }"
+          (input)="formatCNPJ($event)"
+          placeholder="99.999.999/9999-99"
+          onlyNumbers
+          (blur)="onBlur()"
+        />
+        <label for="cnpj">CNPJ</label>
+      </div>
 
-    <div
-      *ngIf="
-        !cnpjForm.get(frmCNPJ)?.value &&
-        cnpjForm.get(frmCNPJ)?.invalid &&
-        cnpjForm.get(frmCNPJ)?.touched
-      "
-      class="text-danger"
-    >
-      CNPJ não informado.
+      <div
+        *ngIf="
+          !cnpjForm.get(frmCNPJ)?.value &&
+          cnpjForm.get(frmCNPJ)?.invalid &&
+          cnpjForm.get(frmCNPJ)?.touched
+        "
+        class="text-danger"
+      >
+        CNPJ não informado.
+      </div>
+      <div
+        *ngIf="
+          cnpjForm.get(frmCNPJ)?.value &&
+          cnpjForm.get(frmCNPJ)?.invalid &&
+          cnpjForm.get(frmCNPJ)?.touched
+        "
+        class="text-danger"
+      >
+        CNPJ inválido. Formato esperado: 99.999.999/9999-99
+      </div>
     </div>
-    <div
-      *ngIf="
-        cnpjForm.get(frmCNPJ)?.value &&
-        cnpjForm.get(frmCNPJ)?.invalid &&
-        cnpjForm.get(frmCNPJ)?.touched
-      "
-      class="text-danger"
-    >
-      CNPJ inválido. Formato esperado: 99.999.999/9999-99
-    </div>
-  </div> `,
+  `,
 })
 export class CnpjInputComponent implements OnInit {
   @Input() cnpjForm!: FormGroup;
   @Input() frmCNPJ: string = '';
   @Input() isRequired: boolean = false;
+
+  @Output() onEvent: EventEmitter<ICompEvent<null>> = new EventEmitter<
+    ICompEvent<null>
+  >();
 
   ngOnInit(): void {
     this.validRequired();
@@ -99,5 +106,11 @@ export class CnpjInputComponent implements OnInit {
     }
 
     this.cnpjForm.get(this.frmCNPJ)?.setValue(input, { emitEvent: false });
+  }
+
+  onBlur() {
+    setTimeout(() => {
+      this.onEvent.emit({ event: 'onBlur' });
+    }, 200);
   }
 }
