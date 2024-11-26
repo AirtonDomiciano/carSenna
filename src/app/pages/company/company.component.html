@@ -80,9 +80,6 @@
           label="CNAE"
         ></app-input>
       </div>
-      <!-- 
-    REGIME TRIBUTARIO
-    -->
 
       <!-- ENDEREÇO -->
       <div class="col-sm-4">
@@ -138,13 +135,15 @@
         ></app-input>
       </div>
 
-      <div class="col-sm-4">
-        <app-input
-          [formGroup]="form"
-          nameControl="uf"
+      <div class="col-4">
+        <app-input-select
+          [form]="form"
+          frmName="uf"
           label="U.F"
-          [isRequired]="true"
-        ></app-input>
+          [itens]="selUF"
+          objName="name"
+        >
+        </app-input-select>
       </div>
 
       <div class="col-sm-4">
@@ -226,10 +225,22 @@
         >
         </app-input-select>
       </div>
+
+      <div class="col-4">
+        <app-input-select
+          [form]="form"
+          frmName="ambiente"
+          label="Ambiente"
+          [itens]="selAmbiente"
+          objName="name"
+        >
+        </app-input-select>
+      </div>
     </div>
   </div>
 </div>
 
+<hr />
 <div class="col-12 text-end py-3">
   <button class="btn btn-lg btn-success" (click)="onSubmit()">
     <i class="bi bi-file-earmark-check"></i>Salvar

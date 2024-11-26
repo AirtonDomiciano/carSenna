@@ -1,3 +1,6 @@
+import { AmbienteEnum } from '../../shared/interfaces/ambiente.enum';
+import { RegimeICMSEnum } from '../../shared/interfaces/regime-icms.enum';
+
 interface EmpresaDadosFiscais {
   // Dados Cadastrais Básicos
   razaoSocial: string;
@@ -40,9 +43,8 @@ interface EmpresaDadosFiscais {
   // Informações Fiscais Específicas
 
   serieNota: string; // Série da nota
-  ambiente: 'Homologacao' | 'Producao';
-  regimeIcms: 'Simples Nacional' | 'Normal' | 'Isento';
-
+  ambiente: AmbienteEnum;
+  regimeIcms: RegimeICMSEnum;
   // Dados Bancários (se aplicável)
   dadosBancarios?: {
     banco: string;
@@ -91,8 +93,8 @@ export class CompanyModel implements EmpresaDadosFiscais {
 
   serieNota: string = ''; // Série da nota
 
-  ambiente: 'Homologacao' | 'Producao' = 'Homologacao';
-  regimeIcms: 'Simples Nacional' | 'Normal' | 'Isento' = 'Simples Nacional';
+  ambiente: AmbienteEnum = AmbienteEnum.HOMOLOGACAO;
+  regimeIcms: RegimeICMSEnum = RegimeICMSEnum.SIMPLES_NACIONAL;
 
   /* dadosBancarios?:
     | {

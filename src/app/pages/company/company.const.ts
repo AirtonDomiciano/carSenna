@@ -14,3 +14,14 @@ export const SelRegime: IInputSelectItens[] = [
     name: 'Lucro Real',
   },
 ];
+
+export const SelAmbiente: IInputSelectItens[] = [
+  {
+    id: 1,
+    name: 'Homologação',
+  },
+  {
+    id: 2,
+    name: 'Produção',
+  },
+];

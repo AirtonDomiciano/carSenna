@@ -11,11 +11,12 @@ import { CnpjInputComponent } from '../../shared/components/cnpj-input/cnpj-inpu
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
 import { CurrencyInputComponent } from '../../shared/components/currency-input/currency-input';
 import { ICompEvent } from '../../shared/interfaces/comp-event.interface';
-import { SelRegime } from './company.const';
+import { SelAmbiente, SelRegime } from './company.const';
 import { InputSelectComponent } from '../../shared/components/input-select/input-select.component';
 import { ElectronService } from '../../shared/services/electron.service';
 import { ToastMessageService } from '../../shared/components/toast/toast.service';
 import { CommonModule } from '@angular/common';
+import { UFS } from '../../shared/const';
 
 @Component({
   standalone: true,
@@ -39,6 +40,8 @@ export class CompanyComponent implements OnInit {
   model: CompanyModel;
 
   selRegime = SelRegime;
+  selAmbiente = SelAmbiente;
+  selUF = UFS;
 
   constructor(
     private fb: FormBuilder,
@@ -55,7 +58,9 @@ export class CompanyComponent implements OnInit {
 
   async getData() {
     const data: CompanyModel = await this.http.loadData('config');
-    this.form.setValue(data);
+    if (data?.razaoSocial) {
+      this.form.setValue(data);
+    }
   }
 
   consultarCnpj(event: ICompEvent<null>) {
