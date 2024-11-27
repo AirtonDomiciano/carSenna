@@ -18,6 +18,8 @@ import { ToastMessageService } from '../../shared/components/toast/toast.service
 import { CommonModule } from '@angular/common';
 import { UFS } from '../../shared/const';
 
+import { ConsultaCnpjService } from '../../shared/services/consulta-cnpj.service';
+
 @Component({
   standalone: true,
   imports: [
@@ -46,7 +48,8 @@ export class CompanyComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: ElectronService,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
+    private consultaCnpjService: ConsultaCnpjService
   ) {
     this.model = new CompanyModel();
     this.form = this.fb.group(this.model);
@@ -67,10 +70,10 @@ export class CompanyComponent implements OnInit {
     if (event.event !== 'onBlur') {
       return;
     }
-    const cnpj = this.form.controls['cnpj'].value;
+    const cnpj = this.form.controls['cnpj'].value?.replace(/\D/g, '');
 
     if (cnpj.length === 14) {
-      console.log('Consultar cnpjg');
+      this.consultar(cnpj);
     }
   }
 
@@ -88,5 +91,26 @@ export class CompanyComponent implements OnInit {
         this.toast.mostrarSucesso('Configurações salvas com sucesso!');
       }
     });
+  }
+
+  async consultar(cnpj: string) {
+    const data = await this.consultaCnpjService.consultar(cnpj);
+
+    const uf = this.selUF.find(
+      (el) => el.name.toUpperCase() === data.uf.toUpperCase()
+    );
+
+    this.form.controls['uf'].setValue(uf?.id);
+    this.form.controls['razaoSocial'].setValue(data.nome);
+    this.form.controls['nomeFantasia'].setValue(data.fantasia);
+    this.form.controls['cnae'].setValue(data.atividade_principal[0].code);
+    this.form.controls['logradouro'].setValue(data.logradouro);
+    this.form.controls['numero'].setValue(data.numero);
+    this.form.controls['complemento'].setValue(data.complemento);
+    this.form.controls['bairro'].setValue(data.bairro);
+    this.form.controls['municipio'].setValue(data.municipio);
+    this.form.controls['cep'].setValue(data.cep);
+    this.form.controls['telefone'].setValue(data.telefone);
+    this.form.controls['email'].setValue(data.email);
   }
 }

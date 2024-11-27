@@ -6,12 +6,13 @@ import {
   HttpClientModule,
   provideHttpClient,
   withFetch,
+  withJsonpSupport,
 } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
-    provideHttpClient(withFetch()),
+    provideHttpClient(...[withFetch(), withJsonpSupport()]),
   ],
 };
