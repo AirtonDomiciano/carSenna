@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -32,6 +31,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
         (input)="formatPhoneNumber($event)"
         placeholder="(99) 99999-9999"
         onlyNumbers
+        maxlength="15"
       />
       <label for="phoneNumber">Telefone</label>
     </div>
@@ -42,7 +42,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
       "
       class="text-danger"
     >
-      telefone inválido. Formato esperado: (99) 99999-9999
+      telefone inválido. Formato esperado: (99) 99999-9999 | (99) 9999-9999
     </div>
   </div> `,
 })
@@ -57,8 +57,7 @@ export class PhoneInputComponent implements OnInit {
 
   validRequired() {
     const validators = [
-      Validators.required,
-      Validators.pattern(/^\(\d{2}\)\s\d{5}-\d{4}$/),
+      Validators.pattern(/^\(?\d{2}\)?\s?(?:9?\d{4})-?\d{4}$/),
     ];
 
     if (this.isRequired) {
@@ -73,6 +72,8 @@ export class PhoneInputComponent implements OnInit {
 
     if (input.length > 10) {
       input = input.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (input.length === 6) {
+      input = input.replace(/^(\d{2})(\d{4})/, '($1) $2');
     } else if (input.length > 5) {
       input = input.replace(/^(\d{2})(\d{4})/, '($1) $2-');
     } else if (input.length > 2) {

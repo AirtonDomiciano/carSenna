@@ -7,6 +7,7 @@ import {
   HttpClientModule,
   provideHttpClient,
   withFetch,
+  withJsonpSupport,
 } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     importProvidersFrom(HttpClientModule),
-    provideHttpClient(withFetch()),
+    provideHttpClient(...[withFetch(), withJsonpSupport()]),
   ],
 };

@@ -37,15 +37,15 @@ export default class NovaOsModel {
 
   constructor() {
     this.id = 0;
-    this.nomeEmpresa = 'AIRTON LTDA';
-    this.telefoneEmpresa = '46 9 99099164';
-    this.CNPJ = '454684654984';
-    this.ruaEmpresa = 'Rua são jorge';
-    this.cepEmpresa = '85505324';
-    this.numeroEmpresa = '200';
-    this.bairroEmpresa = 'La salle';
-    this.cidadeEmpresa = 'Pato Branco';
-    this.estadoEmpresa = 'PR';
+    this.nomeEmpresa = '';
+    this.telefoneEmpresa = '';
+    this.CNPJ = '';
+    this.ruaEmpresa = '';
+    this.cepEmpresa = '';
+    this.numeroEmpresa = '';
+    this.bairroEmpresa = '';
+    this.cidadeEmpresa = '';
+    this.estadoEmpresa = '';
 
     this.dataEmissao = '';
     this.descricaoServico = '';

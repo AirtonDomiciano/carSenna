@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
-  FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -35,6 +34,7 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
           placeholder="99.999.999/9999-99"
           onlyNumbers
           (blur)="onBlur()"
+          maxlength="18"
         />
         <label for="cnpj">CNPJ</label>
       </div>
@@ -95,6 +95,8 @@ export class CnpjInputComponent implements OnInit {
         /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
         '$1.$2.$3/$4-$5'
       );
+    } else if (input.length === 12) {
+      input = input.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})/, '$1.$2.$3/$4');
     } else if (input.length > 11) {
       input = input.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})/, '$1.$2.$3/$4-');
     } else if (input.length > 8) {

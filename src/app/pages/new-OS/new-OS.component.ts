@@ -6,24 +6,25 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ScreenshotComponent } from '../../shared/components/screenshot/screenshot.component';
-import NovaOsModel from '../../shared/models/os';
-import TableDataComponent from '../../shared/components/table/table.component';
-import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
-import { itemsNota } from '../../shared/interfaces/items-nota.interface';
-import { ToastMessageService } from '../../shared/components/toast/toast.service';
-import { CurrencyInputComponent } from '../../shared/components/currency-input/currency-input';
-import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
-import UtilsCurrencyService from '../../shared/utils/utils.currency';
-import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
-import { CarsSelectComponent } from '../../shared/components/cars-select/cars-select.component';
-import { ElectronService } from '../../shared/services/electron.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CarsSelectComponent } from '../../shared/components/cars-select/cars-select.component';
+import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
+import { CnpjInputComponent } from '../../shared/components/cnpj-input/cnpj-input.component';
+import { CurrencyInputComponent } from '../../shared/components/currency-input/currency-input';
+import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
+import { InputSelectComponent } from '../../shared/components/input-select/input-select.component';
+import { InputComponent } from '../../shared/components/input/input.component';
 import { MechanicalsSelectComponent } from '../../shared/components/mechanicals-select/mechanicals-select.component';
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
-import { CnpjInputComponent } from '../../shared/components/cnpj-input/cnpj-input.component';
-import { InputComponent } from '../../shared/components/input/input.component';
-import { InputSelectComponent } from '../../shared/components/input-select/input-select.component';
+import { ScreenshotComponent } from '../../shared/components/screenshot/screenshot.component';
+import TableDataComponent from '../../shared/components/table/table.component';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
+import { itemsNota } from '../../shared/interfaces/items-nota.interface';
+import NovaOsModel from '../../shared/models/os';
+import { ElectronService } from '../../shared/services/electron.service';
+import UtilsCurrencyService from '../../shared/utils/utils.currency';
+import { CompanyModel } from '../company/company.model';
 @Component({
   standalone: true,
   imports: [
@@ -66,6 +67,26 @@ export class NewOSComponent implements OnInit {
     this.form = this.fb.group(new NovaOsModel());
 
     this.form.controls['valueItem'].disable();
+    this.carregarDadosEmpresa();
+  }
+
+  async carregarDadosEmpresa() {
+    const data: CompanyModel = await this.http.loadData('config');
+    if (!data?.razaoSocial) {
+      this.toast.mostrarErro(
+        'Configurações da empresa ainda não foram definidas. Por favor verifique.'
+      );
+      return;
+    }
+    this.form.controls['nomeEmpresa'].setValue(data.razaoSocial);
+    this.form.controls['telefoneEmpresa'].setValue(data.telefone);
+    this.form.controls['CNPJ'].setValue(data.cnpj);
+    this.form.controls['ruaEmpresa'].setValue(data.logradouro);
+    this.form.controls['cepEmpresa'].setValue(data.cep);
+    this.form.controls['numeroEmpresa'].setValue(data.numero);
+    this.form.controls['bairroEmpresa'].setValue(data.bairro);
+    this.form.controls['cidadeEmpresa'].setValue(data.municipio);
+    this.form.controls['estadoEmpresa'].setValue(data.uf);
   }
 
   async salvar() {
