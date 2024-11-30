@@ -1,4 +1,5 @@
 @import url(styles/_palets.scss);
+@import url(styles/_btns.scss);
 
 :root {
   /* FONTS */
@@ -98,7 +99,7 @@
 
 .p-datatable .p-datatable-thead > tr > th {
   color: var(--bluegray-100);
-  background: var(--green-700);
+  background: var(--brand-scheme-600);
 }
 
 .p-datatable .p-sortable-column .p-sortable-column-icon {
