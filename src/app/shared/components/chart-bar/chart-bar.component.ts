@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import * as echarts from 'echarts';
+import { NGX_ECHARTS_CONFIG, NgxEchartsModule } from 'ngx-echarts';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,15 +9,21 @@ import * as echarts from 'echarts';
   providers: [
     {
       provide: NGX_ECHARTS_CONFIG,
-      useFactory: () => ({ echarts })
-    }
+      useFactory: () => ({ echarts }),
+    },
   ],
   template: `
-    <div echarts [options]="chartOptions" class="echart"></div>
+    <div class="card p-3">
+      <div echarts [options]="chartOptions" class="echart"></div>
+    </div>
   `,
-  styles: [`
-    .echart { height: 400px; }
-  `]
+  styles: [
+    `
+      .echart {
+        height: 400px;
+      }
+    `,
+  ],
 })
 export class BarChartComponent {
   chartOptions: any;
@@ -25,18 +31,20 @@ export class BarChartComponent {
   constructor() {
     this.chartOptions = {
       title: {
-        text: 'Vendas Mensais'
+        text: 'Vendas Mensais',
       },
       tooltip: {},
       xAxis: {
-        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
       },
       yAxis: {},
-      series: [{
-        name: 'Vendas',
-        type: 'bar',
-        data: [500, 200, 360, 1000, 800, 400]
-      }]
+      series: [
+        {
+          name: 'Vendas',
+          type: 'bar',
+          data: [39, 56, 104, 89, 45, 28],
+        },
+      ],
     };
   }
 }

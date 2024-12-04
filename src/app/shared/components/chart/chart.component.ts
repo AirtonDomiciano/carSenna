@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import * as echarts from 'echarts';
+import { NGX_ECHARTS_CONFIG, NgxEchartsModule } from 'ngx-echarts';
 
 @Component({
   selector: 'app-chart',
@@ -47,22 +47,6 @@ import * as echarts from 'echarts';
       </div>
     </div>
   `,
-  styles: [
-    `
-      .card {
-        background-color: var(--bs-card-bg);
-        color: var(--bs-body-color);
-        border-radius: 0.5rem;
-
-        border-color: var(--chakra-colors-chakra-border-color) !important;
-        border-radius: 20px !important;
-      }
-
-      .success-text {
-        color: var(--green-500);
-      }
-    `,
-  ],
 })
 export class ChartComponent {
   @Input() title: string = '';

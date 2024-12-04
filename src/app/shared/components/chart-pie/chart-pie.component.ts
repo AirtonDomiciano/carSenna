@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import * as echarts from 'echarts';
+import { NGX_ECHARTS_CONFIG, NgxEchartsModule } from 'ngx-echarts';
 
 @Component({
   selector: 'app-pie-chart',
@@ -12,7 +12,11 @@ import * as echarts from 'echarts';
       useFactory: () => ({ echarts }),
     },
   ],
-  template: ` <div echarts [options]="chartOptions" class="echart"></div> `,
+  template: `
+    <div class="card p-3">
+      <div echarts [options]="chartOptions" class="echart"></div>
+    </div>
+  `,
   styles: [
     `
       .echart {
@@ -24,7 +28,6 @@ import * as echarts from 'echarts';
 export class PieChartComponent {
   @Input() title: string = '';
   @Input() subtitle: string = '';
-  @Input() seriesName: string = '';
 
   chartOptions: any;
 
@@ -41,9 +44,7 @@ export class PieChartComponent {
         trigger: 'item',
       },
       legend: {
-        orient: 'vertical',
-        left: 'left',
-        data: columns,
+        show: false,
       },
       series: [
         {
