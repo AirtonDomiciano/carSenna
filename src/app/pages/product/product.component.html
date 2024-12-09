@@ -1,0 +1,53 @@
+<app-drawer
+  idDrawer="drawer-customer"
+  [form]="form"
+  [header]="headerDrawer"
+  [templateBody]="templateBody"
+  [templateFooter]="templateFooter"
+  iconHeader="bi bi-question-circle"
+  classDrawer="drawer-navigation drawer-navigation-sm"
+>
+</app-drawer>
+<ng-template #templateBody>
+  <form [formGroup]="form">
+    <div class="row g-2">
+      <div class="col-12">
+        <app-input
+          [formGroup]="form"
+          nameControl="descricao"
+          label="Descrição"
+          [isRequired]="true"
+        ></app-input>
+      </div>
+
+      <div class="col-12">
+        <app-input-select
+          [form]="form"
+          frmName="tipoProduto"
+          label="Tipo do produto"
+          [itens]="selTipoProduto"
+          objName="name"
+        >
+        </app-input-select>
+      </div>
+
+      <div class="col-4">
+        <app-currency-input
+          label="Valor"
+          [form]="form"
+          frmCurrency="valor"
+        ></app-currency-input>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #templateFooter>
+  <button (click)="fecharDrawer()" type="button" class="btn btn-secondary m-1">
+    Cancelar
+  </button>
+
+  <button (click)="salvar()" type="button" class="btn btn-primary">
+    Salvar
+  </button>
+</ng-template>

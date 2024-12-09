@@ -1,0 +1,29 @@
+<div class="row mb-2">
+  <div class="col">
+    <app-search table="cars" (emitterData)="loadData($event)"></app-search>
+  </div>
+  <div class="col text-end">
+    <button (click)="add()" type="button" class="btn btn-lg btn-primary">
+      Adicionar produto
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <app-table
+      [columns]="[
+        { title: 'Código', name: 'idProducts' },
+        { title: 'Descrição', name: 'descricao' },
+        { title: 'Valor', name: 'valor' }
+      ]"
+      [buttons]="[
+        { id: 'id-edit', icon: 'bi bi-pencil-square' },
+        { id: 'id-trash', icon: 'bi bi-trash' }
+      ]"
+      [tBodyList]="products"
+      (onEventClickBotaoAcoes)="onEventClickBotaoAcoes($event)"
+    ></app-table>
+  </div>
+</div>
+
+<app-product [product]="products" (onFiltrar)="loadData()"></app-product>
