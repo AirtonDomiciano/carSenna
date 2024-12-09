@@ -1,24 +1,23 @@
-<!-- <ng-container *ngIf="registeredCompany; else elseBlock"> -->
+<ng-container *ngIf="registeredCompany; else elseBlock">
+  <!-- Animation sistem -->
+  <ng-container *ngIf="!animationWelcome; else elseLoad">
+    <app-loading-pages text="Seja bem vindo"> </app-loading-pages>
+  </ng-container>
 
-<!-- Animation sistem -->
-<!-- <ng-container *ngIf="!animationWelcome; else elseLoad">
-  <app-loading-pages text="Seja bem vindo"> </app-loading-pages>
-</ng-container> -->
+  <ng-template #elseLoad>
+    <app-sidebar
+      [isExpanded]="isExpanded"
+      (onToggleEvent)="toggleEvent($event)"
+    ></app-sidebar>
+    <app-body [isExpanded]="isExpanded"></app-body>
+  </ng-template>
+</ng-container>
 
-<!-- <ng-template #elseLoad> -->
-<app-sidebar
-  [isExpanded]="isExpanded"
-  (onToggleEvent)="toggleEvent($event)"
-></app-sidebar>
-<app-body [isExpanded]="isExpanded"></app-body>
-<!-- </ng-template> -->
-<!-- </ng-container> -->
-
-<!-- <ng-template #elseBlock>
+<ng-template #elseBlock>
   <app-registered-company
     (onRegistred)="onRegistred($event)"
   ></app-registered-company>
-</ng-template> -->
+</ng-template>
 
 <p-toast></p-toast>
 

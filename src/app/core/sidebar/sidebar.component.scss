@@ -13,6 +13,7 @@ button {
   width: 72px;
   height: 100%;
   background: var(--brand-scheme-500);
+  border-color: var(--chakra-colors-chakra-border-color);
   transition: width 0.8s;
   z-index: 99;
   border-radius: 0px 5px 5px 0px;

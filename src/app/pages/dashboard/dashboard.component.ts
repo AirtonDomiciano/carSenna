@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ChartComponent } from '../../shared/components/chart/chart.component';
-import { PieChartComponent } from '../../shared/components/chart-pie/chart-pie.component';
 import moment from 'moment';
-import { ElectronService } from '../../shared/services/electron.service';
-import NovaOsModel from '../../shared/models/os';
 import { CardInfoComponent } from '../../shared/components/card-info/card-info.component';
+import { BarChartComponent } from '../../shared/components/chart-bar/chart-bar.component';
+import { PieChartComponent } from '../../shared/components/chart-pie/chart-pie.component';
+import { ChartComponent } from '../../shared/components/chart/chart.component';
+import NovaOsModel from '../../shared/models/os';
+import { ElectronService } from '../../shared/services/electron.service';
 import { series } from './dashboard-const';
 
 @Component({
@@ -20,6 +21,7 @@ import { series } from './dashboard-const';
     ChartComponent,
     PieChartComponent,
     CardInfoComponent,
+    BarChartComponent,
   ],
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -35,20 +37,22 @@ export default class DashBoardComponent implements OnInit {
   public chartValues: number[] = [0, 0, 0, 0, 0, 0, 0];
   public chartColumns: string[] = [];
 
-  public chartPieValues: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  public chartPieValues: number[] = [
+    209, 10, 29, 324, 22, 75, 55, 76, 43, 67, 87, 53,
+  ];
   public chartPieColumns: string[] = [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro',
+    'Troca de óleo e filtro',
+    'Alinhamento e balanceamento',
+    'Revisão dos freios',
+    'Substituição de correia dentada',
+    'Inspeção e recarga de ar-condicionado',
+    'Troca de velas de ignição',
+    'Revisão e troca de suspensão',
+    'Reparo do sistema de escapamento',
+    'Troca de bateria',
+    'Inspeção do sistema elétrico',
+    'Revisão e limpeza de bicos injetores',
+    'Diagnóstico computadorizado',
   ];
 
   indicadoresFinanceiros = {
@@ -85,10 +89,10 @@ export default class DashBoardComponent implements OnInit {
 
     this.chartComponent.setValues(
       series({
-        receitaValues: [50, 64, 48, 66, 49, 68],
-        lucroValues: [30, 40, 24, 46, 20, 46],
+        receitaValues: [12500, 13400, 14250, 15800, 12000, 13000],
+        lucroValues: [4500, 5200, 5000, 6000, 4000, 4800],
       }),
-      ['Set', 'Out', 'Nov', 'Dez', 'Jan', 'Fev']
+      ['Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
     );
   }
 
@@ -122,6 +126,6 @@ export default class DashBoardComponent implements OnInit {
       const month = moment(os.dataEmissao).month();
       this.chartPieValues[month]++;
     }
-    /*  this.chartPieComponent.setValues(this.chartPieValues, this.chartPieColumns); */
+    this.chartPieComponent.setValues(this.chartPieValues, this.chartPieColumns);
   }
 }
