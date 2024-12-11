@@ -13,8 +13,8 @@
     <div class="row g-2">
       <div class="col-12">
         <app-input
-          [formGroup]="form"
-          nameControl="descricao"
+          [form]="form"
+          frmName="descricao"
           label="Descrição"
           [isRequired]="true"
         ></app-input>
@@ -35,7 +35,7 @@
         <app-currency-input
           label="Valor"
           [form]="form"
-          frmCurrency="valor"
+          frmName="valor"
         ></app-currency-input>
       </div>
     </div>

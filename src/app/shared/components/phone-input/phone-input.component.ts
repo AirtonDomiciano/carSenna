@@ -17,16 +17,15 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     OnlyNumbersDirective,
   ],
   selector: 'app-phone-input',
-  template: `<div [formGroup]="phoneForm">
+  template: `<div [formGroup]="form">
     <div class="form-floating">
       <input
         type="text"
         id="phoneNumber"
         class="form-control"
-        formControlName="{{ frmPhone }}"
+        formControlName="{{ frmName }}"
         [ngClass]="{
-          'is-invalid':
-            phoneForm.get(frmPhone)?.invalid && phoneForm.get(frmPhone)?.touched
+          'is-invalid': form.get(frmName)?.invalid && form.get(frmName)?.touched
         }"
         (input)="formatPhoneNumber($event)"
         placeholder="(99) 99999-9999"
@@ -37,9 +36,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     </div>
 
     <div
-      *ngIf="
-        phoneForm.get(frmPhone)?.invalid && phoneForm.get(frmPhone)?.touched
-      "
+      *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
       class="text-danger"
     >
       telefone inválido. Formato esperado: (99) 99999-9999 | (99) 9999-9999
@@ -47,8 +44,8 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
   </div> `,
 })
 export class PhoneInputComponent implements OnInit {
-  @Input() phoneForm!: FormGroup;
-  @Input() frmPhone: string = '';
+  @Input() form!: FormGroup;
+  @Input() frmName: string = '';
   @Input() isRequired: boolean = false;
 
   ngOnInit(): void {
@@ -64,7 +61,7 @@ export class PhoneInputComponent implements OnInit {
       validators.push(Validators.required);
     }
 
-    this.phoneForm.controls[this.frmPhone].setValidators(validators);
+    this.form.controls[this.frmName].setValidators(validators);
   }
 
   formatPhoneNumber(event: any): void {
@@ -80,6 +77,6 @@ export class PhoneInputComponent implements OnInit {
       input = input.replace(/^(\d{2})/, '($1) ');
     }
 
-    this.phoneForm.get(this.frmPhone)?.setValue(input, { emitEvent: false });
+    this.form.get(this.frmName)?.setValue(input, { emitEvent: false });
   }
 }

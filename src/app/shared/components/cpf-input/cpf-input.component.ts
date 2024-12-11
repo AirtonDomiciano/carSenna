@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -18,16 +17,15 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     OnlyNumbersDirective,
   ],
   selector: 'app-cpf-input',
-  template: `<div [formGroup]="cpfForm">
+  template: `<div [formGroup]="form">
     <div class="form-floating">
       <input
         type="text"
         id="phoneNumber"
         class="form-control"
-        formControlName="{{ frmCPF }}"
+        formControlName="{{ frmName }}"
         [ngClass]="{
-          'is-invalid':
-            cpfForm.get(frmCPF)?.invalid && cpfForm.get(frmCPF)?.touched
+          'is-invalid': form.get(frmName)?.invalid && form.get(frmName)?.touched
         }"
         (input)="formatCPF($event)"
         placeholder="999.999.999-99"
@@ -37,7 +35,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     </div>
 
     <div
-      *ngIf="cpfForm.get(frmCPF)?.invalid && cpfForm.get(frmCPF)?.touched"
+      *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
       class="text-danger"
     >
       CPF inválido. Formato esperado: 999.999.999-99
@@ -45,15 +43,15 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
   </div> `,
 })
 export class CpfInputComponent implements OnInit {
-  @Input() cpfForm!: FormGroup;
-  @Input() frmCPF: string = '';
+  @Input() form!: FormGroup;
+  @Input() frmName: string = '';
 
   ngOnInit(): void {
     this.validRequired();
   }
 
   validRequired() {
-    this.cpfForm.controls[this.frmCPF].setValidators([
+    this.form.controls[this.frmName].setValidators([
       Validators.required,
       Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/),
     ]);
@@ -72,6 +70,6 @@ export class CpfInputComponent implements OnInit {
       input = input.replace(/^(\d{3})/, '$1.');
     }
 
-    this.cpfForm.get(this.frmCPF)?.setValue(input, { emitEvent: false });
+    this.form.get(this.frmName)?.setValue(input, { emitEvent: false });
   }
 }

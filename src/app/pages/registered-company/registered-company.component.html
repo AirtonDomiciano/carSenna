@@ -61,9 +61,9 @@
                 </div> -->
 
                 <app-input
-                  [formGroup]="form"
+                  [form]="form"
                   label="Razão Social"
-                  nameControl="name"
+                  frmName="name"
                 ></app-input>
               </div>
               <div class="col-12">
@@ -80,8 +80,8 @@
               <div class="col-12">
                 <div class="mb-3">
                   <app-cnpj-input
-                    frmCNPJ="cnpj"
-                    [cnpjForm]="form"
+                    frmName="cnpj"
+                    [form]="form"
                     [isRequired]="true"
                   ></app-cnpj-input>
                 </div>

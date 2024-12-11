@@ -14,15 +14,14 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { ClientInputComponent } from '../../shared/components/customers-input/customers-input.component';
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
+import { InputComponent } from '../../shared/components/input/input.component';
+import { PlateInputComponent } from '../../shared/components/plate-input/plate-input.component';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
 import Car from '../../shared/models/car';
 import { ElectronService } from '../../shared/services/electron.service';
-import { ToastMessageService } from '../../shared/components/toast/toast.service';
-import { PlateInputComponent } from '../../shared/components/plate-input/plate-input.component';
-import { OnlyNumbersDirective } from '../../shared/directives/only-numbers.directive';
-import { CustomersSelectComponent } from '../../shared/components/customers-select/customers-select.component';
-import { ClientInputComponent } from '../../shared/components/customers-input/customers-input.component';
-import { InputComponent } from '../../shared/components/input/input.component';
 
 @Component({
   standalone: true,
@@ -33,7 +32,6 @@ import { InputComponent } from '../../shared/components/input/input.component';
     DrawerComponent,
     PlateInputComponent,
     OnlyNumbersDirective,
-    CustomersSelectComponent,
     ClientInputComponent,
     InputComponent,
   ],

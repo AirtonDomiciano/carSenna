@@ -13,8 +13,8 @@
     <div class="row g-2">
       <div class="col-12">
         <app-input
-          [formGroup]="form"
-          nameControl="name"
+          [form]="form"
+          frmName="name"
           placeHolder="Nome do mecânico"
           label="Nome"
           [isRequired]="true"
@@ -22,21 +22,18 @@
       </div>
       <div class="p-2 g-col-12">
         <app-input
-          [formGroup]="form"
-          nameControl="email"
+          [form]="form"
+          frmName="email"
           placeHolder="Email"
           label="Email"
           [isRequired]="true"
         ></app-input>
       </div>
       <div class="col-6">
-        <app-phone-input
-          [phoneForm]="form"
-          frmPhone="telephone"
-        ></app-phone-input>
+        <app-phone-input [form]="form" frmName="telephone"></app-phone-input>
       </div>
       <div class="col-6">
-        <app-cpf-input frmCPF="cpf" [cpfForm]="form"> </app-cpf-input>
+        <app-cpf-input frmName="cpf" [form]="form"> </app-cpf-input>
       </div>
     </div>
   </form>

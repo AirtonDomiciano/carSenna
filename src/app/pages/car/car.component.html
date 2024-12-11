@@ -19,12 +19,12 @@
         ></app-client-input>
       </div>
       <div class="col-4">
-        <app-plate-input frmName="placa" [plateForm]="form"></app-plate-input>
+        <app-plate-input frmName="placa" [form]="form"></app-plate-input>
       </div>
       <div class="col-4">
         <app-input
-          [formGroup]="form"
-          nameControl="marca"
+          [form]="form"
+          frmName="marca"
           placeHolder="Marca do carro"
           label="Marca"
           [isRequired]="true"
@@ -33,8 +33,8 @@
 
       <div class="col-4">
         <app-input
-          [formGroup]="form"
-          nameControl="modelo"
+          [form]="form"
+          frmName="modelo"
           placeHolder="Modelo"
           label="Modelo"
           [isRequired]="true"
@@ -42,8 +42,8 @@
       </div>
       <div class="col-4">
         <app-input
-          [formGroup]="form"
-          nameControl="ano"
+          [form]="form"
+          frmName="ano"
           placeHolder="Ano"
           label="Ano"
           [isRequired]="true"
@@ -53,8 +53,8 @@
       </div>
       <div class="col-4">
         <app-input
-          [formGroup]="form"
-          nameControl="cor"
+          [form]="form"
+          frmName="cor"
           placeHolder="Cor"
           label="Cor"
           [isRequired]="true"
@@ -62,8 +62,8 @@
       </div>
       <div class="col-4">
         <app-input
-          [formGroup]="form"
-          nameControl="chassi"
+          [form]="form"
+          frmName="chassi"
           placeHolder="Chassi"
           label="Chassi"
           [isRequired]="true"

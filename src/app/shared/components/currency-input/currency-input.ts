@@ -1,22 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    OnlyNumbersDirective,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-currency-input',
   template: `<div [formGroup]="form">
     <div class="form-floating">
@@ -24,10 +12,9 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
         type="text"
         id="currency"
         class="form-control"
-        formControlName="{{ frmCurrency }}"
+        formControlName="{{ frmName }}"
         [ngClass]="{
-          'is-invalid':
-            form.get(frmCurrency)?.invalid && form.get(frmCurrency)?.touched
+          'is-invalid': form.get(frmName)?.invalid && form.get(frmName)?.touched
         }"
         (input)="formatCurrency($event)"
         placeholder="R$ 0,00"
@@ -37,7 +24,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
     </div>
 
     <!-- <div
-      *ngIf="form.get(frmCurrency)?.invalid && form.get(frmCurrency)?.touched"
+      *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
       class="text-danger"
     >
       Valor inválido. Formato esperado: R$ 0,00
@@ -46,7 +33,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
 })
 export class CurrencyInputComponent {
   @Input() form!: FormGroup;
-  @Input() frmCurrency: string = '';
+  @Input() frmName: string = '';
   @Input() label: string = 'Valor';
   @Input() disabled: boolean = false;
 
@@ -60,7 +47,7 @@ export class CurrencyInputComponent {
       input = 'R$ ' + input;
     }
 
-    this.form.get(this.frmCurrency)?.setValue(input, { emitEvent: false });
+    this.form.get(this.frmName)?.setValue(input, { emitEvent: false });
 
     this.onEmitter.emit();
   }

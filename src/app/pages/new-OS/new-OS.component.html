@@ -5,44 +5,44 @@
     </div>
     <div class="col-6">
       <app-input
-        [formGroup]="form"
-        nameControl="nomeEmpresa"
+        [form]="form"
+        frmName="nomeEmpresa"
         placeHolder="Nome Empresa"
         label="Nome Empresa"
       ></app-input>
     </div>
     <div class="col-3">
       <app-phone-input
-        [phoneForm]="form"
-        frmPhone="telefoneEmpresa"
+        [form]="form"
+        frmName="telefoneEmpresa"
       ></app-phone-input>
     </div>
     <div class="col-3">
-      <app-cnpj-input [cnpjForm]="form" frmCNPJ="CNPJ"></app-cnpj-input>
+      <app-cnpj-input [form]="form" frmName="CNPJ"></app-cnpj-input>
     </div>
     <div class="col-2">
-      <app-cep-input [cepForm]="form" frmCEP="cepEmpresa"></app-cep-input>
+      <app-cep-input [form]="form" frmName="cepEmpresa"></app-cep-input>
     </div>
     <div class="col-6">
       <app-input
-        [formGroup]="form"
-        nameControl="ruaEmpresa"
+        [form]="form"
+        frmName="ruaEmpresa"
         placeHolder="Rua Empresa"
         label="Rua"
       ></app-input>
     </div>
     <div class="col-1">
       <app-input
-        [formGroup]="form"
-        nameControl="numeroEmpresa"
+        [form]="form"
+        frmName="numeroEmpresa"
         placeHolder="Nº"
         label="Nº"
       ></app-input>
     </div>
     <div class="col-3">
       <app-input
-        [formGroup]="form"
-        nameControl="bairroEmpresa"
+        [form]="form"
+        frmName="bairroEmpresa"
         placeHolder="Bairro"
         label="Bairro"
       ></app-input>
@@ -101,8 +101,8 @@
     </div>
     <div class="col-12">
       <app-input
-        [formGroup]="form"
-        nameControl="descricaoServico"
+        [form]="form"
+        frmName="descricaoServico"
         placeHolder="Descrição"
         label="Descrição"
       ></app-input>
@@ -116,16 +116,16 @@
     </div>
     <div class="col-5">
       <app-input
-        [formGroup]="form"
-        nameControl="descriptionItem"
+        [form]="form"
+        frmName="descriptionItem"
         placeHolder="Descrição"
         label="Descrição"
       ></app-input>
     </div>
     <div class="col-1">
       <app-input
-        [formGroup]="form"
-        nameControl="amountItem"
+        [form]="form"
+        frmName="amountItem"
         placeHolder="Quantidade"
         label="Quantidade"
       ></app-input>
@@ -135,14 +135,14 @@
         label="Valor unidade"
         [form]="form"
         (onEmitter)="onCalcTotal()"
-        frmCurrency="unitPriceItem"
+        frmName="unitPriceItem"
       ></app-currency-input>
     </div>
     <div class="col-2">
       <app-currency-input
         label="Valor Total"
         [form]="form"
-        frmCurrency="valueItem"
+        frmName="valueItem"
       ></app-currency-input>
     </div>
     <div class="col-2 text-end">

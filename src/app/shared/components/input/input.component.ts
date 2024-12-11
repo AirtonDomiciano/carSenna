@@ -12,18 +12,17 @@ import {
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-input',
   template: `
-    <form [formGroup]="formGroup">
+    <form [formGroup]="form">
       <div class="form-floating">
         <input
           type="text"
           class="form-control"
           [ngClass]="{
             'is-invalid':
-              formGroup.get(nameControl)?.invalid &&
-              formGroup.get(nameControl)?.touched
+              form.get(frmName)?.invalid && form.get(frmName)?.touched
           }"
           placeholder="{{ placeHolder }}"
-          formControlName="{{ nameControl }}"
+          formControlName="{{ frmName }}"
           [readOnly]="readOnly"
           [attr.maxLength]="maxLength"
         />
@@ -31,13 +30,10 @@ import {
       </div>
 
       <div
-        *ngIf="
-          formGroup.get(nameControl)?.invalid &&
-          formGroup.get(nameControl)?.touched
-        "
+        *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
         class="text-danger"
       >
-        <span *ngIf="!formGroup.get(nameControl)?.value">
+        <span *ngIf="!form.get(frmName)?.value">
           {{ label }} não informado(a).
         </span>
       </div>
@@ -45,8 +41,8 @@ import {
   `,
 })
 export class InputComponent implements OnInit {
-  @Input() formGroup!: FormGroup;
-  @Input() nameControl: string = '';
+  @Input() form!: FormGroup;
+  @Input() frmName: string = '';
   @Input() label: string = '';
   @Input() placeHolder: string = '';
   @Input() isRequired: boolean = false;
@@ -61,13 +57,11 @@ export class InputComponent implements OnInit {
 
   validRequired() {
     if (this.isRequired) {
-      this.formGroup.controls[this.nameControl].setValidators([
-        Validators.required,
-      ]);
+      this.form.controls[this.frmName].setValidators([Validators.required]);
     }
   }
 
   teste() {
-    console.log(this.formGroup.controls[this.nameControl].invalid);
+    console.log(this.form.controls[this.frmName].invalid);
   }
 }

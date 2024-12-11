@@ -19,16 +19,16 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
   ],
   selector: 'app-cnpj-input',
   template: `
-    <div [formGroup]="cnpjForm">
+    <div [formGroup]="form">
       <div class="form-floating">
         <input
           type="text"
           id="cnpj"
           class="form-control"
-          formControlName="{{ frmCNPJ }}"
+          formControlName="{{ frmName }}"
           [ngClass]="{
             'is-invalid':
-              cnpjForm.get(frmCNPJ)?.invalid && cnpjForm.get(frmCNPJ)?.touched
+              form.get(frmName)?.invalid && form.get(frmName)?.touched
           }"
           (input)="formatCNPJ($event)"
           placeholder="99.999.999/9999-99"
@@ -41,9 +41,9 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
 
       <div
         *ngIf="
-          !cnpjForm.get(frmCNPJ)?.value &&
-          cnpjForm.get(frmCNPJ)?.invalid &&
-          cnpjForm.get(frmCNPJ)?.touched
+          !form.get(frmName)?.value &&
+          form.get(frmName)?.invalid &&
+          form.get(frmName)?.touched
         "
         class="text-danger"
       >
@@ -51,9 +51,9 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
       </div>
       <div
         *ngIf="
-          cnpjForm.get(frmCNPJ)?.value &&
-          cnpjForm.get(frmCNPJ)?.invalid &&
-          cnpjForm.get(frmCNPJ)?.touched
+          form.get(frmName)?.value &&
+          form.get(frmName)?.invalid &&
+          form.get(frmName)?.touched
         "
         class="text-danger"
       >
@@ -63,8 +63,8 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
   `,
 })
 export class CnpjInputComponent implements OnInit {
-  @Input() cnpjForm!: FormGroup;
-  @Input() frmCNPJ: string = '';
+  @Input() form!: FormGroup;
+  @Input() frmName: string = '';
   @Input() isRequired: boolean = false;
 
   @Output() onEvent: EventEmitter<ICompEvent<null>> = new EventEmitter<
@@ -84,7 +84,7 @@ export class CnpjInputComponent implements OnInit {
       validators.push(Validators.required);
     }
 
-    this.cnpjForm.controls[this.frmCNPJ].setValidators(validators);
+    this.form.controls[this.frmName].setValidators(validators);
   }
 
   formatCNPJ(event: any): void {
@@ -107,7 +107,7 @@ export class CnpjInputComponent implements OnInit {
       input = input.replace(/^(\d{2})/, '$1.');
     }
 
-    this.cnpjForm.get(this.frmCNPJ)?.setValue(input, { emitEvent: false });
+    this.form.get(this.frmName)?.setValue(input, { emitEvent: false });
   }
 
   onBlur() {

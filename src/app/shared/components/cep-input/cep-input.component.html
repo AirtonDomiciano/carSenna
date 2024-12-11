@@ -1,10 +1,10 @@
-<div [formGroup]="cepForm" class="d-flex align-items-center">
+<div [formGroup]="form" class="d-flex align-items-center">
   <div class="form-floating me-2 flex-grow-1">
     <input
       type="text"
       id="cep"
       class="form-control"
-      formControlName="{{ frmCEP }}"
+      formControlName="{{ frmName }}"
       (input)="formatCEP($event)"
       placeholder="CEP"
       onlyNumbers
@@ -20,7 +20,7 @@
 </div>
 
 <div
-  *ngIf="cepForm.get(frmCEP)?.invalid && cepForm.get(frmCEP)?.touched"
+  *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
   class="text-danger"
 >
   CEP inválido. Formato esperado: 00000-000

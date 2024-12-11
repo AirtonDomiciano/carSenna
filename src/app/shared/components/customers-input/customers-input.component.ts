@@ -1,12 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Customer from '../../models/customer';
 import { ElectronService } from '../../services/electron.service';
 
@@ -64,6 +58,7 @@ export class ClientInputComponent implements OnInit {
   }
 
   async loadData() {
+    // TODO
     // this.customers = [];
 
     // const res = await this.http.loadData('customers');

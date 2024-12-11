@@ -12,7 +12,7 @@ import {
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-plate-input',
   template: `
-    <div [formGroup]="plateForm">
+    <div [formGroup]="form">
       <div class="form-floating">
         <input
           type="text"
@@ -21,7 +21,7 @@ import {
           formControlName="{{ frmName }}"
           [ngClass]="{
             'is-invalid':
-              plateForm.get(frmName)?.invalid && plateForm.get(frmName)?.touched
+              form.get(frmName)?.invalid && form.get(frmName)?.touched
           }"
           (input)="formatPlate($event)"
           placeholder="XXX-XXXX"
@@ -30,9 +30,7 @@ import {
       </div>
 
       <div
-        *ngIf="
-          plateForm.get(frmName)?.invalid && plateForm.get(frmName)?.touched
-        "
+        *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
         class="text-danger"
       >
         Placa inválida. Formato esperado: XXX-XXXX
@@ -41,7 +39,7 @@ import {
   `,
 })
 export class PlateInputComponent implements OnInit {
-  @Input() plateForm!: FormGroup;
+  @Input() form!: FormGroup;
   @Input() frmName: string = '';
 
   ngOnInit(): void {
@@ -49,7 +47,7 @@ export class PlateInputComponent implements OnInit {
   }
 
   validRequired() {
-    this.plateForm.controls[this.frmName].setValidators([
+    this.form.controls[this.frmName].setValidators([
       Validators.required,
       Validators.pattern(/^([A-Z0-9]{3}-[A-Z0-9]{4})$/i),
     ]);
@@ -61,6 +59,6 @@ export class PlateInputComponent implements OnInit {
     input =
       input.length > 3 ? `${input.slice(0, 3)}-${input.slice(3, 7)}` : input;
 
-    this.plateForm.get(this.frmName)?.setValue(input, { emitEvent: false });
+    this.form.get(this.frmName)?.setValue(input, { emitEvent: false });
   }
 }
