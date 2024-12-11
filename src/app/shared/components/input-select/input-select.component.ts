@@ -8,10 +8,10 @@ import { ElectronService } from '../../services/electron.service';
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   selector: 'app-input-select',
   template: ` <div [formGroup]="form">
-    <div class="form-group">
-      <label>{{ label }}</label>
+    <div class="form-floating form-group">
       <select
-        class="form-select form-select-lg mb-3"
+        id="floatingSelect"
+        class="form-select"
         formControlName="{{ frmName }}"
         (ngModelChange)="onChange($event)"
       >
@@ -19,6 +19,7 @@ import { ElectronService } from '../../services/electron.service';
           {{ option.id }} - {{ !objName ? option.name : option[objName] }}
         </option>
       </select>
+      <label for="floatingSelect">{{ label }}</label>
     </div>
   </div>`,
 })
