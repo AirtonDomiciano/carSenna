@@ -12,11 +12,12 @@
   <form [formGroup]="form">
     <div class="row g-2">
       <div class="col-12">
-        <app-client-input
+        <app-search-input
           label="Proprietário"
           [form]="form"
-          frmName="marca"
-        ></app-client-input>
+          frmName="idProprietario"
+          searchTable="customers"
+        ></app-search-input>
       </div>
       <div class="col-4">
         <app-plate-input frmName="placa" [form]="form"></app-plate-input>

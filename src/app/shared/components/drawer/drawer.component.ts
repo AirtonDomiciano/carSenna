@@ -47,14 +47,16 @@ export class DrawerComponent {
   openDrawer(): void {
     this.visible = true;
     this.open = true;
+    this.cdRef.detectChanges();
   }
 
-  async closeDrawer(): Promise<void> {
+  closeDrawer(): void {
     this.open = false;
-    await setTimeout(() => {
+    setTimeout(() => {
       this.visible = false;
+      this.cdRef.detectChanges();
     }, 1000);
-    this.cdRef.detectChanges();
+
     this.markAllAsUntouched();
   }
 

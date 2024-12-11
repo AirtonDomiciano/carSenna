@@ -9,7 +9,7 @@ export default class Car {
   nroMotor: string;
   placa: string;
   tipoCombustivel: string;
-  proprietario: number;
+  idProprietario: number | null;
 
   constructor() {
     this.id = 0;
@@ -22,7 +22,7 @@ export default class Car {
     this.chassi = '';
     this.nroMotor = '';
     this.tipoCombustivel = '';
-    this.proprietario = 0;
+    this.idProprietario = null;
   }
 }
 
