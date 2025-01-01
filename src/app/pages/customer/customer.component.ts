@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -6,22 +7,21 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ElectronService } from '../../shared/services/electron.service';
-import Customer from '../../shared/models/customer';
-import { ToastMessageService } from '../../shared/components/toast/toast.service';
-import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
-import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
-import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
 import { CepInputComponent } from '../../shared/components/cep-input/cep-input.component';
-import { AdressInterface } from '../../shared/interfaces/adress.interface';
+import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
+import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
 import { InputComponent } from '../../shared/components/input/input.component';
+import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import { AdressInterface } from '../../shared/interfaces/adress.interface';
+import Customer from '../../shared/models/customer';
+import { ElectronService } from '../../shared/services/electron.service';
 
 @Component({
   standalone: true,
@@ -87,6 +87,13 @@ export class CustomerComponent implements OnInit {
   }
 
   async salvar() {
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();  
+      this.toast.mostrarAviso('Você deve informar todos os campos obrigatórios antes de continuar.')
+      return;
+    }
+
     this.salvarCustomers();
 
     this.http.saveData('customers', this.customers).then((ver) => {
@@ -99,6 +106,7 @@ export class CustomerComponent implements OnInit {
   }
 
   async salvarCustomers(): Promise<void> {
+    // TODO Mudar 
     const customer: Customer = this.form.value;
 
     const newId = customer?.id ? customer?.id : this.customers?.length + 1;
@@ -113,8 +121,6 @@ export class CustomerComponent implements OnInit {
       customer.id = newId;
       this.customers.push(customer);
     }
-
-    // this.http.addData(this.customers);
   }
 
   editaCustomer(editCustomer: Customer) {

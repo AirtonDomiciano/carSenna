@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   FormGroup,
   FormsModule,
@@ -24,6 +24,7 @@ import {
           placeholder="{{ placeHolder }}"
           formControlName="{{ frmName }}"
           [readOnly]="readOnly"
+          (input)="inputChange($event)"
           [attr.maxLength]="maxLength"
         />
         <label for="name">{{ label }}</label>
@@ -33,9 +34,9 @@ import {
         *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
         class="text-danger"
       >
-        <span *ngIf="!form.get(frmName)?.value">
+        <!-- <span *ngIf="!form.get(frmName)?.value">
           {{ label }} não informado(a).
-        </span>
+        </span> -->
       </div>
     </form>
   `,
@@ -49,10 +50,13 @@ export class InputComponent implements OnInit {
   @Input() readOnly: boolean = false;
   @Input() maxLength?: string;
 
+  @Output() onEmitter: EventEmitter<void> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {
     this.validRequired();
+    this.form.markAllAsTouched();  
   }
 
   validRequired() {
@@ -61,7 +65,8 @@ export class InputComponent implements OnInit {
     }
   }
 
-  teste() {
-    console.log(this.form.controls[this.frmName].invalid);
+  inputChange($event: any) {
+    this.onEmitter.emit();
   }
+
 }

@@ -111,13 +111,13 @@ export class NewOSComponent implements OnInit {
       this.form.controls['valueItem'].setValue(0);
       return;
     }
-    const utilsValueNumber = this.utils.getValor(unitPriceItem);
+    // const utilsValueNumber = this.utils.getValor(unitPriceItem);
 
-    const total = amountItem * utilsValueNumber;
+    const total = amountItem * unitPriceItem;
 
-    const totalValue = this.utils.formatarValor(total);
+    // const totalValue = this.utils.formatarValor(total);
 
-    this.form.controls['valueItem'].setValue(`${totalValue}`);
+    this.form.controls['valueItem'].setValue(total);
   }
 
   addItem() {

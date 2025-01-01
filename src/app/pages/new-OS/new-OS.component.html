@@ -116,33 +116,32 @@
     </div>
     <div class="col-5">
       <app-input
-        [form]="form"
-        frmName="descriptionItem"
-        placeHolder="Descrição"
         label="Descrição"
+        frmName="descriptionItem"
+        [form]="form"
       ></app-input>
     </div>
     <div class="col-1">
       <app-input
-        [form]="form"
-        frmName="amountItem"
-        placeHolder="Quantidade"
         label="Quantidade"
+        frmName="amountItem"
+        (onEmitter)="onCalcTotal()"
+        [form]="form"
       ></app-input>
     </div>
     <div class="col-2">
       <app-currency-input
         label="Valor unidade"
-        [form]="form"
-        (onEmitter)="onCalcTotal()"
         frmName="unitPriceItem"
+        (onEmitter)="onCalcTotal()"
+        [form]="form"
       ></app-currency-input>
     </div>
     <div class="col-2">
       <app-currency-input
         label="Valor Total"
-        [form]="form"
         frmName="valueItem"
+        [form]="form"
       ></app-currency-input>
     </div>
     <div class="col-2 text-end">

@@ -29,12 +29,12 @@ import {
         <label for="plateNumber">Placa</label>
       </div>
 
-      <div
+      <!-- <div
         *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
         class="text-danger"
       >
         Placa inválida. Formato esperado: XXX-XXXX
-      </div>
+      </div> -->
     </div>
   `,
 })
@@ -44,6 +44,7 @@ export class PlateInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.validRequired();
+    this.form.markAllAsTouched();  
   }
 
   validRequired() {

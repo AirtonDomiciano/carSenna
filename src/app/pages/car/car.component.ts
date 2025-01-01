@@ -87,6 +87,13 @@ export class CarComponent implements OnInit {
   }
 
   async salvar() {
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();  
+      this.toast.mostrarAviso('Você deve informar todos os campos obrigatórios antes de continuar.')
+      return;
+    }
+
     const car: Car = this.form.value;
 
     const newId = car?.id ? car?.id : this.cars?.length + 1;

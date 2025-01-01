@@ -63,21 +63,21 @@
                     >
                   </td>
                 </ng-container>
-                <td *ngIf="usarAcoes === true" pFrozenColumn>
-                  <div class="d-flex justify-content-center align-items-center">
+                <td width="10%" *ngIf="usarAcoes === true" pFrozenColumn>
+                  <div class="text-center">
                     <ng-container *ngFor="let button of buttons; let i = index">
                       <button
                         id="table-data-button-{{ i }}"
                         [disabled]="button.disabled"
                         (click)="onClickBotaoAcoes({ id: button.id, obj: obj })"
-                        class="btn btn-link p-0"
+                        class="mx-1 btn btn-link p-0"
                       >
                         <div
                           *ngIf="
                             button.showLabelActions === true;
                             else showIcons
                           "
-                          class="btn btn-secondary border-0 p-1 m-0"
+                          class="btn btn-secondary border-0 p-1 "
                         >
                           {{ button.label }}
                         </div>

@@ -47,9 +47,9 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
         "
         class="text-danger"
       >
-        CNPJ não informado.
+        <!-- CNPJ não informado. -->
       </div>
-      <div
+      <!-- <div
         *ngIf="
           form.get(frmName)?.value &&
           form.get(frmName)?.invalid &&
@@ -58,7 +58,7 @@ import { ICompEvent } from '../../interfaces/comp-event.interface';
         class="text-danger"
       >
         CNPJ inválido. Formato esperado: 99.999.999/9999-99
-      </div>
+      </div> -->
     </div>
   `,
 })

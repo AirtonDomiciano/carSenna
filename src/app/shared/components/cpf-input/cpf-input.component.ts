@@ -38,7 +38,8 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
       *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
       class="text-danger"
     >
-      CPF inválido. Formato esperado: 999.999.999-99
+      <!-- CPF inválido.   -->
+       <!-- Formato esperado: 999.999.999-99 -->
     </div>
   </div> `,
 })
@@ -48,6 +49,7 @@ export class CpfInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.validRequired();
+    this.form.markAllAsTouched();  
   }
 
   validRequired() {

@@ -7,17 +7,16 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({
-    // TODO PEGAR POR DEFAULT
-    // width: 1920,
-    // height: 1080,
-    width: 1366,
-    height: 768,
+    show: false,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
+  win.maximize();
+  win.show();
 
   //TODO ARRUMAR PRA GERAR O EXEC
   if (process.env.PROD == "TRUE") {

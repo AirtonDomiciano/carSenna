@@ -12,10 +12,10 @@
   <form [formGroup]="form">
     <div class="row g-2 align-items-center">
       <app-input
-        [form]="form"
-        frmName="name"
-        placeHolder="Nome"
         label="Nome"
+        frmName="name"
+        [form]="form"
+        placeHolder="Nome"
         [isRequired]="true"
       ></app-input>
       <div class="col-4">
@@ -23,11 +23,10 @@
       </div>
       <div class="col-4">
         <app-input
-          [form]="form"
-          frmName="inscEst"
-          placeHolder="Insc. Est"
           label="Insc. Est"
-          [isRequired]="true"
+          frmName="inscEst"
+          [form]="form"
+          placeHolder="Insc. Est"
         ></app-input>
       </div>
       <div class="col-4">
@@ -35,80 +34,73 @@
       </div>
       <div class="col-12">
         <app-input
-          [form]="form"
-          frmName="email"
-          placeHolder="Email"
           label="Email"
+          frmName="email"
+          [form]="form"
+          placeHolder="Email"
           [isRequired]="true"
         ></app-input>
       </div>
       <div class="col-12">
         <h5 class="border-bottom pb-2">Endereço</h5>
       </div>
-
       <div class="col-6">
         <app-cep-input
           frmName="cep"
           [form]="form"
           (emitterCEP)="setarEndereco($event)"
-          [findCep]="true"
         ></app-cep-input>
       </div>
       <div class="col-9">
         <app-input
-          [form]="form"
-          frmName="rua"
-          placeHolder="Rua"
           label="Rua"
-          [isRequired]="true"
+          frmName="rua"
+          [form]="form"
+          placeHolder="Rua"
           [readOnly]="cepReadOnly"
         ></app-input>
       </div>
       <div class="col-3">
         <app-input
-          [form]="form"
-          frmName="numero"
-          placeHolder="Nº"
           label="Nº"
-          [isRequired]="true"
+          frmName="numero"
+          [form]="form"
+          placeHolder="Nº"
         ></app-input>
       </div>
       <div class="col-2">
         <app-input
-          [form]="form"
-          frmName="estado"
-          placeHolder="Estado"
           label="Estado"
-          [isRequired]="true"
+          frmName="estado"
+          [form]="form"
+          placeHolder="Estado"
           [readOnly]="cepReadOnly"
         ></app-input>
       </div>
       <div class="col-5">
         <app-input
-          [form]="form"
-          frmName="bairro"
-          placeHolder="Bairro"
           label="Bairro"
-          [isRequired]="true"
+          frmName="bairro"
+          [form]="form"
+          placeHolder="Bairro"
           [readOnly]="cepReadOnly"
         ></app-input>
       </div>
       <div class="col-5">
         <app-input
-          [form]="form"
-          frmName="cidade"
-          placeHolder="Cidade"
           label="Cidade"
-          [isRequired]="true"
+          frmName="cidade"
+          [form]="form"
+          placeHolder="Cidade"
           [readOnly]="cepReadOnly"
         ></app-input>
       </div>
       <div class="col-12">
         <app-input
-          [form]="form"
-          frmName="complemento"
-          placeHolder="Complemento"
           label="Complemento"
+          frmName="complemento"
+          [form]="form"
+          placeHolder="Complemento"
         ></app-input>
       </div>
     </div>
