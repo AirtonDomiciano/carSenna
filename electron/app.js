@@ -12,7 +12,9 @@ function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(__dirname, "preload.js"),
+      partition: "nopersist",
     },
+    icon: path.join(__dirname, "src/assets/vika.ico"),
   });
 
   win.maximize();
