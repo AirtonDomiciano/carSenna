@@ -64,6 +64,9 @@
 
   --gray-100: #fafcfe;
 
+  /* Vika Colors */
+  --vika-primary: #1E293B;
+
   /* CHAKRA */
   --chakra-shadows-none: none;
 
@@ -127,6 +130,10 @@
 
 .success-text {
   color: var(--green-500);
+}
+
+.vika-title {
+  color: var(--vika-primary);
 }
 
 /* Importing Bootstrap SCSS file. */
