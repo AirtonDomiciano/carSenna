@@ -20,6 +20,7 @@ import { ElectronService } from '../../services/electron.service';
         }"
         (input)="onSearchTermChange($event)"
         (focus)="onFocus()"
+        (blur)="onBlur()"
       />
       <label for="clientSearch">{{ label }}</label>
     </div>
@@ -98,6 +99,10 @@ export class SearchInputComponent implements OnInit {
   onFocus(): void {
     this.focus = true;
     this.itensFiltered();
+  }
+
+  onBlur(): void {
+    this.focus = false;
   }
 
   onClicked(item: { id: number; name: string }) {

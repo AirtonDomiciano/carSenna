@@ -5,11 +5,11 @@
 
 <aside
   id="drawer-{{ idDrawer }}"
-  [ngClass]="open === true ? 'drawer-open' : 'drawer-closed'"
-  class="navigation-drawer width-default"
->
+  [ngClass]="{ 'drawer-open': open, 'drawer-closed': !open }"
+  class="navigation-drawer width-default drawer-closed"
+  >
+<!-- *ngIf="visible === true" -->
   <div
-    *ngIf="visible === true"
     class="drawer-container"
     id="drawer-container-{{ idDrawer }}"
   >

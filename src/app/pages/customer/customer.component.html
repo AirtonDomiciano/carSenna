@@ -30,7 +30,7 @@
         ></app-input>
       </div>
       <div class="col-4">
-        <app-phone-input [form]="form" frmName="telephone"> </app-phone-input>
+        <app-phone-input [form]="form" frmName="telephone"  [isRequired]="true"> </app-phone-input>
       </div>
       <div class="col-12">
         <app-input
@@ -48,6 +48,7 @@
         <app-cep-input
           frmName="cep"
           [form]="form"
+          [findCep]="true"
           (emitterCEP)="setarEndereco($event)"
         ></app-cep-input>
       </div>

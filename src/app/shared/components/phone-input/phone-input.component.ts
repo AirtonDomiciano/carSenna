@@ -35,12 +35,12 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
       <label for="phoneNumber">Telefone</label>
     </div>
 
-    <div
+    <!-- <div
       *ngIf="form.get(frmName)?.invalid && form.get(frmName)?.touched"
       class="text-danger"
     >
       telefone inválido. Formato esperado: (99) 99999-9999 | (99) 9999-9999
-    </div>
+    </div> -->
   </div> `,
 })
 export class PhoneInputComponent implements OnInit {

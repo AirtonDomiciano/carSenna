@@ -25,6 +25,8 @@ export class CepInputComponent {
   @Input() form!: FormGroup;
   @Input() frmName: string = '';
   @Input() findCep: boolean = false;
+  @Input() isRequired: boolean = false;
+
 
   constructor(private cepInputService: CepInputService) {}
 
@@ -33,10 +35,15 @@ export class CepInputComponent {
   }
 
   validRequired() {
-    this.form.controls[this.frmName].setValidators([
-      Validators.required,
-      Validators.pattern(/^\d{5}\-\d{3}$/),
-    ]);
+    const validators = [
+      Validators.pattern(/^\d{5}\-\d{3}$/),  
+    ]
+
+    if (this.isRequired) {
+      validators.push(Validators.required);
+    }
+    
+    this.form.controls[this.frmName].setValidators(validators);
   }
 
   formatCEP(event: any): void {
