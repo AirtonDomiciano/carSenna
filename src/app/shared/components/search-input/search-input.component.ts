@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Customer from '../../models/customer';
 import { ElectronService } from '../../services/electron.service';
@@ -33,7 +33,11 @@ import { ElectronService } from '../../services/electron.service';
     </div>
 
     <ul *ngIf="focus" class="ul-input">
-      <li *ngFor="let item of filteredItens" (click)="onClicked(item)">
+      <li
+        *ngFor="let item of filteredItens; let i = index"
+        (click)="onClicked(item)"
+        [ngClass]="{ active: selectedIndex === i }"
+      >
         {{ item.id }} - {{ item.name }}
       </li>
     </ul>
@@ -52,7 +56,38 @@ export class SearchInputComponent implements OnInit {
   public focus: boolean = false;
   public nameSelected: string = '';
 
+  public selectedIndex: number | null = null; // Índice do item selecionado
+
   constructor(private http: ElectronService) {}
+
+  @HostListener('keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (this.focus) {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault(); // Evitar rolagem da página
+        if (
+          this.selectedIndex === null ||
+          this.selectedIndex === this.filteredItens.length - 1
+        ) {
+          this.selectedIndex = 0; // Volta para o primeiro item
+        } else {
+          this.selectedIndex++;
+        }
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault(); // Evitar rolagem da página
+        if (this.selectedIndex === null || this.selectedIndex === 0) {
+          this.selectedIndex = this.filteredItens.length - 1; // Vai para o último item
+        } else {
+          this.selectedIndex--;
+        }
+      } else if (event.key === 'Enter') {
+        event.preventDefault(); // Evitar o comportamento padrão
+        if (this.selectedIndex !== null) {
+          this.onClicked(this.filteredItens[this.selectedIndex]);
+        }
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.loadData();
@@ -82,6 +117,7 @@ export class SearchInputComponent implements OnInit {
 
   onSearchTermChange(event: any): void {
     this.itensFiltered();
+    this.selectedIndex = null; // Resetar o índice selecionado
   }
 
   itensFiltered() {
