@@ -30,6 +30,7 @@ import { OnlyNumbersDirective } from '../../directives/only-numbers.directive';
         (input)="formatCPF($event)"
         placeholder="999.999.999-99"
         onlyNumbers
+        maxlength="14"
       />
       <label for="phoneNumber">CPF</label>
     </div>

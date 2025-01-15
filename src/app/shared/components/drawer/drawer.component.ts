@@ -6,6 +6,7 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnInit,
   TemplateRef,
 } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +19,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./drawer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DrawerComponent {
+export class DrawerComponent  implements OnInit {
   @Input() form!: FormGroup;
   @Input() header = '';
   @Input() labelButton = 'Open Drawer';
@@ -44,20 +45,24 @@ export class DrawerComponent {
 
   constructor(private eRef: ElementRef, public cdRef: ChangeDetectorRef) {}
 
+  ngOnInit(): void {
+    this.open = false;
+    this.cdRef.detectChanges();
+  }
+
   openDrawer(): void {
     this.visible = true;
     this.open = true;
-    this.cdRef.detectChanges();
   }
 
   closeDrawer(): void {
     this.open = false;
     setTimeout(() => {
       this.visible = false;
-      this.cdRef.detectChanges();
     }, 1000);
-
-    this.markAllAsUntouched();
+    
+    this.cdRef.detectChanges();
+    // this.markAllAsUntouched();
   }
 
   markAllAsUntouched() {

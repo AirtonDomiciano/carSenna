@@ -9,6 +9,7 @@
   flex-direction: column; /* Add this line to set the flex direction */
   height: 100vh; /* Add this line to set the height to 100vh */
 }
+
 .drawer-open {
   transform: translateX(0);
 }

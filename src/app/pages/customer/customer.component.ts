@@ -89,7 +89,7 @@ export class CustomerComponent implements OnInit {
   async salvar() {
 
     if (this.form.invalid) {
-      this.form.markAllAsTouched();  
+      // this.form.markAllAsTouched();  
       this.toast.mostrarAviso('Você deve informar todos os campos obrigatórios antes de continuar.')
       return;
     }

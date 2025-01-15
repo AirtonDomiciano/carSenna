@@ -14,13 +14,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 
+import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
 import { DrawerComponent } from '../../shared/components/drawer/drawer.component';
-import { ElectronService } from '../../shared/services/electron.service';
-import { ToastMessageService } from '../../shared/components/toast/toast.service';
-import Mechanical from '../../shared/models/mechanical';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { PhoneInputComponent } from '../../shared/components/phone-input/phone-input.component';
-import { CpfInputComponent } from '../../shared/components/cpf-input/cpf-input.component';
+import { ToastMessageService } from '../../shared/components/toast/toast.service';
+import Mechanical from '../../shared/models/mechanical';
+import { ElectronService } from '../../shared/services/electron.service';
 
 @Component({
   standalone: true,
@@ -87,6 +87,13 @@ export class MechanicalComponent implements OnInit {
   async salvar() {
     const mechanical: Mechanical = this.form.value;
 
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();  
+      this.toast.mostrarAviso('Você deve informar todos os campos obrigatórios antes de continuar.')
+      return;
+    }
+    
     const newId = mechanical?.id
       ? mechanical?.id
       : this.mechanicals?.length + 1;
@@ -97,8 +104,6 @@ export class MechanicalComponent implements OnInit {
       mechanical.id = newId;
       this.mechanicals.push(mechanical);
     }
-
-    // this.http.addData(this.mechanicals);
 
     this.http.saveData('mechanicals', this.mechanicals).then((ver) => {
       if (ver) {
