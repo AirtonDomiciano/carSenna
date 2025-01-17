@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ElectronService } from '../../services/electron.service';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ElectronService } from '../../services/electron.service';
 
 @Component({
   selector: 'app-search',
@@ -10,47 +17,52 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent {
+export class SearchComponent implements OnChanges {
   @Output() emitterData: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Input() table: string = '';
 
   public searchTerm: string = '';
   public filteredItems: any[] = [];
+  cachedData = [];
+  timer: any;
 
   constructor(private http: ElectronService) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['table'].currentValue !== this.table) {
+      this.cachedData = []; // ao alterar de tela limpa o cache
+    }
+  }
+
+  onSearch() {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.loadData();
+    }, 500);
+  }
+
   async loadData() {
     this.filteredItems = [];
-    const res: any[] = await this.http.loadData(this.table);
+    if (!this.cachedData.length) {
+      this.cachedData = await this.http.loadData(this.table);
+    }
 
     if (!this.searchTerm) {
-      this.filteredItems = res;
+      this.filteredItems = this.cachedData;
     } else {
-      for (let obj of res) {
-        if (this.searchInObject(obj)) {
-          this.filteredItems.push(obj);
-        }
-      }
+      this.filteredItems = this.dynamicSearch(this.cachedData, this.searchTerm);
     }
 
     this.emitterData.emit(this.filteredItems);
   }
 
-  private searchInObject(obj: any[]): boolean {
-    for (let key in obj) {
-      if (typeof obj[key] === 'object') {
-        if (this.searchInObject(obj[key])) {
-          return true;
-        }
-      } else if (
-        obj[key]
-          .toString()
-          .toLowerCase()
-          .includes(this.searchTerm.toLowerCase())
-      ) {
-        return true;
-      }
-    }
-    return false;
+  dynamicSearch(array: any[], query: string) {
+    const lowerCaseQuery = query.toLowerCase();
+
+    return array.filter((item) =>
+      Object.values(item).some((value: any) =>
+        value.toString().toLowerCase().includes(lowerCaseQuery)
+      )
+    );
   }
 }
