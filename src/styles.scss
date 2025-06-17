@@ -102,7 +102,7 @@
 
 .p-datatable .p-datatable-thead > tr > th {
   color: var(--bluegray-100);
-  background: var(--brand-scheme-600);
+  background: var(--blue-400);
 }
 
 .p-datatable .p-sortable-column .p-sortable-column-icon {
@@ -110,7 +110,7 @@
 }
 
 .p-datatable .p-sortable-column.p-highlight {
-  background: var(--brand-scheme-600);
+  background: var(--blue-400);
   color: #ffffff;
 
   .p-sortable-column-icon {

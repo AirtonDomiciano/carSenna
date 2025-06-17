@@ -12,11 +12,13 @@ button {
   left: 0;
   width: 72px;
   height: 100%;
-  background: var(--brand-scheme-500);
+  background: linear-gradient(145deg, var(--blue-400) 0%, var(--blue-500) 50%, var(--blue-600) 100%);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
   border-color: var(--chakra-colors-chakra-border-color);
-  transition: width 0.8s;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 99;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 16px 16px 0px;
+  backdrop-filter: blur(10px);
 }
 
 .is-expanded .sidebar {
@@ -39,8 +41,9 @@ button {
   align-items: center;
   height: 72px;
   padding: 0 1.25rem 0 0;
-  border-bottom: 1px solid var(--brand-scheme-600);
-  background: var(--brand-scheme-500);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 .sidebar-burger {
@@ -67,40 +70,78 @@ button {
 }
 
 .sidebar-nav {
-  padding-top: 10px;
+  padding: 16px 0;
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.sidebar button {
+.sidebar .nav-item {
   display: flex;
-  gap: 25px;
+  gap: 20px;
   align-items: center;
-  height: 50px;
-  // font-family: "Poppins";
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 2px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
   line-height: 1;
   padding: 0 25px;
-}
-
-.sidebar button > span:hover {
-  color: var(--cyan-700);
-}
-
-.sidebar button > .big-icon:hover {
-  color: var(--cyan-700);
+  margin: 4px 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateX(6px) scale(0.98);
+  }
 }
 
 .big-icon {
-  font-size: 27px;
-  color: var(--cyan-50);
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
 }
 
-.sidebar button > span {
-  color: var(--cyan-50);
+.nav-item:hover .big-icon {
+  color: #ffffff;
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.sidebar .nav-item > span {
+  color: rgba(255, 255, 255, 0.9);
   opacity: 0;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item:hover > span {
+  color: #ffffff;
 }
 
 @keyframes appear {
@@ -115,7 +156,52 @@ button {
 }
 
 // Aplica nos botões
-.is-expanded .sidebar button > span {
+.is-expanded .sidebar .nav-item > span {
   opacity: 1;
   animation: appear 0.3s both;
+}
+
+// Estilos especiais para o footer
+.footer-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 8px !important;
+  padding-top: 16px !important;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+}
+
+// Estado ativo/selecionado
+.nav-item.router-link-active,
+.nav-item:focus {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(12px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  
+  .big-icon {
+    color: #ffffff;
+    transform: scale(1.15);
+  }
+  
+  span {
+    color: #ffffff;
+    font-weight: 600;
+  }
+}
+
+// Efeito de pulso no burger button
+.sidebar-burger {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px;
+  }
+}
+
+// Melhoria na expansão
+.is-expanded .sidebar {
+  box-shadow: 0 12px 48px rgba(59, 130, 246, 0.2);
 }
